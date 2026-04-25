@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JJS HEAVEN</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
@@ -13,13 +14,15 @@ body {
   font-family: 'Finger Paint', cursive, sans-serif;
   padding: 20px;
   margin: 0;
-  font-size: 18px; /* 👈 tamanho normal */
+  font-size: 20px;
 }
 
 pre {
-  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-word;
   font-family: 'Finger Paint', cursive, sans-serif;
-  font-size: 18px; /* 👈 garante que não fique menor */
+  font-size: 20px;
+  line-height: 1.5;
 }
 </style>
 </head>
@@ -33,6 +36,9 @@ fetch("dados.json")
   .then(res => res.text())
   .then(texto => {
     document.getElementById("conteudo").textContent = texto;
+  })
+  .catch(() => {
+    document.getElementById("conteudo").textContent = "Erro ao carregar o JSON";
   });
 </script>
 
