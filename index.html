@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JSON Viewer</title>
+
+<style>
+body {
+  background: #111;
+  color: white;
+  font-family: monospace;
+  padding: 20px;
+  white-space: pre-wrap; /* mantém formatação */
+}
+</style>
+</head>
+
+<body>
+
+<div id="conteudo"></div>
+
+<script>
+fetch("dados.json")
+  .then(res => res.json())
+  .then(json => {
+    document.getElementById("conteudo").innerText =
+      JSON.stringify(json, null, 2);
+  });
+</script>
+
+</body>
+</html>
