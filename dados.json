@@ -335,12 +335,38 @@ Unlimited void - 131649240815291
 general mahoraga - 108134338254237
 Hidden inventory - 127012663233191
 Comedy fumihiko - 86125627968466
+JJS Sound Effects:
+(oSam aka pinguimdoimalia and his friend)
+Playful Cloud:
+116901112122156 Swing1 
+97228090794267 Swing2
+103222009007167 Swing3
+116901112122156 Swing4 (0.8x)
+1358442317 Break
+ 3755636825 Swing2 (0.9x)
+7978512114 Swing
+3932141920 Hit
+134273082284707 Sever 
 
+Sniper:
+136523485 Fire 
+131265718595511 Recharge
+3932141920 Hit
+2227416952 Explode (Finisher)
+4459572763 Explode (finisher) 
 
-DOMAIN CLASH:
+Soda:
+6315580910 Open (1.3x)
+2245190929 Drink (1.3x)
 
-Music:
-89526560746434
+Jet Black:
+4085938599 Swing
+3932145123 Hit
+
+Gun:
+5735280081 GunFire
+3932141920 Hit
+1358442317 GunBreak 
 
 Impacts and Ragdolls:
 91186117342 Impact1
@@ -350,90 +376,19 @@ Impacts and Ragdolls:
 3784888301 RagdollFall1
 3784888809 RagdollFall2
 3784889529 RagdollFall3
-3778609188 Break (downslam)
-
-ITEMS (finally):
-
-Coin:
-81202220081219 Parry
-136124980150792 Coin
-
-Naginata:
-94107281648467 Hit1
-103563218704266 Hit2 and Hit3
-
-Gun:
-5735280081 GunFire
-3932141920 Hit
-1358442317 GunBreak
-
-TNT:
-433141679 TNT
-90854697257230 Explode
-
-Jet Black:
-4085938599 Swing
-3932145123 Hit
-
-Soda:
-6315580910 Open (1.3x)
-2245190929 Drink (1.3x)
-
-Banana Peel:
-1606631241 Peel
-129432532096499 Slip
-
-Hazenoki's Eye:
-83364996869460 EyeExplode
-
-Voice Recorder:
-90506072322224 Switch
-88080590196375 Voice (thing that has in all modes)
-128573990774413 Crush
-117637019344223 DontMove
-81923105628397 BlastAway
-
-Transfigured Flesh:
-134228799555671 Wall
-
-Playful Cloud:
-116901112122156 Swing1
-97228090794267 Swing2
-103222009007167 Swing3
-116901112122156 Swing4 (0.8x)
-1358442317 Break
-3755636825 Swing2 (0.9x)
-7978512114 Swing
-3932141920 Hit
-134273082284707 Sever
-
-Sniper:
-136523485 Fire
-131265718595511 Recharge
-3932141920 Hit
-2227416952 Explode (Finisher)
-4459572763 Explode (finisher)
-
-Bowling ball:
-96331415600436 Loop
-79710336574311 Hit
+3778609188 Break(downslam)
 
 Dashes:
-17866719328 StrikeStart (Mahito blade windup)
-17866718764 Strike (mahito blade hit)
-17866720253 ClubDash(mahito club and awk dash)
+17866719328 StrikeStart (Mahito blade windup) 17866718764 Strike (mahito blade hit)
 4909206080 Chase (normal frontdash)
-8595975458 DashHit (normal frontdash hit)
-103563218704266 DashHit (Mangaka frontdash hit)
-3929467229 SideDash
+8595975458 DashHit (normal frontdash hit) 103563218704266 DashHit (Mangaka frontdash hit) 3929467229 SideDash
 
 Block:
 4306994267 Block1
 4306994664 Block2
-4306994923 Block3
+4306994923 Block3 
 
 M1:
-
 Normal:
 4571259077 Swing
 8595975878 Hit1
@@ -449,17 +404,13 @@ Mechamaru Robot (Absolute):
 96898767418731 Swing1
 117701139875807 Swing2
 128596780293930 Swing3
-138499167704645 Swing4
+138499167704645 Swing4 
 
 Higurama:
 113209095877671 Swing1
 84939324218501 Swing2
-135909874140545 Swing3
-79836302909830 Swing4
--Sword:
-110077886238560 Swing1
-97328834310548 Swing2
-121671840621180 Swing3
+135909874140545 Swing3 
+79836302909830 Swing4 
 
 Haruta:
 94221495279664 Swing1
@@ -479,10 +430,10 @@ Nanami:
 135674501661535 Hit4
 116816804360404 Up
 
-Yuta (goat):
+Yuta:
 96045121549069 Swing1
 122411333696591 Swing2
-115274191208556 Swing3
+115274191208556 Swing3 
 4571259077 Swing4
 88685272276380 Hit1
 83770717073727 Hit2
@@ -490,18 +441,18 @@ Yuta (goat):
 
 LocustGuy:
 6881026094 Slash
-106685608076122 Punch (plays at the 3rd m1)
+106685608076122 Punch (3rd m1) 
 
-Charles (Mangaka):
+Charles(Mangaka):
 94107281648467 Hit1
 103563218704266 Hit2
 103563218704266 Hit3
 8595974357 Hit 4
 
-(Mahito) Blade:
+(Mahito)Blade:
 6603295565 Hit1,2,3,4
 
-(Mahito) Club:
+(Mahito)Club:
 5507815764 Hit1
 5507830815 Hit2
 5507829691 Hit3
@@ -521,17 +472,9 @@ Meimei:
 137270477988121 HitDown
 72070015028896 HitUp
 
-Mahoraga:
-3932145123 Hit1
-3932145654 Hit2
-3848125583 Hit3
-8595974357 Hit4
-
----
-CHARACTERS
-
 Gojo:
-Lapse Blue:
+
+LapseBlue:
 411286671 LapseBluePull
 9105467029 Grab
 9066732918 Infinity
@@ -541,11 +484,10 @@ Red:
 154787303 Throw
 3059775624 Explode
 
-Rapid Punches:
-Im not fucking doing it it is a mix of normal M1s hit
-12764933067 BlackflashHit (1.5x)
+RapidPunches:
+12764933067 BlackflashHit(1.5x)
 
-Twofold Kick:
+TwofoldKick:
 3755637186 Swing1
 3755636992 Swing2
 4086172909 Hit1
@@ -555,8 +497,8 @@ Special:
 9118159096 TeleportWindup
 6737581315 GlassBreak
 
-— Face Crush:
-93186173642807 TeleportDrag
+FaceCrush:
+931861173642807 TeleportDrag
 82926856324306 DragThrow
 
 Awakening:
@@ -564,25 +506,25 @@ Awakening:
 4458760518 BlindsOff
 9066673412 FistSlam
 
-Lapse Blue Max:
+LapseBlueMax:
 9056932358 Wind
 4299623070 Absorb
 9105467029 Grab
-2227416952 Explode (finisher)
+2227416952 Explode(finisher)
 
-Reversal Red Max:
+ReversalRedMax:
 16828657609 MaxCharge
 16773286492 Aim
 16828657180 MaxFire
 8595975458 Hit3
-3059775624 Explode (red ball hit)
+3059775624 Explode(red ball hit)
 17284219852 Remember music
 17520297840 BlackFlash
 
-— Finisher:
+Finisher:
 12764933067 BlackFlashSparks
 9114314398 BlackFlashSparks2
-17520297840 BlackFlash (lasthit)
+17520297840 BlackFlash(lasthit)
 
 Hollow Purple:
 14326861262 Music
@@ -590,7 +532,7 @@ Hollow Purple:
 15075475525 Snap
 698224146 Hit
 
-Hollow Nuke:
+HollowNuke:
 4776197442 Smash
 14457960806 Music2
 3929467229 Dash
@@ -606,7 +548,7 @@ Domain:
 16071901783 Music
 6737581507 Shatter
 
-0.2:
+0.2 Domain:
 111507747920000 - ShortOpen
 16071901783 - Music
 135495866944584 - Startup
@@ -621,49 +563,49 @@ Domain:
 127027345708590 - Barrage
 76523688182264 - Slowdown
 82179939991290 - Breathe
----
-Yuji / Sugoona:
 
-Cursed Strikes:
+__________________________
+Yuji/Sugoona:
+
+CursedStrikes:
 16773286492 Startup
 3084314259 FrontSlide
 16773286330 Hit
-(another hits are just his m1s)
 
-— Aerial:
+Aerial:
 8120249833 Spin
 3084314259 Rush
 7093763783 GroundImpact
 
-Crushing Blow:
+CrushingBlow:
 4403634269 Crack
 4571259077 Fist
 7093763783 GroundImpact
-7307838125 Hit1  __ plays at the same time
-9118614717 Hit2 /
+7307838125 Hit1
+9118614717 Hit2
 
-Divergent Fist:
+DivergentFist:
 4403634269 Crack
 4059009185 Swing
 5795505380 Divergent
 7515452875 DivergentHit
 
-— Black Flash:
+BlackFlash:
 12764933067 BlackFlashSparks
 9114314398 BlackFlash
-112426502291350 PerfectHit (back)
+112426502291350 PerfectHit(back)
 
-— Finisher:
+BF Finisher:
 12764933067 BlackFlashHit
-12761286504 Voice (Kôkusen)
+12761286504 Voice(Kôkusen)
 
-Manji Kick:
+ManjiKick:
 9125615451 Startup
 6470740758 Dodge
 9126228977 Swing
 9113504593 Slam
 
-— Finisher:
+MK Finisher:
 9118614717 Hit2
 8120249833 Spin
 3778609188 Break
@@ -676,11 +618,11 @@ Awakening:
 4458760518 BlindsOff
 
 Dismantle:
-935843979 Slash (multiple times)
-9119749145 FinishSlash (finisher and m1 sound)
-8120249833 Spin (air variant)
+935843979 Slash(multiple times)
+9119749145 FinishSlash(finisher and m1 sound)
+8120249833 Spin(air variant)
 
-— WCS:
+WCS:
 17053666464 WorldSlash1
 17053670289 WorldSlash2
 17053667034 WorldSlash3
@@ -695,13 +637,12 @@ Open:
 
 Rush:
 3084314259 Rush
-(when hit)
 8595975878 Hit1
 3763467977 RushHit
 8595975878 Hit2
-4086172909 RushBreak (kickup)
+4086172909 RushBreak(kickup)
 8595975458 Hit4
-7093763783 GroundImpact (mid air)
+7093763783 GroundImpact(mid air)
 
 Shrine:
 7817341182 Voice
@@ -711,9 +652,11 @@ Shrine:
 15583493700 Music
 8181034930 Ready
 9120548819 WaterSplash
----
+
+__________________________
 Hakari:
-Reserve Balls:
+
+ReserveBalls:
 4059009185 Swing
 9114427348 Fire
 7512928742 Impact
@@ -730,7 +673,7 @@ Rough Energy:
 4059009185 Swing
 9118614717 Hit
 
-— Air:
+Rough Energy Air:
 17046377464 Charge
 17168364647 Swing
 17046282310 Speed1
@@ -745,20 +688,19 @@ Fever Breaker:
 6324841214 Slam
 9118614717 Hit2
 
-— Fever Crush:
-17101065238 - Swing
-100606314590244 CrushSwing (0.15 start)
+FeverCrush:
+17101065238 Swing
+100606314590244 CrushSwing(0.15 start)
 9125644321 Spawn
 858508159 Swing
 9118614717 Hit2
-9116684884 Slam (0.18 start)
+9116684884 Slam(0.18 start)
 9126228977 Swing
 6324841214 Slam
 9118614717 Hit2
 3778609188 Break
 
-Special:
-— Door Guard:
+Special Door Guard:
 9125615451 Startup
 9125644321 Spawn
 9116684884 Slam
@@ -766,7 +708,7 @@ Special:
 6324841214 Slam
 9118614717 Hit2
 
-—— Rhythm:
+Rhythm:
 17046377464 Charge
 
 Awakening:
@@ -807,8 +749,10 @@ Energy Surge:
 17046282624 Hit1
 17169365331 Hit2
 9114362943 RushLaunch
----
+
+__________________________
 Megumi:
+
 Rabbit Escape:
 17206057016 Spawn
 17206056478 Despawn
@@ -831,7 +775,7 @@ Totality:
 17392240969 Slash
 3932141920 SlashHit
 
-Special:
+Special Shadow:
 4459057272 ShadowEnter
 17206056478 ShadowLeave
 
@@ -844,7 +788,6 @@ Max Elephant:
 4086190876 Hit
 4086190876 Hit
 17457463045 Despawn
-4459572763 Explode
 
 Great Serpent:
 17513691601 Start
@@ -866,15 +809,17 @@ Shadow Swarm:
 Mahoraga Summon:
 17206057404 Start
 17607887277 Timer
-9038469500 Summon2 (Christmas)
-17607886466 Summon (normal)
+9038469500 Summon2(Christmas)
+17607886466 Summon(normal)
 17607885989 Appear
 17607887774 Moving
-15583493700 Music (2 start)
+15583493700 Music(2 start)
 17607886878 Hit
----
+
+__________________________
 Mahoraga:
-Divine Pummel:
+
+DivinePummel:
 3755637186 Swing
 9105467029 Grab
 8595975458 Hit1
@@ -902,16 +847,17 @@ Adaptation:
 3932669033 AdaptGlow
 17612867532 Adapt
 
+Special Wheel:
+17612867532 AdaptationWheel
+
 World Slash:
 4299510555 Swing
 4299510555 SlashThrow
 
-Special:
-17612867532 AdaptationWheel
----
+__________________________
 Mahito:
+
 Stockpile:
-4086172699 Create
 3755636638 Swing
 9118609396 Hit1
 37556366825 Swing2
@@ -928,12 +874,12 @@ Focus Strike:
 12764933067 BlackFlashHit
 17520297840 BlackFlash
 
-— Blade:
+Blade:
 9113756883 Chains
 3751519865 Swing
 7131799080 Hit
 
-—— Club:
+Club:
 18110707051 Transform3
 18110706199 Transform2
 3848838070 Swing
@@ -945,16 +891,16 @@ Body Repel:
 18259557789 Fire
 17169365331 Hit2
 
-Special:
-18110706601 Transform1 (Blade)
-18110706199 Transform2 (Club)
-18110707051 Transform3 (Back)
+Special Transform:
+18110706601 Transform1(Blade)
+18110706199 Transform2(Club)
+18110707051 Transform3(Back)
 
 Awakening:
 4458760518 BlindsOff
 9114741340 Spit
 3929467888 GrabBlinds
-18259557789 Fire (15 times)
+18259557789 Fire(15 times)
 
 Idle Transfig:
 4086203738 Start
@@ -963,12 +909,12 @@ Idle Transfig:
 17046282624 Hit1
 3929463305 Morph
 
-— Finisher:
+Idle Transfig Finisher:
 7837489886 Slap
 4086172909 RushBreak
 2227416952 Explode
 
-Body Disfigure:
+BodyDisfigure:
 4086172420 Morph
 3848838070 Leap
 17169365111 Hit1
@@ -976,7 +922,7 @@ Body Disfigure:
 4086172420 Morph
 3848838070 Leap
 4459571224 Drill
-4988621662 DrillHit (8 times)
+4988621662 DrillHit(8 times)
 17169365111 Hit1
 4086172099 Unmorph
 
@@ -1002,9 +948,9 @@ Super awk:
 9119747260 Whip
 4458760518 BlindsOff
 
-Wide Strikes:
+WideStrikes:
 128285017632391 Start
-17881719214 Voice
+1788179214 Voice
 129416140764076 Hit1
 136525465702097 Hit2
 97547768328998 Hit3
@@ -1038,17 +984,18 @@ Head Splitter:
 3848838070 Leap
 9120734610 Weave2
 8406997653 Bass
-83353502086066 What (huh?)
+83353502086066 What(huh?)
 9126229280 Slash
 935843979 Slash
 4459571224 HeadSplit
----
+
+__________________________
 Choso:
+
 Piercing Blood:
 9125615451 Startup
 18259558246 Clap
 124532419231032 Fire
-9074099528 Pressure
 4086202171 Hit
 
 Flowing Red Scale:
@@ -1059,7 +1006,7 @@ Flowing Red Scale:
 8595975878 Hit1
 8595975458 Hit4
 16773286330 Hit
-8120249833 Spin (air)
+8120249833 Spin(air)
 
 Supernova:
 9113764330 Counter
@@ -1069,7 +1016,7 @@ Supernova:
 17169365331 Hit2
 3739364168 BloodBurst
 
-— Special:
+Special BloodMerge:
 9120086654 BloodMerge
 6470740758 Dodge
 4059009185 Swing
@@ -1082,9 +1029,9 @@ Blood Edge:
 3848838070 Leap
 7093763783 GroundImpact
 16773286330 Hit
-3932142219 StabHit (12 times)
+3932142219 StabHit(12 times)
 
-Special:
+Special Blinds:
 4458760518 BlindsOff
 4459578169 Convergence
 8120249833 Spin
@@ -1095,7 +1042,8 @@ Awakening:
 Slicing Exorcism:
 124532419231032 Fire
 4086202171 Hit
-— Special:
+
+Slicing Exorcism Special:
 4459578169 Convergence
 114060318185092 Saw1
 4459578169 Convergence
@@ -1126,9 +1074,9 @@ Plasma Wave:
 124532419231032 Fire
 99414146840490 End
 17046281074 Hit2
----
 
-Todo:
+__________________________
+Swift Kick (Todo):
 
 Swift Kick:
 17101065425 Dash
@@ -1136,7 +1084,7 @@ Swift Kick:
 9118614717 Hit2
 3084314259 Rush
 9105467029 Grab
-3848838070 Leap
+38488338070 Leap
 3755636825 Swing2
 
 Brute Force:
@@ -1146,7 +1094,7 @@ Brute Force:
 9118614717 Hit2
 98484366943330 Hit
 
-— Black Flash:
+Brute Force BlackFlash:
 83892455359949 Music
 92231886696392 Voice
 
@@ -1156,15 +1104,15 @@ Pebble Throw:
 4307207693 Crush
 7515452875 DivergentHit
 
-— Special:
+Pebble Throw Special:
 17156034319 Clap
 17046281074 Hit2
 8595975458 Hit3
 8595975858 Hit2
 8595974357 Hit4
 
-—— Black Flash:
-105692714483194 Woosh (piano)
+Pebble Throw BlackFlash:
+105692714483194 Woosh(piano)
 9114314398 BlackFlash
 17520297840 BlackFlash
 
@@ -1174,7 +1122,7 @@ Elbow Drop:
 3778609188 Break
 7093763783 GroundImpact
 
-Special:
+Special Clap:
 17156034319 Clap
 1358454187 Perfect
 
@@ -1208,7 +1156,8 @@ Brothers:
 12761286504 Voice
 12764933067 BlackFlashHit
 9114314398 BlackFlash
----
+
+__________________________
 Higurama:
 
 Extended Swings:
@@ -1216,8 +1165,8 @@ Extended Swings:
 8595975878 Hit
 4086190876 LastHit
 
-— Special:
-17168365111 Hit1 (no block)
+Extended Swings Special:
+17168365111 Hit1(no block)
 6737581315 BlockBreak
 3755637186 LastSwing
 
@@ -1225,13 +1174,11 @@ Justice Served:
 140527314975641 HeavySwing
 3778609188 Break
 71472197762839 Impact
-4459572763 Explode(Finisher)
 
 Judgement's Reach:
 87590911386077 JudgeReachStart
 102880207942198 JudgeReachSwing
 105213688680216 JudgeReach
-108121946929288 JudgeReachFinisher
 
 Twirling Strikes:
 91477583246788 Start
@@ -1244,13 +1191,10 @@ Twirling Strikes:
 9118614717 FinalHit
 17169365331 FinalHit1
 
-No Escape:
-117657083645864 Recall
-
 Awakening:
 94214404918647 Voice
 7260423115 Domain
-6404320398 Bang (0.2 startup)
+6404320398 Bang(0.2 startup)
 1838970386 NewMusic
 1838873271 OldMusic
 167123203 Travel
@@ -1268,11 +1212,6 @@ Execution:
 91882353459943 Stab
 134273082284707 Sever
 17169365111 Hit
--2:
-104869864560993 Sever2(the another ones remains the same)
--3:
-79498136171279 Fall
-133486111948739 Curb
 
 Final Judgement:
 102929342782364 Sprint
@@ -1302,11 +1241,12 @@ Triple Sentence:
 7072652156 Stab
 5754299808 SwordPull
 
-Domain Amp:
+DomainAmp:
 84293649223671 Start
-109731283975341 Absorb
----
-Yuta (goat):
+
+__________________________
+Yuta:
+
 Severing Path:
 128763907862260 Leap
 mix of swings and hit of his m1s
@@ -1317,17 +1257,18 @@ Resolute Slash:
 86506412325620 Swing
 14427790767 ResoluteSlash
 
-Black Flash:
-126598851794168 - Windup1 (music)
-85972589629135 - Windup2
-132879779265336 - Land2 (electric shock and knockback)
-132472285449398 - Land1 (the music with voiceline)
-12764933067 - BlackFlashHit
+BlackFlash:
+126598851794168 Windup1(music)
+85972589629135 Windup2
+132879779265336 Land2(electric shock and knockback)
+132472285449398 Land1(the music with voiceline)
+12764933067 BlackFlashHit
 
 Veilstep:
 121354995604661 Veilstep
 8595974357 Hit4
-— Use Again:
+
+Veilstep UseAgain:
 74892667038544 VeilstepJump
 79148321721845 VeilstepDive
 120458587618994 Shock
@@ -1344,9 +1285,9 @@ Revolve:
 79148321721845 VeilstepDive
 122860314546755 RevolveLand
 
-Rika Special:
+RikaSpecial:
 81914373674135 Summon
-136734180743874 voiceline (yuhtah)
+136734180743874 voiceline(yuhtah)
 
 Downslam:
 8595974357 Hit4
@@ -1404,14 +1345,15 @@ True Love Beam:
 117663808507739 Music
 111645361582005 SmallBeam
 
-Mutual Love:
+MutualLove:
 8098966252 Voice
 121842315815683 Start
 139647861430129 OST
 91942331202663 AmbianceLoop
 1382296680778086 SwordFall
 129174925057034 JacobLadder
--- Misc of Mutual Love:
+
+Mutual Love Misc:
 935843979 CleaveSlash
 140388769343703 DismantleSwing
 7140152893 Glass
@@ -1425,15 +1367,14 @@ Mutual Love:
 128908669459793 SwordGround3
 128573990774413 VoiceCrush
 129151959162409 VoiceDie
-6737582452 TLBGlassBreak
----
+
+__________________________
 Mechamaru:
 
 Ultra Spin:
 84086575329798 Start
 140170031367282 Dash
 4988621662 DrillHit
-112571179914529 Finisher
 
 Boost On:
 100318681703568 Start
@@ -1442,7 +1383,7 @@ Boost On:
 133212067497301 PunchWoosh
 95000450601035 Hit
 
-— Special:
+Boost On Special:
 104732468256369 SupermanLand
 129170380119486 DummyThrow
 
@@ -1451,7 +1392,7 @@ Ultra Cannon:
 135423939868890 Shoot
 138458686172685 Explode
 
-— Holdable:
+Ultra Cannon Holdable:
 92378884776528 FunnyFall
 95331755325332 SmoothLanding2
 95402418269891 Albatros
@@ -1463,7 +1404,7 @@ Puppet Barrage:
 8595974357 Hit4
 90439756216771 VeilstepHit
 
-Heat Emission:
+HeatEmission:
 99141482888889 Start
 82105741477552 Vent
 79885225857047 Ignition
@@ -1497,7 +1438,6 @@ Absolute Destruction:
 86551700610888 Run
 79252900483987 Jump
 110146716041793 Slam
-17169365111 Hit
 
 Technique Charge:
 95875243041940 FastBeep
@@ -1517,8 +1457,10 @@ Jump:
 103299572527813 Jump
 93545676012051 Dropkick
 90439756216771 VeilstepHit
----
+
+__________________________
 Naoya:
+
 Misc:
 9116384757 Frame
 117947531369694 FrameBreak
@@ -1535,7 +1477,7 @@ Bleedout:
 103711283192425 Hit
 80064422113149 Bleed
 113551991267513 Hemorrhage
-123491349270512 Sandevistan (afterimages)
+123491349270512 Sandevistan(afterimages)
 135840401388179 FinisherStab
 85770270274263 Throw
 
@@ -1548,11 +1490,11 @@ Decisive Strike:
 73629332494583 SecondHit
 102143839764358 Swing2
 
-hits by: Senipkoo1 (Valiant) thank you brotha
-Hit1 - 135367226283909
-Hit2 - 100905404143936
-Hit3 - 116472527330220
-Hit4 - 70397374333185
+Senipkoo1 Hits:
+135367226283909 Hit1
+100905404143936 Hit2
+116472527330220 Hit3
+70397374333185 Hit4
 
 Cursory Impact:
 132967103418764 Startup
@@ -1562,7 +1504,7 @@ Cursory Impact:
 82810979613330 Kick
 90410999998931 KickHit
 
-— Shatter:
+Shatter:
 9105467029 Grab
 137048570141513 Grab
 114943144739692 Flicker2
@@ -1584,7 +1526,6 @@ Top Speed:
 76441723033793 Startup
 121692248969984 Fly
 17169365111 Hit1
-138307879334129 GlassCollect
 
 Flash Freezing:
 9116384757 Frame
@@ -1603,8 +1544,10 @@ Domain:
 9113678080 Flicker
 103306767550001 Music
 935843979 Slash
----
-Nanami (true goat):
+
+__________________________
+Nanami:
+
 Cleaving Whirlwind:
 76686174099249 Start
 112016169570826 Hit
@@ -1615,7 +1558,7 @@ Severance Kick:
 78963760295110 AirHit2
 123177859397652 HitFront
 
-— Reverse Kick:
+Reverse Kick:
 81817452065610 WhooshBack
 91207251126673 HitBack
 
@@ -1625,7 +1568,7 @@ Blunt Cut:
 115254148621223 Dash
 87832618406303 Finisher
 
-— Air:
+Blunt Cut Air:
 8120249833 Spin
 120044543888205 Start
 3084314259 Rush
@@ -1644,47 +1587,47 @@ Ratio:
 132640361437873 Success
 74763348702619 Disappear
 
-- Awk:
-107311996562711 - EyeFlash
-72705960325356 - Break (RatioBreaker)
+Ratio Awk:
+107311996562711 EyeFlash
+72705960325356 Break(RatioBreaker)
 
 Awakening:
-99971740567145 - Ultimate
-111627864602847 - Music
+99971740567145 Ultimate
+111627864602847 Music
 
 RB1:
-129476317253467 - Whoosh
-70661569139566 - SlashHit
-140357722460039 - Charge
-114890408068900 - Hit
+129476317253467 Whoosh
+70661569139566 SlashHit
+140357722460039 Charge
+114890408068900 Hit
 
 RB2:
-109606601595459 - Whoosh
-128470369858785 - Hit
+109606601595459 Whoosh
+128470369858785 Hit
 
 RB3:
-131926569091906 - Jump
-138559373472111 - Charge
-113305253204345 - Slam
-137417358886595 - Hit
+131926569091906 Jump
+138559373472111 Charge
+113305253204345 Slam
+137417358886595 Hit
 
 RB4:
-114438794227487 - Start
-77727716120757 - Hit
-115290636129284 - Dash
+114438794227487 Start
+77727716120757 Hit
+115290636129284 Dash
 
 Sharpen:
 107873525040694 Basic
 76523688182264 Slowdown
 86053178684110 Slash
-9118614717 Hit2 (1.25x)
+9118614717 Hit2(1.25x)
 98484366943330 Hit
 
-- Air:
+Sharpen Air:
 126091250245401 JumpWindup
 82587618521227 JumpSlash
 124499225392363 RatioHit
-9118614717 Hit2 (1.25x)
+9118614717 Hit2(1.25x)
 98484366943330 Hit
 
 Interrogate:
@@ -1692,28 +1635,30 @@ Interrogate:
 9105467029 Grab
 86957506426946 Grab1
 97182227194468 Talk
-9118614717 Hit2 (1.25x)
+9118614717 Hit2(1.25x)
 98484366943330 Hit
 75657430345285 Grab2
-3755636825 Swing2 (0.9x)
+3755636825 Swing2(0.9x)
 7978512114 Swing
-9118614717 Hit2 (1.25x)
+9118614717 Hit2(1.25x)
 98484366943330 Hit
 133064355676720 FinisherHit
 85140820024591 Freeze
 
 Collapse:
-84988803689953 - Jump
-111660088544435 - Charge
-105799337452305 - ImpactGround
-3848076724 - Impact1
-9118615862 - Impact2
-9118614058 - Impact3
-89971826287050 - Activate
-94475379772653 - DebreeDrop
----
+84988803689953 Jump
+111660088544435 Charge
+105799337452305 ImpactGround
+3848076724 Impact1
+9118615862 Impact2
+9118614058 Impact3
+89971826287050 Activate
+94475379772653 DebreeDrop
+
+__________________________
 Hanami:
-Root Swarm:
+
+RootSwarm:
 102970184623188 Startup
 103290587422612 Swarm
 98476421854862 Disappear
@@ -1724,104 +1669,23 @@ Spikes:
 92699785397200 Spikes
 124210128005270 SpikesWindup
 118077996038991 WoodBallsAppear
-115236945194905 RootDisappear
 
-Bud Shot:
+BudShot:
 107077525770659 Startup
 83883449987100 Throw
 84674642106437 Hit1
 84359158055042 Hit2
 
-Defense Response:
+DefenseResponse:
 78001037313968 Startup
 79583362062555 Hit1
 83044567135942 Hit2
 77781927063804 Root
 78330240985463 AirStartup
 
-Flower Field (Special):
-Flower Field Startup : 117000088170934
-Flower FIeld Appear : 76363463402061
-Flower Field Hit : 118109994896373
----
-Ryu:
-Granite Blast:
-107571923469306 Charge
-126461458989078 Fire
-106260518361457 Hit
-135255751694953 FireHard
-
-Unsatisfied:
-135700558246306 Weave
-95723598539974 Hit1
-81751127529448 Hit2
-102321170538785 Hit3
-128456835641035 Dash
-70449756871810 FinalHit1
-74324781247417 FinalHit2
-
-Second Helping:
-122087651309441 Startup
-3778609188 Break
-71472197762839 Impact
-77586579310356 Hit
-110428188752548 AirHit
-91193070042368 AirHit2
-
-Appetizer:
-126461458989078 Fire
-106260518361457 Hit
-
-Special:
-77417792700571 Comb
-140476433079342 Hair
-77659919167587 SWEEET
-
-Awakening:
-89655786683392 UltimateStart
-137364280179144 Aizo Instrumentals
-129375015802470 Jingle
-92475178445200 Aizo Vocals
-117201550249538 UltimateFire
-8595975878 Hit
-
-"What are you after?":
-100606314590244 CrushSwing
-110146716041793 Slam
-3778609188 Break
-17046281380 Dash
-128041696595076 Hit
-132856141242580 FirstHit
-125624703041853 Dismember
-
-"I had no idea...":
-116742641261240 Startup
-135700558246306 Weave
-107716907231014 Hit
-73629332494583 SecondHit (plays 7 times)
-17169365111 Hit1
-
-"This is what dessert is like!":
-119992343011162 Startup
-80805627087578 Dash 0.53s after
-95762461473174 Hit 0.27s after
-138870212952178 Slide 0.35s after
-95356764606940 LongHit 0.85s after
-95723598539974 Hit1 0.09s after
-81751127529448 Hit2 0.35s after
-81751127529448 Hit2 0.15s after
-6470740758 Dodge 0.06s after
-102321170538785 Hit3 0.26s after
-102321170538785 Hit3 0.81s after
-102321170538785 Hit3 0.04s after
-81751127529448 Hit2 0.27s after
-102321170538785 Hit3 0.12s after
-6470740758 Dodge 0.10s after
-81751127529448 Hit2 0.21s after
-105961802014473 Impact 0.78s after
-17169365111 Hit4 2.54s after
----
+__________________________
 Locust Guy:
+
 Clever:
 80668615055821 FourArmed
 mix of normals m1s and swings
@@ -1856,9 +1720,11 @@ Awakening:
 3848838070 Swing
 3932141920 Hit
 18110706601 Transform1
----
+
+__________________________
 Yuki:
-Garuda Rebound:
+
+GarudaRebound:
 94830582667262 Startup
 3755636825 Swing2
 7978512114 Swing
@@ -1870,14 +1736,14 @@ Garuda Rebound:
 
 Rising Rage:
 83066231638545 Startup
-130483916115974 ChargeFail (variant)
+130483916115974 ChargeFail(variant)
 114235921050731 Swing
 72214797814045 Hit
 114235921050731 Swing
 72214797814045 Hit
 114235921050731 Swing
 108671308229639 Hit3
-94234054127236 Hit2 (full charge)
+94234054127236 Hit2(full charge)
 126216905119949 Charge
 
 Mass Breaker:
@@ -1885,7 +1751,7 @@ Mass Breaker:
 105475201107176 Miss
 72214797814045 Hit
 75089222303073 Hit2
-ChargeFail (variant)
+ChargeFail(variant)
 
 Garuda Stab:
 9113837941 Startup2
@@ -1894,7 +1760,7 @@ Garuda Stab:
 72214797814045 Hit
 75089222303073 Hit2
 
-— Charge:
+Garuda Stab Charge:
 104413303615093 WhipFlyBack
 108271854301469 FirstWhip
 76311359826097 SecondWhip
@@ -1910,11 +1776,13 @@ Awakening:
 75191661535842 Finish
 73828252330994 Hole
 
-Special:
+Special Hole:
 137050048462822 Start
 75191661535842 Finish
----
+
+__________________________
 Mangaka:
+
 Despair:
 107284905728635 Startup
 102170331317268 Spin
@@ -1928,7 +1796,7 @@ Shut Up!:
 140443001346012 Hit
 104974135649084 Hit2
 
-— Air:
+Shut Up! Air:
 3755637186 Fist3
 7093763783 GroundImpact
 74801973019001 Hit2
@@ -1950,13 +1818,15 @@ Awakening:
 114694152385335 UltStart
 135733886312570 Ult
 83082182015605 UltVoice
----
+
+__________________________
 Haruta:
+
 Ambush:
 75682608773801 AmbushSwing
 130435802660891 AmbushHit
 
-- Ragdoll:
+Ambush Ragdoll:
 3932142219 StabHit
 98104546054574 Backstab
 
@@ -1970,52 +1840,46 @@ Trip:
 116070235847840 Trip
 18782451032 Trip2
 
-Cheap Shot:
+CheapShot:
 96689127096230 SwordThrow
 109830368249561 SwordSpin
 
-- Dirty Play:
+DirtyPlay:
 80175764312984 Wave
 118484407389443 Catch
 
-Ankle Cutter:
+AnkleCutter:
 132826787704625 AnkleCutterHit
 115254148621223 Dash
 
-High Time:
+HighTime:
 77439795464226 Hightime
 3932142219 StabHit
 
-Jawbreaker:
-94680472414828 JawBreaker
+__________________________
+Heian Sukuna:
 
----
-Heian Sugooner:
-Strong Dismantle:
+StrongDismantle:
 70482785888704 Start
 125288142627715 Fire
 74232847084175 Hit
 
-—Chant1:
-134011003057260 Dismantle1 (Kai Voice)
+Chant1:
+134011003057260 Dismantle1(Kai Voice)
 
-——Chant2:
+Chant2:
 70482785888704 Start
 125288142627715 Fire
 135309023186303 Slashes2
 97581017049145 Dismantle2
 
-———Chant3:
+Chant3:
 70482785888704 Start
 115955384025484 Dismantle3
 4299584756 FireWCS
 125288142627715 Fire
 74232847084175 Hit
-2227416952 Explode (finisher)
-————Chant4
-4299626748 Charge
-124265527510765 Owarida
-4299584756 Fire
+2227416952 Explode(finisher)
 
 Open Furnace:
 1072005487 Hands
@@ -2059,8 +1923,9 @@ Shrine:
 133077835308960 Voice2
 135309023186303 Slashes
 124012721234128 Voice3
----
-Meimei:
+
+__________________________
+Meimei (Awk):
 
 Updraft:
 102930929366058 Slash
@@ -2090,26 +1955,21 @@ Gliding:
 119754485666227 SpinHit2
 73914060900348 Start
 
-Bird Control:
+BirdControl:
 87021710886866 CrowEye
 79225972873710 Fly
 79048435945491 Grab
 94132201322663 Hit
 72894267845813 Impact
 
-Crow sounds:
-9118066963 Caw1
-9118066964 Caw2
-9118066302 Caw3
-6324425941 Mad1
-89659350030351 Mad2 (speed 0.5, start 0.2)
-
 Misc:
 115544964121243 Crush
 73946250167893 Fall
 74218342289851 Flock
----
+
+__________________________
 Goku:
+
 Kamehameha:
 128138421943286 Use
 
@@ -2123,16 +1983,17 @@ Staff Extend:
 
 Ki Spam:
 136181939400388 ShootKi
-78258660213953 ExplodeKi (miss)
+78258660213953 ExplodeKi(miss)
 73984021575636 HitKi
 
 Ultimate:
 8388724806 Click
 8595975878 ChestBeat
----
+
+__________________________
 JSD Chara:
-Misc:
-- Dashes:
+
+Misc Dashes:
 92870369637296 1
 133205097862880 2
 
@@ -2157,14 +2018,14 @@ Onslaught:
 102503367678078 Hit8
 129425371797564 LastHit
 
-- Air:
+Onslaught Air:
 71886127750084 WindupSFX
 92646954276141 HitSFX
 
 Lethal Wound:
 136647946051022 Windup
 72356309866561 Getup
-112190329411296 Hit (1.6 speed)
+112190329411296 Hit(1.6 speed)
 
 Blood Mary:
 125221767118801 WindupSFX
@@ -2200,13 +2061,30 @@ Atonement:
 72809722363624 Lose
 124970888162706 Win
 
-Seven Souls:
+SevenSouls:
 102415905240085 Windup
 127769542531541 Hit
 91971313816789 qte_1
 133545655546336 qte_2
 
+Emotes:
 
+Conga:
+1840682726 Music
+Murder:
+718585968 Musi
+More:
+16785843693 Music
+Objection:
+330859085 Point
+Places:
+17177481815 Music
+Jackpot:
+1841425177 Music
+Popipo:
+84361522293297 Music
+Teto:
+14118577963 Music
 Voice Lines:
 JJK:
 Sukuna:
@@ -2884,8 +2762,8 @@ Nagi:
 Im gonna give it a try:71398457295540
 Bring It:109284856567788
 I want to chalenge myself:121690429761012
-
-
+Others:
+Anime:
 Meshes:
 Anime Meshes:
 OTHER ANIME MESHES:
@@ -3190,6 +3068,148 @@ Shadow Hound 3: 100827834033271
 Shadow Hound 4: 74781308229591
 
 Texture: 122006790369496
+
+Roach
+Mesh ID: 71798430613591
+Texture ID: 131676941752942
+​
+Dhruv Shikigami (Rat, Body)
+Mesh ID: 85629027165178
+​
+Dhruv Shikigami (Rat, Teeth)
+Mesh ID: 77086612152052
+​
+Dhruv Shikigami (Rat, Eyes)
+Mesh ID: 88496318019125
+​
+Dhruv Shikigami (Bird, Body)
+Mesh ID: 130183703124173
+​
+Dhruv Shikigami (Bird, Wings)
+Mesh ID: 125660710197954
+
+Blood Bag
+Mesh ID: 76028609716112
+Texture ID: 114485201339717
+​
+Crimson Binding
+Mesh ID: 85692166616506
+Texture ID: 126376926247661
+
+Sukuna Finger (2.0)
+Mesh ID: 139310525568911
+Texture ID: 70471000263013
+​
+Snake And Fangs (cursed speech markings)
+Mesh ID: 91301625826653
+
+Megumi Toad (closed mouth)
+Mesh ID: 117209267242097
+Texture ID: 89797145263418
+​
+Toad (open mouth)
+Mesh ID: 101806424790912
+Texture ID: 89797145263418
+​
+Nue + toad fusion
+Mesh ID: 121895760673619
+Texture ID: 89797145263418
+​
+Toad Tongue
+Mesh ID: 130300682169984
+Texture ID: 102061283887064
+​
+Toad Tongue (wrapped around torso)
+Mesh ID: 134816268033905
+Texture ID: 102061283887064
+​
+Pachinko Machine
+Mesh ID: 109093023491016
+Texture ID: 138089778444328
+​
+Yuta Ring
+Mesh ID: 135055876929478
+Texture ID: 112824227115271
+​
+Yuta Ring (necklace)
+Mesh ID: 81336528285294
+Texture ID: 139920375843828
+​
+Max Elephant
+Mesh ID: 130258839377159
+Texture ID: 77523860492582
+​
+Geto Daruma Doll
+Mesh ID: 93940481055430
+Texture ID: 76835617220784
+​
+Brown Squid
+Mesh ID: 89635674946828
+Texture ID: 124743953799555
+​
+White Squid
+Mesh ID: 88684020777041
+Texture ID: 96964871566671
+​
+Uraume ice platform
+Mesh ID: 71048953855805
+​
+Manta Ray (blue)
+Mesh ID: 89962256593568
+Texture ID: 112713650708845
+​
+Manta Ray (dark pink)
+Mesh ID: 89962256593568
+Texture ID: 89714681000364
+​
+Manta Ray (pink)
+Mesh ID: 89962256593568
+Texture ID: 132524185890060
+​
+Hookworm Curse (Open Mouth)
+Mesh ID: 76304304149554
+Texture ID: 77316784560372
+​
+Hookworm Curse (Closed Mouth)
+Mesh ID: 117000718413471
+Texture ID: 132568061038593
+​
+Kaichi
+Mesh ID: 97812896605637
+Texture ID: 132054051418760
+​
+Jinichi Missile Fist
+Mesh ID: 130386701055679
+Texture ID: 118319379290439
+
+Hanami Arm
+Mesh ID: 103975337248586
+Texture ID: 100776427830358
+​
+Kurourushi Larva
+Mesh ID: 105944442826297
+Texture ID: 100725931881764
+​
+Takako Uro Clothes
+Mesh ID: 116308790717297
+Texture ID: 134369510507486
+​
+Thin Ice Breaker Stage 1
+Mesh ID: 88240922077754
+Texture ID: 84272871288137
+​
+Thin Ice Breaker Stage 2
+Mesh ID: 108332859803176
+Texture ID: 84272871288137
+​
+Thin Ice Breaker Stage 3
+Mesh ID: 117877027996918
+Texture ID: 84272871288137
+​
+Daburas Horns
+Mesh ID: 87343868022816
+Texture ID: 84016704055607
+​
 JJK Weapons:
 Mei Mei Axe:
 Mesh id:89174111406172 
@@ -3387,6 +3407,38 @@ Texture: 91168820265285 
 Eye (blood):
 Mesh ID:78300751714557 
 Texture: 73237139150539
+​
+Kamo bow position 1
+Mesh ID: 111134293129599
+Texture ID: 129491214994471
+​
+Kamo bow position 2
+Mesh ID: 128018609746758
+Texture ID: 102750949444969
+​
+Kamo bow position 3
+Mesh ID: 114299020501282
+Texture ID: 107537871142223
+​
+​Arrow
+Mesh ID: 88286489236003
+Texture ID: 116332480367654
+​
+Choso Blood Edge
+Mesh ID: 135339813169898
+Texture ID: 79166676506346
+
+Executioners Sword
+Mesh ID: 82078113930362
+Texture ID: 110220402952083
+​
+Executioners Sword (glow add-on)
+Mesh ID: 82078113930362
+
+Naginata
+Mesh ID: 131816849144345
+Texture ID: 111287877206031
+​
 
 Others:
 Weapons:
@@ -3496,9 +3548,40 @@ Ichigo big funny sword:
  Ichigo katana:
  Mesh 134247097480661
  Texture 13679012490415
- 
- 
- VFX Meshes:
+
+Battle Beast's mace
+Mesh id: 117652008187020
+Texture id: 120348930477103
+
+JABBER GLOVES:
+Right Glove
+Mesh ID: 86762368878009
+Texture ID: 80008580759055
+​
+Right Claw
+Mesh ID: 81193181852233
+Texture ID: 80008580759055
+​
+Left Glove
+Mesh ID: 113161547681257
+Texture ID: 81206271708972
+​
+Left Claw
+Mesh ID: 100994548015747
+Texture ID: 81206271708972
+
+Deadpool Sword:
+Mesh ID:443853663
+Texture ID:443853675
+
+Sonic (OPM) Katana:
+Sheath:
+Mesh 81777326026140
+Texture 72062146049275
+Katana:
+Mesh 77159326707337
+Texture 95809801142891
+VFX Meshes:
 Wind For Aura:
 Mesh: 99393991984768
 ​
@@ -3707,351 +3790,6 @@ Explosions
 • ​Explosion (Black): 4933939180
 • ​Explosion SFX: 106836237516030
 
-BILLBOARD STUUF:
-SATORU GOJO:
-Gojo-Throughout Heaven and Earth: 77073545519471
-Gojo-I Alone am, The Honored One: 134869025848602
-Gojo-And Satoru Gojo Voltage: 102534584010956
-Gojo-Ramps up…: 102401702617133
-Gojo-Nine Ropes: 89644478324545
-Gojo-Polarized Light: 139994834212427
-Gojo-Crow and Declaration: 121778986104690
-Gojo-Between Front and Back: 109931756678450
-74934002240450~101872586076518
-
-TOJI FUSHIGURO: 
-Toji-They would all bear witness: 95647325127249
-Toji-To the one who left it all behind!: 99293847028845
-Toji-And his overwhelming intensity: 134430679572647
-Toji-I’m going to lose?: 89807667684879
-Toji-The battles just beginning: 139240580171836
-
-RYOMEN SUKUNA:
-Sukuna-Which He had purposefully interrupted before: 117816826264813
-Sukuna-As a curse taking fleshly form: 135197921599720
-
-HAJIME KASHIMO:
-Kashimo-Turn up the volume!: 78642244282586
-Kashimo- this is a funeral for the living!:91607656526892
-Kashimo-Mythical Beast Amber: 121402823725222
-Kashimo-Technique Release: 127324956414518
-
-YUJI ITADORI: 
-Yuji-Unleashing his potential with a single blow: 105551985683375
-Yuji-Beneath the scattering sparks of black: 127040720988322
-Yuji-They Have Awoken: 73398386867693
-
-
-MISC TEXT:
-Black: 122155192967893
-Flash: 96146185775024
-Domain Expansion: 121597182686423
-
-SUKUNA VS MAHORAGA BATCH:
-Taste: 86497595384774
-Shall We: 109505210254937
-Dont Die: 111110110122312
-sm u need to do: 119237673071063
-Dismantle: 116986976273223
-Heal: 126644269685016
-You can see it: 95970810362640
-ct: 132235245394075
-not bad: 88674098979229
-my turn: 131364076543415
-Orochi: 79440248774307
-Recognize: 112123223139828
-Harmony+Cycle: 125144881040549
-Power1: 85716120217879
-Power2: 98679666964211
-Power3: 90303340773577
-Interest: 126350597982281
-Domain1: 97988415209005
-Domain2: 112918669545374
-MAHORAGA: 137267738551800
-SOE1: 78977648301445
-SOE2: 116991669903926
-DOMAIN3: 115592457394674
-DOMAIN4: 122636110484312
-OPEN: 109896434367459
-OPEN VISUAL (OVERLAY): 96973436667434
-
-Naoya vs Maki batch:
-I'm a genius: 119589528068126
-
-Next Head: 71506361647597
-
-Man without CE: 92091699386770
-
-How awful: 130048831255808
-
-Pitful: 101696314190005
-
-Sin of the insignificant: 116904242127581
-
-No one understood him: 90177694165005
-
-Except for Satoru: 115649558551985
-
-IT'S NOT YOU: 85327011978474
-
-The one stands: 104806997061963
-
-IS ME!!!: 135121797725579
-
-I WON'T STOP: 108292923464093
-
-Top Speed: 109793653789663
-
-24 Times: 86672186705886
-
-Something felt strange: 85378112603254
-
-24 Movements: 82450935285569
-
-New Body: 124558996103915
-
-IMPOSTER!: 138468651565772
-
-Kogane Decals&Overlay
-You gained: 122501391111045
-
-Five points: 138323612791104
-
-+5 points: 116044911767261
-
-A player has added: 94976362735012
-
-You've acquired: 71230970043296
-
-Veil Chants
-Emerge from the darkness : 119174497219824
-Blacker than darkness : 129471536981264
-Purify that which is impure : 123302577998633
-
-KIRA IDS:
-my name is yoshikage kira: 131456984085017
-quiet life: 115590571335583
-nobody1: 135246193661668
-nobody2: 82109995797712
-sheer heart attack: 107162228477848
-i did it: 79160513666384
-bites the dust: 89879223366034
-
-Gojo Overlays:
-Lapse: 122052065452567
-
-Reversal: 83516617787127
-
-Hollow: 113337510454343
-
-Limitless: 99384336553868
-
-SHIDOU RYUSEI DECALS
-
-BIG BANG DRIVE!!: 103616315961708
-DRAGON DRIVE!: 133726642081566
-IMPOSSIBLE? WHAT IS THIS CONCEPT?: 125668656135156
-AMAZING.: 77053741899562
-I need to be more.. EXPLOSIVE!!: 77053741899562
-My Sixth Sense...: 93935619326861
-ARE TELLING ME TO SCORE (Overlay): 124678228255126
-A SUPER GOAL!!(Overlay): 124678228255126
-
-GIORNO:
-dream: 114462299597338
-gangstar1: 107142964450752
-gangstar2: 83211726161264
-goldexperience: 78352104603410
-cioccolata: 131809212525631
-cioccolata2: 93582530598878
-useless1: 110513507530722
-useless2: 77077590640144
-annihilation: 126899722412952
-kore ga: 102547715016700
-requiem da: 93306008576258
-7pagemuda: 103748655250814
-7pagemudaalt: 85777025991242
-this is: 98989868554494
-gold experience requiem: 92487837136679
-
-BONUS DECALS
-Physical1: 127231814677138
-
-Physical2: 140564929311351
-
-Shrine: 134060977210616
-
-Ten shadows: 92646361288006
-
-Red vignette: 118674674087411
-
-White vignette: 92572349597341
-
-Yellow vignette:  124640995611958
-
-PUCCI IDS:
-800pants: 114064836571881
-phrasestoheaven: 107309326027415
-enteryourworld: 95203818213137
-gravity1: 130391485785329
-gravity2: 75460601948068
-gravity3: 104946318384872
-MIH: 112418077189438
-MIHalt1: 84242406769362
-MIHalt2 (tuff version): 101543664774269
-cmoon: 121098454405049
-whitesnake: 118420986559886
-newworld: 72419670030632
-commonend: 124965997436943
-newdawn: 75573875714576
-domine: 136392782780080
-
-More gojo stuff:
-Nah, I'd Win : 77627571077002
-I alone... : 122032573680705
-...Am The Honoured One : 82645295716857
-"Phase" : 125504809278687
-"Twilight" : 135901557242157
-"Paramita" : 111229438350728
-"Pillar Of Light" : 136650987886455
-"Nine Ropes" : 131219116131497
-"Eyes Of Wisdom" : 93653911199524
-"Polarized Light" : 104090186942057
-"Crow and Declaration" : 74102538130319
-"Between Front And Back" : 111190047893124
-"PURPLE." : 82407336321230
-"HOLLOW PURPLE" : 122968760680562
-
-URO DECALS:
-Seems like you can use: 87592497299263
-Reverse cursed technique: 133556049712485
-Hurry up and attack: 78947910683096
-Don’t get ahead of yourself: 82369935034666
-Are you: 106250901752831
-One of the fujiwara: 87332954889448
-What would anyone: 71976676957378
-Thin ice breaker: 99891954461409
-
-RYU DECALS: 
-My life: 90482862877666
-Never had dessert: 123674846866117
-Are you my dessert: 104126250912191
-You’re way too soft man: 78006065383465
-I’ve still got an appetite: 90651199803148
-That calls for an extra large helping: 85481113926106
-At this point: 133069272412875
-Words are meaningless: 138200402525243
-Welcome: 97077303670504
-To my table: 95537769731258
-Let’s use every drop!: 78555621139201
-Granite blast: 117063548678871
-
-SENDAI COLONY INFO DECALS:
-I like: 122614143762371
-The taste of iron: 98930162278674
-Kurourushi points: 130934674545751
-Kurourushi Info: 137734627185987
-Ryu points: 128935811130466
-Ryu Info: 138366964179862
-Uro points: 133146123439014
-Uro info1: 130027600930541
-Uro info2: 134278581300162
-
-Dhruv Decals:
-icon 118563431794660
-name 72207278791882
-name with points 72207278791882
-long ass text 130409776619062
-long ass text  2 98753358130288
-one did fall 79598339326565
-bonus decal: 139174178824091
-
-YOROZU DECALS:
-NOW IM STOKED!! : 88240359276099
-...THEY HAVE DEVELOPED A LIQUID METAL... : 97377048630399
-...FOR FLESH ARMOR SPECIALIZED... 105940558694582
-A PERFECT SPHERE IS UNTOUCHABLE. : 140359710685671
-SO HOW WILL YOU HANDLE... : 97581298122856
-...TRUE LOVE?! : 86906082772260
-
-Megumi Id's:
-Domain Expansion : 135789486464336
-Chimera Shadow Garden : 76328192572718
-Nue! : 80915081324749
-Rabbit Escape. : 100208948938050
-Divinge Dog. : 91870655436356
-Divine Dogs : 133057933877546
-Toad. : 110312345418100
-Great Serpent. : 77882275547842
-Max Elephant. : 106513610709669
-
-Sendai Colony Overlays:
-cursed speech: 101651582461142
-discharge: 105815514870143
-sky manipulation: 117159921987263
-
-# 🎰 | Hakari Move Box Gamble
-<@&1496758955530256465> 
-
-**1**
-101871840670592
-
-**2**
-116116501584543
-
-**3**
-102743855590569
-
-**4**
-107925565381111
-
-# 💕 | Yuta Pack
-<@&1496758955530256465> 
-
-**Katana Mode**
-116265633450418
-
-**Steel Arm Mode**
-77893744041561
-
-**Ring Mode**
-124862720926066
-
-**Ring Icon**
-104879110304437
-
-# 🪳 | Kurourushi Pack
-<@&1496758955530256465> 
-
-**Roach Shikigami Mode**
-123107277059006
-
-**Festering Life Sword Mode**
-90348955768476
-
-**Roach Icon**
-100940429959277
-
-**Festering Life Sword Icon**
-94236153449207
-
-**Bar 1**
-73937467399343
-
-**Bar 2**
-88586969903638
-
-**Bar 3**
-110874289038526
-
-**Bar 4**
-90754220478581
-
-**Bar 5**
-103703841108241
-
-**Bar 6**
-124119819071946
 Random Stuff:
 Cursed Energy Colors:
 Heian CE:
@@ -4145,5 +3883,6 @@ MALEVOLENT SHRINE:
 KLUv/WA/BJULALZUQiUQqzoHCse//+K+RMiCKMs2lst8+s2thbj/3f5el1tNCQIAAOBAOgA0ADcA0/O2OOgbm0imt+X0z/VAX6YfiBTfT5OksAoU32MTSSViNYYJllEasAxCnT6inuqLLWSQA3oIem5xBAG9juk7oqTLteW2rqrSJVl18d4GNtM5sYkOxmbS91U1KvW8981Mbjslt42S3/TNqFNFtCuOnTPlfDIyDPNjyO+9tpFfW8gvPhclM8NMCKHjGgnbQtj2wYNznqsy9vKOLGDUhYgSiWh6GpYUj4ujrwQqNNWK+P6igDHe+3DQdwKlsnjv4/JGMKBkAPPQtnnrIH1HBJL1XoxM40hmHCf5tX2v7QwoIHCiOTO6AzthyM/Ghxpujf8GSICeASMAEUTwZmzSNVVUYGgRoHq+Fb1Y0KK2v2dd94MiFDK82CU9UQGMHVTkglxajGL0aMRpgErgpxzZqiaeJqXIldEA652XQIwwXF+8MUOQCT0=
 Cursed Naoya:
 KLUv/WBzAm0MAHZWSSYArVgHPiEri+SNBEq/M4NC2BMEwe8qYqPff7LdxY4QXIyqqqqKED0AOwBBAPO19hp920pyD+x9ayb0bV0s01tz+nprdG70CLZx/jRJjUhC43xL4XpwKhNX5XJ666iPs5VxqCzQR1G9ZhIDt6oQByGiAJjDDKqXqt4c6ds6pPvm91wwh5nD7E3fD0q6UoSCvPlBrUFztjbhcx8SylHfPJ/GoAldDNWRaGCwVLEtmMPPLZjixemme2aUEIJuPhZldBJCzl0ZzHXhginci0+Ubzb33IQ0vHlPVRKRChoyloNhAwKsQsUKlA2jfxhQ0URRjPM3EBcG8mbKhL4jrOrNlM3bwXIRqNexk3QZloCqIAvWBOeUMUbJYoOtxSiZhK65KeXzPGACKCBQIlFmnAedy5gklzKwgZDifCJD3Aoc1wAQBeloMhuEVgNewo2ZYaBCsQgYxfx2kc4JUrmMICLAeA2eqoHuBOalB2WEJoIIgQBRKjTzN6Yc0EsuozWOENQOekFnMofDM04zC2Q=
+
 Kurourshi:
 KLUv/WC2CHUUAPYfZCcQregBFsFh7/ofMDaFSzgMeN52U/UevFoGIqQYKWVfAogCAACA4wFXAFcAVwCN62Dq9jcpIchrjdSdwmn7pQeGCyTc35ztj+BpcR1Wf4uP237JYLr6NQe2Pz9kVL+mbV98o27OdkRidGuKmhgXAqNbUzDZoW1LjVt1y5jKhMF2FN3WHASRyALob+4mDD3OadADFXPOCR2tMkpIofMqZZ0e66QRcgc9rm36qYtd00Qmq2QJGSYjwAspIEByerH16G/97jTnNO+3/ZU14emyHP1NuntvSgg5N3GFWQFencMpqVRMhXNQwijroxGSdTr3GDKlqNDjioVJFpiPO80fBGekkLrH96Cbk874nk+vEJgLBI61xuewRq9QnJFGSErp7qRzkD5OweSGw+U6GUpD9nhchxOSjduuIFZEWdaiW282lLSo7sKqHgNyKwxfVsWA3P6WJS4Z2y9dWL/G9lsgLo7+Jtn0P7AoIj/6m8TiIDHwLjmrWLJMRaKxkLMlPhh1CXJlonD1WwlffMmGTMHodcpZqKGdQsqQyIiE4TppDEACQpSZrG4SYNA4DqJAjuIohmEIQEZgBNAYgREYgTHGGGWKiLgBlYUIi8k8hOQ4cYY98tUYXROMzGhGT3MhvI+IU3FYKsUDRNTc984pxqPi+UbIpwu3nVnXynJc4QjAWaGGlYN17YQygR03TTQYVki1Lvh92MY6YiiQdoUOgerEpvzXKpm5x8YDKa0fy6go+nQyLEWZaVWxrpGwjI4lpv6D5VDPCuPUra2a2FZa4UNoVQXhjVoxZDiHt20LSbsfFyv/2IfAQCAZVbuTVx8xLYtnCb6nsaWlzQhnDvwb1V89wSaH1LP7fNBYPfVABQ==
