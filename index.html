@@ -17,6 +17,20 @@ body {
   font-size: 20px;
 }
 
+#pesquisa {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background: #222;
+  color: white;
+  box-sizing: border-box;
+  font-family: 'Finger Paint', cursive, sans-serif;
+}
+
 pre {
   white-space: pre-wrap;
   word-break: break-word;
@@ -29,17 +43,40 @@ pre {
 
 <body>
 
+<input type="text" id="pesquisa" placeholder="Pesquisar...">
+
 <pre id="conteudo"></pre>
 
 <script>
+let textoOriginal = "";
+
 fetch("dados.json")
   .then(res => res.text())
   .then(texto => {
+    textoOriginal = texto;
     document.getElementById("conteudo").textContent = texto;
   })
   .catch(() => {
     document.getElementById("conteudo").textContent = "Erro ao carregar o JSON";
   });
+
+document.getElementById("pesquisa").addEventListener("input", function() {
+
+  const busca = this.value.toLowerCase();
+
+  if (busca === "") {
+    document.getElementById("conteudo").textContent = textoOriginal;
+    return;
+  }
+
+  const linhas = textoOriginal.split("\n");
+
+  const resultado = linhas.filter(linha =>
+    linha.toLowerCase().includes(busca)
+  );
+
+  document.getElementById("conteudo").textContent = resultado.join("\n");
+});
 </script>
 
 </body>
