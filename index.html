@@ -32,8 +32,26 @@ body {
   font-family: 'Finger Paint', cursive, sans-serif;
 }
 
+#abrirTemas {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid red;
+  border-radius: 10px;
+  background: #222;
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
+  font-family: 'Finger Paint', cursive, sans-serif;
+  transition: 0.2s;
+}
+
+#abrirTemas:hover {
+  transform: scale(1.01);
+}
+
 #presets {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
@@ -41,12 +59,14 @@ body {
 
 .temaBtn {
   padding: 10px 15px;
-  border: none;
   border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
   font-family: 'Finger Paint', cursive, sans-serif;
   transition: 0.2s;
+  background: #222;
+  color: red;
+  border: 2px solid red;
 }
 
 .temaBtn:hover {
@@ -61,12 +81,47 @@ pre {
   line-height: 1.5;
   color: red;
 }
+
+@media (max-width: 700px) {
+
+  body {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  #pesquisa {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  #presets {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .temaBtn {
+    width: 100%;
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  pre {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <input type="text" id="pesquisa" placeholder="Pesquisar...">
+
+<button id="abrirTemas">
+Techniques ▼
+</button>
 
 <div id="presets">
 
@@ -98,13 +153,42 @@ Matrix
 Old Paper
 </button>
 
-  <button class="temaBtn" onclick="mudarTema('#120000','#ff3c3c','#2b0000','#ff7b7b')">
-Sukuna Mode
+<button class="temaBtn" onclick="mudarTema('#120000','#ff3c3c','#2b0000','#ff7b7b')">
+Shrine
 </button>
 
 <button class="temaBtn" onclick="mudarTema('#0a0f1f','#7dd3fc','#111827','#dbeafe')">
-Gojo Infinity
+Six Eyes
 </button>
+
+<button class="temaBtn" onclick="mudarTema('#1c1c1c','#8be9fd','#2d2d2d','#ffffff')">
+Idle Transfiguration
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#1a0000','#ff5555','#330000','#ffaaaa')">
+Blood Manipulation
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#0f172a','#facc15','#1e293b','#fef08a')">
+Ratio Technique
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#001a00','#00ff88','#003300','#99ffcc')">
+Ten Shadows
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#2a0000','#ff9900','#552200','#ffd699')">
+Black Flash
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#000814','#48cae4','#001d3d','#caf0f8')">
+Limitless
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#14001f','#d980ff','#2a0040','#f0ccff')">
+Cursed Speech
+</button>
+
 </div>
 
 <pre id="conteudo"></pre>
@@ -153,6 +237,12 @@ function mudarTema(fundo, texto, inputBg, inputText) {
   pesquisa.style.color = inputText;
   pesquisa.style.borderColor = texto;
 
+  const abrirTemas = document.getElementById("abrirTemas");
+
+  abrirTemas.style.backgroundColor = inputBg;
+  abrirTemas.style.color = inputText;
+  abrirTemas.style.borderColor = texto;
+
   const botoes = document.querySelectorAll(".temaBtn");
 
   botoes.forEach(btn => {
@@ -161,6 +251,30 @@ function mudarTema(fundo, texto, inputBg, inputText) {
     btn.style.border = "2px solid " + texto;
   });
 }
+
+const abrirTemas = document.getElementById("abrirTemas");
+const presets = document.getElementById("presets");
+
+abrirTemas.addEventListener("click", () => {
+
+  if (presets.style.display === "none") {
+
+    if (window.innerWidth <= 700) {
+      presets.style.display = "grid";
+    } else {
+      presets.style.display = "flex";
+    }
+
+    abrirTemas.textContent = "Techniques ▲";
+
+  } else {
+
+    presets.style.display = "none";
+    abrirTemas.textContent = "Techniques ▼";
+
+  }
+
+});
 </script>
 
 </body>
