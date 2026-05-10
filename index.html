@@ -61,7 +61,6 @@ body{
 
   background:rgba(34,34,34,0.45);
   backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
 
   color:red;
   font-family:'Finger Paint', cursive, sans-serif;
@@ -87,7 +86,6 @@ body{
 
   background:rgba(34,34,34,0.45);
   backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
 
   color:red;
   font-size:28px;
@@ -99,8 +97,7 @@ body{
 }
 
 #menuTemas:hover{
-  transform:scale(1.08) rotate(90deg);
-  box-shadow:0 0 15px currentColor;
+  transform:rotate(90deg);
 }
 
 /* SETTINGS PANEL */
@@ -116,7 +113,6 @@ body{
 
   background:rgba(10,10,10,0.42);
   backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
 
   padding:90px 15px 20px;
 
@@ -126,10 +122,6 @@ body{
   z-index:4000;
 
   border-left:1px solid rgba(255,0,0,0.3);
-
-  box-shadow:
-  -10px 0 30px rgba(0,0,0,0.4),
-  inset 0 0 20px rgba(255,0,0,0.05);
 }
 
 #presets.aberto{
@@ -147,14 +139,15 @@ body{
 
 /* THEMES AREA */
 
-#listaTemas{
+#listaTemas,
+#framesArea{
   display:none;
   flex-direction:column;
   gap:10px;
   margin-top:10px;
 }
 
-/* THEME BUTTONS */
+/* BUTTONS */
 
 .temaBtn{
   width:100%;
@@ -170,18 +163,17 @@ body{
 
   background:rgba(34,34,34,0.4);
   backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
 
   color:red;
   border:2px solid red;
 }
 
 .temaBtn:hover{
-  transform:scale(1.03);
   box-shadow:0 0 12px currentColor;
 }
 
 /* CONTENT */
+
 #conteudo{
   display:flex;
   flex-direction:column;
@@ -192,20 +184,12 @@ body{
 .linha{
   padding:2px 0;
   margin:0;
-  border-radius:0;
-  transition:none;
   word-break:break-word;
 
   background:none;
-  backdrop-filter:none;
 
   font-size:18px;
   line-height:1.2;
-}
-
-.linha:hover{
-  background:none;
-  transform:none;
 }
 
 /* SCROLL BUTTON */
@@ -223,7 +207,6 @@ body{
 
   background:rgba(20,20,20,0.45);
   backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
 
   color:red;
   font-size:30px;
@@ -231,18 +214,17 @@ body{
 
   z-index:5000;
 
-  transition:0.25s;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
-  box-shadow:0 0 15px rgba(255,0,0,0.15);
 }
 
-#scrollBtn:hover{
-  transform:scale(1.12);
-  box-shadow:0 0 20px currentColor;
+/* STATUS */
+
+#statusFrames{
+  font-size:13px;
+  text-align:center;
+  word-break:break-word;
 }
 
 /* MOBILE */
@@ -311,67 +293,62 @@ Themes ▼
 
 <div id="listaTemas">
 
-<button class="temaBtn" onclick="mudarTema('white','black','#ddd','black')">
-Light
+<button class="temaBtn" onclick="mudarTema('white','black','#ddd','black')">Light</button>
+
+<button class="temaBtn" onclick="mudarTema('#0d0d0d','#e5e5e5','#1a1a1a','#ffffff')">Dark</button>
+
+<button class="temaBtn" onclick="mudarTema('#111','red','#222','red')">Shrine</button>
+
+<button class="temaBtn" onclick="mudarTema('#001f3f','#00ffff','#003366','#00ffff')">Ocean</button>
+
+<button class="temaBtn" onclick="mudarTema('#000000','#00ff00','#111111','#00ff00')">Matrix</button>
+
+<button class="temaBtn" onclick="mudarTema('#0a0f1f','#ff00ff','#111827','#00ffff')">Cyberpunk</button>
+
+</div>
+
+<button id="abrirFramesConfig" class="temaBtn" style="margin-top:10px;">
+Video To Frames ▼
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#0d0d0d','#e5e5e5','#1a1a1a','#ffffff')">
-Dark
+<div id="framesArea">
+
+<input type="file" id="videoInput" accept="video/*" class="temaBtn">
+
+<select id="fpsSelect" class="temaBtn">
+<option value="12">12 FPS</option>
+<option value="24">24 FPS</option>
+<option value="30">30 FPS</option>
+<option value="60">60 FPS</option>
+</select>
+
+<select id="resSelect" class="temaBtn">
+<option value="1">Original Resolution</option>
+<option value="0.75">75%</option>
+<option value="0.5">50%</option>
+<option value="0.25">25%</option>
+</select>
+
+<select id="qualitySelect" class="temaBtn">
+<option value="1">JPG Quality 100%</option>
+<option value="0.8">JPG Quality 80%</option>
+<option value="0.6">JPG Quality 60%</option>
+<option value="0.4">JPG Quality 40%</option>
+</select>
+
+<button id="converterBtn" class="temaBtn">
+Convert Video
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#111','red','#222','red')">
-Shrine
-</button>
-
-<button class="temaBtn" onclick="mudarTema('rgb(111,232,162)','black','#7be8a2','black')">
-Mint
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#001f3f','#00ffff','#003366','#00ffff')">
-Ocean
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#2b0a3d','#ff66ff','#4a1466','#ffccff')">
-Purple
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#000000','#00ff00','#111111','#00ff00')">
-Matrix
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#fff4cc','#5a3d00','#ffe599','#5a3d00')">
-Old Paper
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#e8d7aa','#4a3200','#d9c28a','#4a3200')">
-Older Paper
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#0a0f1f','#ff00ff','#111827','#00ffff')">
-Cyberpunk
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#e6f7ff','#7dd3fc','#cceeff','#0f172a')">
-Heaven
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#ffe4ec','#ff66a3','#ffc2d1','#5c0033')">
-Pure Love
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#3b2a1a','#d4a373','#5a3e26','#ffe8c2')">
-Steampunk
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#030303','#ffffff','#121212','#dddddd')">
-Void
-</button>
+<div id="statusFrames"></div>
 
 </div>
 
 </div>
 
 <div id="conteudo"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
 <script>
 
@@ -424,17 +401,12 @@ fetch("dados.json")
 
   renderizar(texto);
 
-})
-.catch(() => {
-
-  document.getElementById("conteudo").innerHTML =
-  "Erro ao carregar o JSON";
-
 });
 
-/* SMART SEARCH */
+/* SEARCH */
 
-document.getElementById("pesquisa").addEventListener("input", function(){
+document.getElementById("pesquisa")
+.addEventListener("input", function(){
 
   const busca = normalizar(this.value);
 
@@ -461,60 +433,21 @@ function mudarTema(fundo, texto, inputBg, inputText){
 
   document.body.style.backgroundColor = fundo;
 
-  document.getElementById("topo").style.backgroundColor = fundo + "88";
-
   document.body.style.color = texto;
 
   document.getElementById("titulo").style.color = texto;
-
-  const pesquisa = document.getElementById("pesquisa");
-
-  pesquisa.style.backgroundColor = inputBg;
-  pesquisa.style.color = inputText;
-  pesquisa.style.borderColor = texto;
-
-  const menuTemas = document.getElementById("menuTemas");
-
-  menuTemas.style.backgroundColor = inputBg;
-  menuTemas.style.color = inputText;
-  menuTemas.style.borderColor = texto;
-
-  const presets = document.getElementById("presets");
-
-  presets.style.borderColor = texto;
 
   document.querySelectorAll(".temaBtn").forEach(btn => {
 
     btn.style.backgroundColor = inputBg;
     btn.style.color = inputText;
-    btn.style.border = "2px solid " + texto;
+    btn.style.borderColor = texto;
 
   });
-
-  document.querySelectorAll(".linha").forEach(linha => {
-
-    linha.style.color = texto;
-
-  });
-
-  const scrollBtn = document.getElementById("scrollBtn");
-
-  scrollBtn.style.backgroundColor = inputBg;
-  scrollBtn.style.color = inputText;
-  scrollBtn.style.borderColor = texto;
-
-  localStorage.setItem("tema", JSON.stringify({
-
-    fundo,
-    texto,
-    inputBg,
-    inputText
-
-  }));
 
 }
 
-/* OPEN SETTINGS */
+/* SETTINGS */
 
 const menuTemas = document.getElementById("menuTemas");
 const presets = document.getElementById("presets");
@@ -525,7 +458,7 @@ menuTemas.addEventListener("click", () => {
 
 });
 
-/* OPEN THEMES */
+/* THEMES OPEN */
 
 const abrirTemasConfig =
 document.getElementById("abrirTemasConfig");
@@ -549,9 +482,150 @@ abrirTemasConfig.addEventListener("click", () => {
 
 });
 
+/* VIDEO TO FRAMES */
+
+const abrirFramesConfig =
+document.getElementById("abrirFramesConfig");
+
+const framesArea =
+document.getElementById("framesArea");
+
+abrirFramesConfig.addEventListener("click", () => {
+
+  if(framesArea.style.display === "flex"){
+
+    framesArea.style.display = "none";
+    abrirFramesConfig.textContent = "Video To Frames ▼";
+
+  }else{
+
+    framesArea.style.display = "flex";
+    abrirFramesConfig.textContent = "Video To Frames ▲";
+
+  }
+
+});
+
+document.getElementById("converterBtn")
+.addEventListener("click", async () => {
+
+  const file =
+  document.getElementById("videoInput").files[0];
+
+  if(!file){
+
+    alert("Select a video.");
+    return;
+
+  }
+
+  const fps =
+  parseInt(document.getElementById("fpsSelect").value);
+
+  const scale =
+  parseFloat(document.getElementById("resSelect").value);
+
+  const quality =
+  parseFloat(document.getElementById("qualitySelect").value);
+
+  const status =
+  document.getElementById("statusFrames");
+
+  status.textContent = "Loading video...";
+
+  const video =
+  document.createElement("video");
+
+  video.src = URL.createObjectURL(file);
+
+  await new Promise(resolve => {
+
+    video.onloadedmetadata = resolve;
+
+  });
+
+  const canvas =
+  document.createElement("canvas");
+
+  const ctx =
+  canvas.getContext("2d");
+
+  canvas.width = video.videoWidth * scale;
+  canvas.height = video.videoHeight * scale;
+
+  const zip = new JSZip();
+
+  const duration = video.duration;
+
+  let frame = 0;
+
+  for(let time = 0; time < duration; time += 1 / fps){
+
+    status.textContent =
+    `Converting frame ${frame}...`;
+
+    await new Promise(resolve => {
+
+      video.currentTime = time;
+
+      video.onseeked = resolve;
+
+    });
+
+    ctx.drawImage(
+      video,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+    const blob = await new Promise(resolve => {
+
+      canvas.toBlob(
+        resolve,
+        "image/jpeg",
+        quality
+      );
+
+    });
+
+    zip.file(
+      `frame_${frame}.jpg`,
+      blob
+    );
+
+    frame++;
+
+  }
+
+  status.textContent =
+  "Generating ZIP...";
+
+  const zipBlob =
+  await zip.generateAsync({
+    type:"blob"
+  });
+
+  const a =
+  document.createElement("a");
+
+  a.href =
+  URL.createObjectURL(zipBlob);
+
+  a.download = "frames.zip";
+
+  a.click();
+
+  status.textContent =
+  "Done.";
+
+});
+
 /* SCROLL BUTTON */
 
-const scrollBtn = document.getElementById("scrollBtn");
+const scrollBtn =
+document.getElementById("scrollBtn");
 
 window.addEventListener("scroll", () => {
 
@@ -587,26 +661,7 @@ scrollBtn.addEventListener("click", () => {
 
 });
 
-/* LOAD SAVED THEME */
-
-const temaSalvo = localStorage.getItem("tema");
-
-if(temaSalvo){
-
-  const tema = JSON.parse(temaSalvo);
-
-  mudarTema(
-    tema.fundo,
-    tema.texto,
-    tema.inputBg,
-    tema.inputText
-  );
-
-}else{
-
-  mudarTema('#111','red','#222','red');
-
-}
+mudarTema('#111','red','#222','red');
 
 </script>
 
