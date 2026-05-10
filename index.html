@@ -8,28 +8,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
 
 <style>
+
 *{
   box-sizing:border-box;
+  scroll-behavior:smooth;
 }
 
-body {
-  background: #111;
-  color: red;
-  font-family: 'Finger Paint', cursive, sans-serif;
-  padding: 20px;
-  margin: 0;
-  font-size: 20px;
-  transition: 0.3s;
+body{
+  background:#111;
+  color:red;
+  font-family:'Finger Paint', cursive, sans-serif;
+  padding:20px;
+  margin:0;
+  font-size:20px;
+  transition:0.3s;
+  overflow-x:hidden;
 }
 
-/* TOP BAR */
+/* TOP */
 
 #topo{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background:#111;
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:rgba(17,17,17,0.45);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
   padding-bottom:15px;
+  border-bottom:1px solid rgba(255,0,0,0.2);
 }
 
 /* TITLE */
@@ -43,121 +51,243 @@ body {
 
 /* SEARCH */
 
-#pesquisa {
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  margin-bottom: 15px;
-  border: 2px solid red;
-  border-radius: 10px;
-  outline: none;
-  background: #222;
-  color: red;
-  font-family: 'Finger Paint', cursive, sans-serif;
-  transition: 0.2s;
+#pesquisa{
+  width:100%;
+  padding:12px;
+  font-size:18px;
+  border:2px solid red;
+  border-radius:14px;
+  outline:none;
+
+  background:rgba(34,34,34,0.45);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  color:red;
+  font-family:'Finger Paint', cursive, sans-serif;
+  transition:0.2s;
 }
 
 #pesquisa:focus{
+  box-shadow:0 0 15px currentColor;
+}
+
+/* SETTINGS BUTTON */
+
+#menuTemas{
+  position:fixed;
+  top:15px;
+  right:15px;
+
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+  border:2px solid red;
+
+  background:rgba(34,34,34,0.45);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+
+  color:red;
+  font-size:28px;
+  cursor:pointer;
+  z-index:5000;
+
+  transition:0.25s;
+  font-family:'Finger Paint', cursive, sans-serif;
+}
+
+#menuTemas:hover{
+  transform:scale(1.08) rotate(90deg);
+  box-shadow:0 0 15px currentColor;
+}
+
+/* SETTINGS PANEL */
+
+#presets{
+  position:fixed;
+  top:0;
+  right:-340px;
+
+  width:340px;
+  max-width:100%;
+  height:100vh;
+
+  background:rgba(10,10,10,0.42);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+
+  padding:90px 15px 20px;
+
+  overflow-y:auto;
+
+  transition:0.35s;
+  z-index:4000;
+
+  border-left:1px solid rgba(255,0,0,0.3);
+
+  box-shadow:
+  -10px 0 30px rgba(0,0,0,0.4),
+  inset 0 0 20px rgba(255,0,0,0.05);
+}
+
+#presets.aberto{
+  right:0;
+}
+
+/* SETTINGS TITLE */
+
+#configTitulo{
+  font-size:28px;
+  margin-bottom:15px;
+  text-align:center;
+  text-shadow:0 0 10px currentColor;
+}
+
+/* THEMES AREA */
+
+#listaTemas{
+  display:none;
+  flex-direction:column;
+  gap:10px;
+  margin-top:10px;
+}
+
+/* THEME BUTTONS */
+
+.temaBtn{
+  width:100%;
+  padding:12px;
+
+  border-radius:14px;
+  cursor:pointer;
+
+  font-size:14px;
+  font-family:'Finger Paint', cursive, sans-serif;
+
+  transition:0.2s;
+
+  background:rgba(34,34,34,0.4);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  color:red;
+  border:2px solid red;
+}
+
+.temaBtn:hover{
+  transform:scale(1.03);
   box-shadow:0 0 12px currentColor;
 }
 
-/* THEMES BUTTON */
-
-#abrirTemas {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 2px solid red;
-  border-radius: 10px;
-  background: #222;
-  color: red;
-  font-size: 18px;
-  cursor: pointer;
-  font-family: 'Finger Paint', cursive, sans-serif;
-  transition: 0.2s;
-}
-
-#abrirTemas:hover {
-  transform: scale(1.01);
-}
-
-/* THEMES */
-
-#presets {
-  display: none;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.temaBtn {
-  padding: 10px 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  font-family: 'Finger Paint', cursive, sans-serif;
-  transition: 0.2s;
-  background: #222;
-  color: red;
-  border: 2px solid red;
-}
-
-.temaBtn:hover {
-  transform: scale(1.05);
-  box-shadow:0 0 10px currentColor;
-}
-
 /* CONTENT */
+#conteudo{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  margin-top:10px;
+}
 
-pre {
-  white-space: pre-wrap;
-  word-break: break-word;
-  font-family: 'Finger Paint', cursive, sans-serif;
-  font-size: 20px;
-  line-height: 1.6;
-  color: red;
+.linha{
+  padding:2px 0;
+  margin:0;
+  border-radius:0;
+  transition:none;
+  word-break:break-word;
+
+  background:none;
+  backdrop-filter:none;
+
+  font-size:18px;
+  line-height:1.2;
+}
+
+.linha:hover{
+  background:none;
+  transform:none;
+}
+
+/* SCROLL BUTTON */
+
+#scrollBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+
+  width:62px;
+  height:62px;
+
+  border-radius:50%;
+  border:2px solid red;
+
+  background:rgba(20,20,20,0.45);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+
+  color:red;
+  font-size:30px;
+  cursor:pointer;
+
+  z-index:5000;
+
+  transition:0.25s;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:0 0 15px rgba(255,0,0,0.15);
+}
+
+#scrollBtn:hover{
+  transform:scale(1.12);
+  box-shadow:0 0 20px currentColor;
 }
 
 /* MOBILE */
 
-@media (max-width: 700px) {
+@media (max-width:700px){
 
-  body {
-    padding: 12px;
-    font-size: 16px;
+  body{
+    padding:12px;
+    font-size:16px;
   }
 
   #titulo{
     font-size:30px;
   }
 
-  #pesquisa {
-    font-size: 16px;
-    padding: 10px;
+  #pesquisa{
+    font-size:16px;
+    padding:10px;
   }
 
-  #presets {
-    display: none;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+  #presets{
+    width:100%;
+    right:-100%;
+    padding-top:90px;
   }
 
-  .temaBtn {
-    width: 100%;
-    font-size: 13px;
-    padding: 10px;
-    border-radius: 12px;
+  .temaBtn{
+    font-size:13px;
   }
 
-  pre {
-    font-size: 15px;
-    line-height: 1.4;
+  #scrollBtn{
+    width:54px;
+    height:54px;
+    font-size:24px;
   }
 }
+
 </style>
 </head>
 
 <body>
+
+<button id="menuTemas">⚙</button>
+
+<button id="scrollBtn">⌄</button>
 
 <div id="topo">
 
@@ -167,22 +297,30 @@ JJS HEAVEN
 
 <input type="text" id="pesquisa" placeholder="Pesquisar...">
 
-<button id="abrirTemas">
-Site Themes ▼
-</button>
+</div>
 
 <div id="presets">
 
+<div id="configTitulo">
+Settings
+</div>
+
+<button id="abrirTemasConfig" class="temaBtn">
+Themes ▼
+</button>
+
+<div id="listaTemas">
+
 <button class="temaBtn" onclick="mudarTema('white','black','#ddd','black')">
-Light Mode
+Light
 </button>
 
 <button class="temaBtn" onclick="mudarTema('#0d0d0d','#e5e5e5','#1a1a1a','#ffffff')">
-Dark Mode
+Dark
 </button>
 
 <button class="temaBtn" onclick="mudarTema('#111','red','#222','red')">
-Malevolent Shrine
+Shrine
 </button>
 
 <button class="temaBtn" onclick="mudarTema('rgb(111,232,162)','black','#7be8a2','black')">
@@ -190,11 +328,11 @@ Mint
 </button>
 
 <button class="temaBtn" onclick="mudarTema('#001f3f','#00ffff','#003366','#00ffff')">
-Deep Ocean
+Ocean
 </button>
 
 <button class="temaBtn" onclick="mudarTema('#2b0a3d','#ff66ff','#4a1466','#ffccff')">
-Hollow Purple
+Purple
 </button>
 
 <button class="temaBtn" onclick="mudarTema('#000000','#00ff00','#111111','#00ff00')">
@@ -209,93 +347,125 @@ Old Paper
 Older Paper
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#120000','#ff3c3c','#2b0000','#ff7b7b')">
-Blood Shrine
+<button class="temaBtn" onclick="mudarTema('#0a0f1f','#ff00ff','#111827','#00ffff')">
+Cyberpunk
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#0a0f1f','#7dd3fc','#111827','#dbeafe')">
-Infinity Sky
+<button class="temaBtn" onclick="mudarTema('#e6f7ff','#7dd3fc','#cceeff','#0f172a')">
+Heaven
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#1b1b1b','#89dceb','#2a2a2a','#d9f4ff')">
-Soul Distortion
+<button class="temaBtn" onclick="mudarTema('#ffe4ec','#ff66a3','#ffc2d1','#5c0033')">
+Pure Love
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#240000','#ff4d4d','#3b0000','#ffb3b3')">
-Crimson Curse
+<button class="temaBtn" onclick="mudarTema('#3b2a1a','#d4a373','#5a3e26','#ffe8c2')">
+Steampunk
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#1a1a1a','#ffe066','#333333','#fff5b1')">
-Golden Ratio
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#050505','#8b5cf6','#111111','#ddd6fe')">
-Dark Eclipse
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#000000','#ff0000','#111111','#ffb3b3')">
-Critical Impact
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#000814','#48cae4','#001d3d','#caf0f8')">
-Blue Horizon
-</button>
-
-<button class="temaBtn" onclick="mudarTema('#14001f','#d980ff','#2a0040','#f0ccff')">
-Neon Voice
+<button class="temaBtn" onclick="mudarTema('#030303','#ffffff','#121212','#dddddd')">
+Void
 </button>
 
 </div>
 
 </div>
 
-<pre id="conteudo"></pre>
+<div id="conteudo"></div>
 
 <script>
+
 let textoOriginal = "";
+
+/* NORMALIZE SEARCH */
+
+function normalizar(texto){
+
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\w\s]/gi, "");
+
+}
+
+/* RENDER CONTENT */
+
+function renderizar(texto){
+
+  const conteudo = document.getElementById("conteudo");
+
+  conteudo.innerHTML = "";
+
+  const linhas = texto.split("\n");
+
+  linhas.forEach(linha => {
+
+    if(linha.trim() === "") return;
+
+    const div = document.createElement("div");
+
+    div.className = "linha";
+    div.textContent = linha;
+
+    conteudo.appendChild(div);
+
+  });
+
+}
 
 /* LOAD FILE */
 
 fetch("dados.json")
-  .then(res => res.text())
-  .then(texto => {
-    textoOriginal = texto;
-    document.getElementById("conteudo").textContent = texto;
-  })
-  .catch(() => {
-    document.getElementById("conteudo").textContent = "Erro ao carregar o JSON";
-  });
+.then(res => res.text())
+.then(texto => {
 
-/* SEARCH */
+  textoOriginal = texto;
 
-document.getElementById("pesquisa").addEventListener("input", function() {
+  renderizar(texto);
 
-  const busca = this.value.toLowerCase();
+})
+.catch(() => {
 
-  if (busca === "") {
-    document.getElementById("conteudo").textContent = textoOriginal;
+  document.getElementById("conteudo").innerHTML =
+  "Erro ao carregar o JSON";
+
+});
+
+/* SMART SEARCH */
+
+document.getElementById("pesquisa").addEventListener("input", function(){
+
+  const busca = normalizar(this.value);
+
+  if(busca === ""){
+
+    renderizar(textoOriginal);
     return;
+
   }
 
   const linhas = textoOriginal.split("\n");
 
   const resultado = linhas.filter(linha =>
-    linha.toLowerCase().includes(busca)
+    normalizar(linha).includes(busca)
   );
 
-  document.getElementById("conteudo").textContent = resultado.join("\n");
+  renderizar(resultado.join("\n"));
+
 });
 
 /* THEMES */
 
-function mudarTema(fundo, texto, inputBg, inputText) {
+function mudarTema(fundo, texto, inputBg, inputText){
 
   document.body.style.backgroundColor = fundo;
-  document.getElementById("topo").style.backgroundColor = fundo;
+
+  document.getElementById("topo").style.backgroundColor = fundo + "88";
 
   document.body.style.color = texto;
 
-  document.getElementById("conteudo").style.color = texto;
+  document.getElementById("titulo").style.color = texto;
 
   const pesquisa = document.getElementById("pesquisa");
 
@@ -303,53 +473,115 @@ function mudarTema(fundo, texto, inputBg, inputText) {
   pesquisa.style.color = inputText;
   pesquisa.style.borderColor = texto;
 
-  const abrirTemas = document.getElementById("abrirTemas");
+  const menuTemas = document.getElementById("menuTemas");
 
-  abrirTemas.style.backgroundColor = inputBg;
-  abrirTemas.style.color = inputText;
-  abrirTemas.style.borderColor = texto;
+  menuTemas.style.backgroundColor = inputBg;
+  menuTemas.style.color = inputText;
+  menuTemas.style.borderColor = texto;
 
-  document.getElementById("titulo").style.color = texto;
+  const presets = document.getElementById("presets");
 
-  const botoes = document.querySelectorAll(".temaBtn");
+  presets.style.borderColor = texto;
 
-  botoes.forEach(btn => {
+  document.querySelectorAll(".temaBtn").forEach(btn => {
+
     btn.style.backgroundColor = inputBg;
     btn.style.color = inputText;
     btn.style.border = "2px solid " + texto;
+
   });
 
-  /* SAVE THEME */
+  document.querySelectorAll(".linha").forEach(linha => {
+
+    linha.style.color = texto;
+
+  });
+
+  const scrollBtn = document.getElementById("scrollBtn");
+
+  scrollBtn.style.backgroundColor = inputBg;
+  scrollBtn.style.color = inputText;
+  scrollBtn.style.borderColor = texto;
 
   localStorage.setItem("tema", JSON.stringify({
+
     fundo,
     texto,
     inputBg,
     inputText
+
   }));
+
 }
 
-/* OPEN/CLOSE THEMES */
+/* OPEN SETTINGS */
 
-const abrirTemas = document.getElementById("abrirTemas");
+const menuTemas = document.getElementById("menuTemas");
 const presets = document.getElementById("presets");
 
-abrirTemas.addEventListener("click", () => {
+menuTemas.addEventListener("click", () => {
 
-  if (presets.style.display === "none" || presets.style.display === "") {
+  presets.classList.toggle("aberto");
 
-    if (window.innerWidth <= 700) {
-      presets.style.display = "grid";
-    } else {
-      presets.style.display = "flex";
-    }
+});
 
-    abrirTemas.textContent = "Site Themes ▲";
+/* OPEN THEMES */
 
-  } else {
+const abrirTemasConfig =
+document.getElementById("abrirTemasConfig");
 
-    presets.style.display = "none";
-    abrirTemas.textContent = "Site Themes ▼";
+const listaTemas =
+document.getElementById("listaTemas");
+
+abrirTemasConfig.addEventListener("click", () => {
+
+  if(listaTemas.style.display === "flex"){
+
+    listaTemas.style.display = "none";
+    abrirTemasConfig.textContent = "Themes ▼";
+
+  }else{
+
+    listaTemas.style.display = "flex";
+    abrirTemasConfig.textContent = "Themes ▲";
+
+  }
+
+});
+
+/* SCROLL BUTTON */
+
+const scrollBtn = document.getElementById("scrollBtn");
+
+window.addEventListener("scroll", () => {
+
+  if(window.scrollY > 300){
+
+    scrollBtn.innerHTML = "⌃";
+
+  }else{
+
+    scrollBtn.innerHTML = "⌄";
+
+  }
+
+});
+
+scrollBtn.addEventListener("click", () => {
+
+  if(window.scrollY > 300){
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }else{
+
+    window.scrollTo({
+      top:document.body.scrollHeight,
+      behavior:"smooth"
+    });
 
   }
 
@@ -369,7 +601,13 @@ if(temaSalvo){
     tema.inputBg,
     tema.inputText
   );
+
+}else{
+
+  mudarTema('#111','red','#222','red');
+
 }
+
 </script>
 
 </body>
