@@ -8,6 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
 
 <style>
+*{
+  box-sizing:border-box;
+}
+
 body {
   background: #111;
   color: red;
@@ -18,19 +22,46 @@ body {
   transition: 0.3s;
 }
 
+/* TOP BAR */
+
+#topo{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background:#111;
+  padding-bottom:15px;
+}
+
+/* TITLE */
+
+#titulo{
+  text-align:center;
+  font-size:42px;
+  margin-bottom:18px;
+  text-shadow:0 0 12px currentColor;
+}
+
+/* SEARCH */
+
 #pesquisa {
   width: 100%;
   padding: 12px;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border: 2px solid red;
   border-radius: 10px;
   outline: none;
   background: #222;
   color: red;
-  box-sizing: border-box;
   font-family: 'Finger Paint', cursive, sans-serif;
+  transition: 0.2s;
 }
+
+#pesquisa:focus{
+  box-shadow:0 0 12px currentColor;
+}
+
+/* THEMES BUTTON */
 
 #abrirTemas {
   width: 100%;
@@ -50,6 +81,8 @@ body {
   transform: scale(1.01);
 }
 
+/* THEMES */
+
 #presets {
   display: none;
   flex-wrap: wrap;
@@ -61,7 +94,7 @@ body {
   padding: 10px 15px;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   font-family: 'Finger Paint', cursive, sans-serif;
   transition: 0.2s;
   background: #222;
@@ -71,22 +104,31 @@ body {
 
 .temaBtn:hover {
   transform: scale(1.05);
+  box-shadow:0 0 10px currentColor;
 }
+
+/* CONTENT */
 
 pre {
   white-space: pre-wrap;
   word-break: break-word;
   font-family: 'Finger Paint', cursive, sans-serif;
   font-size: 20px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: red;
 }
+
+/* MOBILE */
 
 @media (max-width: 700px) {
 
   body {
     padding: 12px;
     font-size: 16px;
+  }
+
+  #titulo{
+    font-size:30px;
   }
 
   #pesquisa {
@@ -117,10 +159,16 @@ pre {
 
 <body>
 
+<div id="topo">
+
+<div id="titulo">
+JJS HEAVEN
+</div>
+
 <input type="text" id="pesquisa" placeholder="Pesquisar...">
 
 <button id="abrirTemas">
-Techniques ▼
+Site Themes ▼
 </button>
 
 <div id="presets">
@@ -161,23 +209,23 @@ Shrine
 Six Eyes
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#1c1c1c','#8be9fd','#2d2d2d','#ffffff')">
+<button class="temaBtn" onclick="mudarTema('#1b1b1b','#89dceb','#2a2a2a','#d9f4ff')">
 Idle Transfiguration
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#1a0000','#ff5555','#330000','#ffaaaa')">
+<button class="temaBtn" onclick="mudarTema('#240000','#ff4d4d','#3b0000','#ffb3b3')">
 Blood Manipulation
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#0f172a','#facc15','#1e293b','#fef08a')">
+<button class="temaBtn" onclick="mudarTema('#1a1a1a','#ffe066','#333333','#fff5b1')">
 Ratio Technique
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#001a00','#00ff88','#003300','#99ffcc')">
+<button class="temaBtn" onclick="mudarTema('#050505','#8b5cf6','#111111','#ddd6fe')">
 Ten Shadows
 </button>
 
-<button class="temaBtn" onclick="mudarTema('#2a0000','#ff9900','#552200','#ffd699')">
+<button class="temaBtn" onclick="mudarTema('#000000','#ff0000','#111111','#ffb3b3')">
 Black Flash
 </button>
 
@@ -191,10 +239,14 @@ Cursed Speech
 
 </div>
 
+</div>
+
 <pre id="conteudo"></pre>
 
 <script>
 let textoOriginal = "";
+
+/* LOAD FILE */
 
 fetch("dados.json")
   .then(res => res.text())
@@ -205,6 +257,8 @@ fetch("dados.json")
   .catch(() => {
     document.getElementById("conteudo").textContent = "Erro ao carregar o JSON";
   });
+
+/* SEARCH */
 
 document.getElementById("pesquisa").addEventListener("input", function() {
 
@@ -224,9 +278,13 @@ document.getElementById("pesquisa").addEventListener("input", function() {
   document.getElementById("conteudo").textContent = resultado.join("\n");
 });
 
+/* THEMES */
+
 function mudarTema(fundo, texto, inputBg, inputText) {
 
   document.body.style.backgroundColor = fundo;
+  document.getElementById("topo").style.backgroundColor = fundo;
+
   document.body.style.color = texto;
 
   document.getElementById("conteudo").style.color = texto;
@@ -243,6 +301,8 @@ function mudarTema(fundo, texto, inputBg, inputText) {
   abrirTemas.style.color = inputText;
   abrirTemas.style.borderColor = texto;
 
+  document.getElementById("titulo").style.color = texto;
+
   const botoes = document.querySelectorAll(".temaBtn");
 
   botoes.forEach(btn => {
@@ -250,14 +310,25 @@ function mudarTema(fundo, texto, inputBg, inputText) {
     btn.style.color = inputText;
     btn.style.border = "2px solid " + texto;
   });
+
+  /* SAVE THEME */
+
+  localStorage.setItem("tema", JSON.stringify({
+    fundo,
+    texto,
+    inputBg,
+    inputText
+  }));
 }
+
+/* OPEN/CLOSE THEMES */
 
 const abrirTemas = document.getElementById("abrirTemas");
 const presets = document.getElementById("presets");
 
 abrirTemas.addEventListener("click", () => {
 
-  if (presets.style.display === "none") {
+  if (presets.style.display === "none" || presets.style.display === "") {
 
     if (window.innerWidth <= 700) {
       presets.style.display = "grid";
@@ -265,16 +336,32 @@ abrirTemas.addEventListener("click", () => {
       presets.style.display = "flex";
     }
 
-    abrirTemas.textContent = "Techniques ▲";
+    abrirTemas.textContent = "Site Themes ▲";
 
   } else {
 
     presets.style.display = "none";
-    abrirTemas.textContent = "Techniques ▼";
+    abrirTemas.textContent = "Site Themes ▼";
 
   }
 
 });
+
+/* LOAD SAVED THEME */
+
+const temaSalvo = localStorage.getItem("tema");
+
+if(temaSalvo){
+
+  const tema = JSON.parse(temaSalvo);
+
+  mudarTema(
+    tema.fundo,
+    tema.texto,
+    tema.inputBg,
+    tema.inputText
+  );
+}
 </script>
 
 </body>
