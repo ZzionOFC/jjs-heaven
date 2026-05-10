@@ -25,11 +25,11 @@ body {
   padding: 12px;
   font-size: 18px;
   margin-bottom: 15px;
-  border: none;
+  border: 2px solid red;
   border-radius: 10px;
   outline: none;
   background: #222;
-  color: white;
+  color: red;
   box-sizing: border-box;
   font-family: 'Finger Paint', cursive, sans-serif;
 }
@@ -53,19 +53,20 @@ pre {
   font-family: 'Finger Paint', cursive, sans-serif;
   font-size: 20px;
   line-height: 1.5;
+  color: red;
 }
 </style>
 </head>
 
 <body>
 
-<input type="text" id="pesquisa" placeholder="Search IDS">
+<input type="text" id="pesquisa" placeholder="Search Ids...">
 
-<input type="text" id="corTexto" placeholder="Select Text Color (RGB)">
+<input type="text" id="corTexto" placeholder="Text Color (ex: red ou rgb(255,0,0))">
 
-<input type="text" id="corFundo" placeholder="Select Background Color (RGB)">
+<input type="text" id="corFundo" placeholder="Background Color (ex: black ou rgb(0,0,0))">
 
-<button id="aplicarCor">Select Inputed Colors</button>
+<button id="aplicarCor">INPUT SELECTED COLORS</button>
 
 <pre id="conteudo"></pre>
 
@@ -105,13 +106,28 @@ document.getElementById("aplicarCor").addEventListener("click", function() {
   const corTexto = document.getElementById("corTexto").value;
   const corFundo = document.getElementById("corFundo").value;
 
-  if (corTexto !== "") {
-    document.body.style.color = corTexto;
+  if (corFundo !== "") {
+    document.body.style.backgroundColor = corFundo;
   }
 
-  if (corFundo !== "") {
-    document.body.style.background = corFundo;
+  if (corTexto !== "") {
+
+    document.body.style.color = corTexto;
+
+    document.getElementById("conteudo").style.color = corTexto;
+
+    document.getElementById("pesquisa").style.color = corTexto;
+    document.getElementById("pesquisa").style.borderColor = corTexto;
+
+    document.getElementById("corTexto").style.color = corTexto;
+    document.getElementById("corTexto").style.borderColor = corTexto;
+
+    document.getElementById("corFundo").style.color = corTexto;
+    document.getElementById("corFundo").style.borderColor = corTexto;
+
+    document.getElementById("aplicarCor").style.backgroundColor = corTexto;
   }
+
 });
 </script>
 
