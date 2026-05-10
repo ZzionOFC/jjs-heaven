@@ -18,13 +18,11 @@ body {
   transition: 0.3s;
 }
 
-#pesquisa,
-#corTexto,
-#corFundo {
+#pesquisa {
   width: 100%;
   padding: 12px;
   font-size: 18px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   border: 2px solid red;
   border-radius: 10px;
   outline: none;
@@ -34,17 +32,25 @@ body {
   font-family: 'Finger Paint', cursive, sans-serif;
 }
 
-#aplicarCor {
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
+#presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.temaBtn {
+  padding: 10px 15px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background: red;
-  color: white;
-  margin-bottom: 20px;
+  font-size: 16px;
   font-family: 'Finger Paint', cursive, sans-serif;
+  transition: 0.2s;
+}
+
+.temaBtn:hover {
+  transform: scale(1.05);
 }
 
 pre {
@@ -60,13 +66,39 @@ pre {
 
 <body>
 
-<input type="text" id="pesquisa" placeholder="Search Ids...">
+<input type="text" id="pesquisa" placeholder="Pesquisar...">
 
-<input type="text" id="corTexto" placeholder="Text Color (ex: red ou rgb(255,0,0))">
+<div id="presets">
 
-<input type="text" id="corFundo" placeholder="Background Color (ex: black ou rgb(0,0,0))">
+<button class="temaBtn" onclick="mudarTema('white','black','#ddd','black')">
+White & Black
+</button>
 
-<button id="aplicarCor">INPUT SELECTED COLORS</button>
+<button class="temaBtn" onclick="mudarTema('#111','red','#222','red')">
+Black & Red
+</button>
+
+<button class="temaBtn" onclick="mudarTema('rgb(111,232,162)','black','#7be8a2','black')">
+Green & Black
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#001f3f','#00ffff','#003366','#00ffff')">
+Ocean Blue
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#2b0a3d','#ff66ff','#4a1466','#ffccff')">
+Purple Curse
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#000000','#00ff00','#111111','#00ff00')">
+Matrix
+</button>
+
+<button class="temaBtn" onclick="mudarTema('#fff4cc','#5a3d00','#ffe599','#5a3d00')">
+Old Paper
+</button>
+
+</div>
 
 <pre id="conteudo"></pre>
 
@@ -101,34 +133,27 @@ document.getElementById("pesquisa").addEventListener("input", function() {
   document.getElementById("conteudo").textContent = resultado.join("\n");
 });
 
-document.getElementById("aplicarCor").addEventListener("click", function() {
+function mudarTema(fundo, texto, inputBg, inputText) {
 
-  const corTexto = document.getElementById("corTexto").value;
-  const corFundo = document.getElementById("corFundo").value;
+  document.body.style.backgroundColor = fundo;
+  document.body.style.color = texto;
 
-  if (corFundo !== "") {
-    document.body.style.backgroundColor = corFundo;
-  }
+  document.getElementById("conteudo").style.color = texto;
 
-  if (corTexto !== "") {
+  const pesquisa = document.getElementById("pesquisa");
 
-    document.body.style.color = corTexto;
+  pesquisa.style.backgroundColor = inputBg;
+  pesquisa.style.color = inputText;
+  pesquisa.style.borderColor = texto;
 
-    document.getElementById("conteudo").style.color = corTexto;
+  const botoes = document.querySelectorAll(".temaBtn");
 
-    document.getElementById("pesquisa").style.color = corTexto;
-    document.getElementById("pesquisa").style.borderColor = corTexto;
-
-    document.getElementById("corTexto").style.color = corTexto;
-    document.getElementById("corTexto").style.borderColor = corTexto;
-
-    document.getElementById("corFundo").style.color = corTexto;
-    document.getElementById("corFundo").style.borderColor = corTexto;
-
-    document.getElementById("aplicarCor").style.backgroundColor = corTexto;
-  }
-
-});
+  botoes.forEach(btn => {
+    btn.style.backgroundColor = inputBg;
+    btn.style.color = inputText;
+    btn.style.border = "2px solid " + texto;
+  });
+}
 </script>
 
 </body>
