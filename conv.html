@@ -2,179 +2,257 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Video to Frames Pro</title>
+<title>Video to Frames Pro - Neon Edition</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="coi-serviceworker.js"></script>
 
 <style>
+  :root {
+    --neon-red: #ff3b3b;
+    --neon-glow: rgba(255, 59, 59, 0.6);
+    --bg-dark: #0a0a0a;
+    --card-bg: rgba(26, 5, 5, 0.9);
+  }
+
   body {
     margin: 0;
-    background: #0f0f0f;
-    color: #ff3b3b;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-dark);
+    color: var(--neon-red);
+    font-family: 'Segoe UI', system-ui, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    min-height: 100vh;
   }
 
-  h1 { margin-bottom: 10px; text-shadow: 0 0 10px rgba(255, 59, 59, 0.5); }
+  h1 { 
+    margin: 10px 0 20px 0;
+    text-shadow: 0 0 15px var(--neon-red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+  }
 
   .box {
-    border: 2px solid red;
-    border-radius: 12px;
-    padding: 20px;
+    border: 1px solid var(--neon-red);
+    border-radius: 16px;
+    padding: 25px;
     width: 95%;
-    max-width: 600px;
-    background: #1a0505;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    max-width: 650px;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
+  }
+
+  .file-input-wrapper {
+    border: 2px dashed rgba(255, 59, 59, 0.3);
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+  }
+
+  .file-input-wrapper:hover {
+    border-color: var(--neon-red);
+    background: rgba(255, 59, 59, 0.05);
+  }
+
+  .grid-settings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
   }
 
   label {
     display: block;
     margin-top: 15px;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
   }
 
-  input[type="file"], select, input[type="number"], input[type="range"] {
+  input, select {
     width: 100%;
     margin-top: 5px;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
-    border: 1px solid red;
-    background: #0f0f0f;
-    color: #ff3b3b;
+    border: 1px solid rgba(255, 59, 59, 0.2);
+    background: #000;
+    color: #fff;
     outline: none;
     box-sizing: border-box;
+    transition: 0.3s;
   }
 
-  .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    margin-top: 15px;
+  input:focus, select:focus {
+    border-color: var(--neon-red);
+    box-shadow: 0 0 10px var(--neon-glow);
   }
-
-  .checkbox-label input { width: auto; margin: 0; }
 
   .btn-group {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 25px;
+    flex-wrap: wrap;
   }
 
   button {
     flex: 1;
-    padding: 12px;
+    min-width: 120px;
+    padding: 14px;
     border-radius: 8px;
-    border: 1px solid red;
+    border: 1px solid var(--neon-red);
     background: transparent;
-    color: red;
+    color: var(--neon-red);
     font-weight: bold;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   button:hover:not(:disabled) {
-    background: rgba(255, 0, 0, 0.1);
-    box-shadow: 0 0 10px red;
+    background: var(--neon-red);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-red);
+  }
+
+  button.secondary {
+    border-color: #666;
+    color: #999;
   }
 
   button:disabled {
-    border-color: #555;
-    color: #555;
+    opacity: 0.2;
     cursor: not-allowed;
-    box-shadow: none;
   }
 
   #progress-bar-container {
     width: 100%;
-    height: 10px;
-    background: #333;
-    border-radius: 5px;
-    margin-top: 15px;
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    margin-top: 25px;
     overflow: hidden;
-    display: none;
   }
 
   #progress-bar {
     height: 100%;
     width: 0%;
-    background: red;
-    box-shadow: 0 0 10px red;
+    background: var(--neon-red);
+    box-shadow: 0 0 10px var(--neon-red);
     transition: width 0.2s;
   }
 
   #info {
     margin-top: 15px;
-    font-size: 14px;
-    color: #ffaaaa;
+    padding: 10px;
+    font-size: 13px;
     text-align: center;
+    color: #aaa;
+    line-height: 1.5;
   }
 
   #preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 20px;
-    justify-content: center;
-    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1100px;
   }
 
-  #preview img {
-    width: 120px;
-    height: auto;
-    border: 1px solid red;
-    border-radius: 4px;
-    background: #000;
+  .frame-container {
+    position: relative;
+    border: 1px solid rgba(255, 59, 59, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111;
+    aspect-ratio: 16/9;
+  }
+
+  .frame-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .download-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    padding: 8px 0;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  .frame-container:hover .download-overlay {
+    opacity: 1;
   }
 </style>
 </head>
 
 <body>
 
-<h1>VIDEO → FRAMES PRO</h1>
+<h1>Video → Frames Pro</h1>
 
 <div class="box">
-  <input type="file" id="video" accept="video/*" onchange="analyze()">
+  <div class="file-input-wrapper">
+    <input type="file" id="video" accept="video/*" onchange="initVideo()" style="border:none; padding:0;">
+    <div style="font-size: 11px; margin-top: 8px; opacity: 0.6;">MAX FILE SIZE DEPENDS ON YOUR RAM</div>
+  </div>
 
-  <label>Frames per second (FPS)</label>
-  <input type="number" id="fps" value="2" min="1" max="60" onchange="analyze()">
-
-  <label>Format</label>
-  <select id="format">
-    <option value="png">PNG (High quality, larger file size)</option>
-    <option value="jpg">JPG (Lightweight, faster processing)</option>
-  </select>
-
-  <label>Resolution</label>
-  <select id="res">
-    <option value="640:-1">360p</option>
-    <option value="854:-1">480p</option>
-    <option value="1280:-1">720p</option>
-    <option value="1920:-1">1080p</option>
-  </select>
-
-  <label>JPG Quality (0–100%)</label>
-  <input type="range" id="quality" min="10" max="100" value="90">
-
-  <label class="checkbox-label">
-    <input type="checkbox" id="maxQuality"> 100% MAX QUALITY (Processing intensive)
-  </label>
+  <div class="grid-settings">
+    <div>
+      <label>Start (s)</label>
+      <input type="number" id="startTime" value="0" min="0" step="0.1" oninput="updateEstimate()">
+    </div>
+    <div>
+      <label>End (s)</label>
+      <input type="number" id="endTime" value="0" min="0" step="0.1" oninput="updateEstimate()">
+    </div>
+    <div>
+      <label>FPS</label>
+      <input type="number" id="fps" value="2" min="0.1" max="60" oninput="updateEstimate()">
+    </div>
+    <div>
+      <label>Format</label>
+      <select id="format">
+        <option value="png">PNG</option>
+        <option value="jpg">JPG</option>
+      </select>
+    </div>
+    <div style="grid-column: span 2;">
+        <label>Resolution</label>
+        <select id="res">
+          <option value="640:-1">360p</option>
+          <option value="1280:-1">720p (HD)</option>
+          <option value="1920:-1">1080p (FHD)</option>
+          <option value="-1:-1">Original Size</option>
+        </select>
+    </div>
+  </div>
 
   <div class="btn-group">
     <button id="btn-run" onclick="run()">Extract Frames</button>
-    <button id="btn-zip" onclick="zip()" disabled>Download ZIP</button>
+    <button id="btn-zip" class="secondary" onclick="zip()" disabled>Download ZIP</button>
   </div>
 
   <div id="progress-bar-container">
     <div id="progress-bar"></div>
   </div>
 
-  <div id="info">Please select a video to start.</div>
+  <div id="info">Please select a video file to begin.</div>
 </div>
 
 <div id="preview"></div>
@@ -183,156 +261,230 @@
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 
 <script>
-  const { createFFmpeg, fetchFile } = FFmpeg;
-  
-  const ffmpeg = createFFmpeg({ 
-    log: false,
-    corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'
-  });
+  /**
+   * Application State & Configuration
+   */
+  const CONFIG = {
+    MAX_FRAMES_WARNING: 500,
+    CORE_PATH: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'
+  };
 
-  let frames = [];
-  let videoDuration = 0;
+  const state = {
+    ffmpeg: null,
+    frames: [],
+    videoDuration: 0,
+    objectUrls: [],
+    isProcessing: false
+  };
 
-  ffmpeg.setProgress(({ ratio }) => {
-    const pct = Math.max(0, Math.min(100, Math.round(ratio * 100)));
-    document.getElementById('progress-bar').style.width = `${pct}%`;
-    document.getElementById('info').innerText = `Processing: ${pct}% complete...`;
-  });
-
-  function getVideoDuration(file) {
-    return new Promise((resolve) => {
-      const video = document.createElement('video');
-      video.preload = 'metadata';
-      video.onloadedmetadata = function() {
-        window.URL.revokeObjectURL(video.src);
-        resolve(video.duration);
-      }
-      video.src = URL.createObjectURL(file);
+  /**
+   * FFmpeg Setup
+   */
+  async function getFFmpeg() {
+    if (state.ffmpeg) return state.ffmpeg;
+    
+    const { createFFmpeg } = FFmpeg;
+    state.ffmpeg = createFFmpeg({ 
+      log: false, 
+      corePath: CONFIG.CORE_PATH 
     });
+    
+    // Global progress listener
+    state.ffmpeg.setProgress(({ ratio }) => {
+        const percent = Math.floor(ratio * 100);
+        document.getElementById('progress-bar').style.width = `${percent}%`;
+        if(ratio > 0) updateStatus(`Processing: ${percent}%`);
+    });
+
+    return state.ffmpeg;
   }
 
-  async function analyze() {
-    const file = document.getElementById("video").files[0];
-    if (!file) {
-      document.getElementById("info").innerText = "No video selected.";
-      return;
+  /**
+   * Video Initialization
+   */
+  async function initVideo() {
+    const fileInput = document.getElementById("video");
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    // Reset previous data
+    cleanupOldFrames();
+    updateStatus("Loading metadata...");
+
+    const video = document.createElement('video');
+    video.preload = 'metadata';
+    video.onloadedmetadata = () => {
+      state.videoDuration = video.duration;
+      document.getElementById("endTime").value = video.duration.toFixed(1);
+      updateEstimate();
+      URL.revokeObjectURL(video.src);
+    };
+    video.src = URL.createObjectURL(file);
+  }
+
+  function updateEstimate() {
+    const start = parseFloat(document.getElementById("startTime").value) || 0;
+    const end = parseFloat(document.getElementById("endTime").value) || state.videoDuration;
+    const fps = parseFloat(document.getElementById("fps").value) || 1;
+    
+    const range = Math.max(0, end - start);
+    const est = Math.ceil(range * fps);
+    
+    const infoEl = document.getElementById("info");
+    let statusHTML = `<strong>Duration:</strong> ${range.toFixed(2)}s | <strong>Total:</strong> ~${est} frames`;
+    
+    if (est > CONFIG.MAX_FRAMES_WARNING) {
+      statusHTML += `<br><span style="color: #ffaa00; font-size: 11px;">⚠ Large frame count may slow down your browser.</span>`;
     }
-
-    document.getElementById("info").innerText = "Analyzing video...";
-    videoDuration = await getVideoDuration(file);
-
-    const fps = +document.getElementById("fps").value;
-    const estFrames = Math.round(videoDuration * fps);
     
-    document.getElementById("info").innerHTML = 
-      `<strong>Duration:</strong> ${videoDuration.toFixed(2)}s<br>` +
-      `<strong>Estimated Frames:</strong> ~${estFrames} images`;
+    infoEl.innerHTML = statusHTML;
   }
 
+  /**
+   * Frame Extraction Logic
+   */
   async function run() {
-    const file = document.getElementById("video").files[0];
-    if (!file) return alert("Select a video first!");
-
-    const btnRun = document.getElementById("btn-run");
-    const btnZip = document.getElementById("btn-zip");
-    const progressBarContainer = document.getElementById("progress-bar-container");
-    const progressBar = document.getElementById("progress-bar");
+    if (state.isProcessing) return;
     
-    btnRun.disabled = true;
-    btnZip.disabled = true;
-    progressBarContainer.style.display = "block";
-    progressBar.style.width = "0%";
-    document.getElementById("preview").innerHTML = "";
-    frames = [];
+    const fileInput = document.getElementById("video");
+    const file = fileInput.files[0];
+    if (!file) return alert("Please select a video file first.");
+
+    const settings = {
+        start: parseFloat(document.getElementById("startTime").value),
+        end: parseFloat(document.getElementById("endTime").value),
+        fps: document.getElementById("fps").value,
+        format: document.getElementById("format").value,
+        res: document.getElementById("res").value
+    };
+
+    if (settings.end <= settings.start) return alert("End time must be greater than start time.");
+
+    setProcessingUI(true);
+    cleanupOldFrames();
 
     try {
-      const fps = document.getElementById("fps").value;
-      const format = document.getElementById("format").value;
-      const res = document.getElementById("res").value;
-      const quality = document.getElementById("quality").value;
-      const maxQ = document.getElementById("maxQuality").checked;
-
-      document.getElementById("info").innerText = "Loading FFmpeg engine...";
-      if (!ffmpeg.isLoaded()) await ffmpeg.load();
-
-      document.getElementById("info").innerText = "Preparing file...";
-      ffmpeg.FS("writeFile", "input.mp4", await fetchFile(file));
-
-      let args = [
-        "-i", "input.mp4",
-        "-vf", `fps=${fps},scale=${res}`
-      ];
-
-      if (format === "jpg") {
-        const qValue = maxQ ? "2" : String(Math.max(2, Math.floor(31 - (quality * 0.29)))); 
-        args.push("-q:v", qValue);
+      const ffmpeg = await getFFmpeg();
+      
+      if (!ffmpeg.isLoaded()) {
+        updateStatus("Initializing FFmpeg Core...");
+        await ffmpeg.load();
       }
 
-      args.push(`frame%04d.${format}`);
+      updateStatus("Uploading to virtual memory...");
+      const binaryData = await FFmpeg.fetchFile(file);
+      ffmpeg.FS("writeFile", "input_vid", binaryData);
 
-      await ffmpeg.run(...args);
+      updateStatus("Extracting frames...");
+      await ffmpeg.run(
+        "-ss", settings.start.toString(),
+        "-t", (settings.end - settings.start).toString(),
+        "-i", "input_vid",
+        "-vf", `fps=${settings.fps},scale=${settings.res}`,
+        "-q:v", "2", 
+        `frame_%04d.${settings.format}`
+      );
 
-      document.getElementById("info").innerText = "Extracting generated images...";
-      const files = ffmpeg.FS("readdir", "/");
+      // Read extracted files from FFmpeg Virtual FS
+      const fsFiles = ffmpeg.FS("readdir", "/");
+      const generatedFrames = fsFiles.filter(f => f.startsWith("frame_") && f.endsWith(settings.format));
+      
+      const previewEl = document.getElementById("preview");
 
-      for (let f of files) {
-        if (f.endsWith(format)) {
-          const data = ffmpeg.FS("readFile", f);
-          const blob = new Blob([data.buffer], { type: `image/${format}` });
-          const url = URL.createObjectURL(blob);
-
-          frames.push({ name: f, url, blob });
-
-          let img = document.createElement("img");
-          img.src = url;
-          img.loading = "lazy";
-          document.getElementById("preview").appendChild(img);
-          
-          ffmpeg.FS("unlink", f);
-        }
+      for (const filename of generatedFrames) {
+        const data = ffmpeg.FS("readFile", filename);
+        const blob = new Blob([data.buffer], { type: `image/${settings.format}` });
+        const url = URL.createObjectURL(blob);
+        
+        state.objectUrls.push(url);
+        state.frames.push({ name: filename, blob });
+        
+        renderFrameUI(url, filename, previewEl);
+        
+        // Immediate FS cleanup to save memory
+        ffmpeg.FS("unlink", filename);
       }
 
-      ffmpeg.FS("unlink", "input.mp4");
-
-      document.getElementById("info").innerHTML = `<strong>Success!</strong> ${frames.length} frames extracted.`;
-      btnZip.disabled = false;
+      ffmpeg.FS("unlink", "input_vid");
+      
+      updateStatus(`Success! ${state.frames.length} frames ready.`);
+      document.getElementById("btn-zip").disabled = false;
 
     } catch (err) {
       console.error(err);
-      alert("Error detail: " + err.message);
-      document.getElementById("info").innerHTML = `<span style="color:red">Process error. Check the console.</span>`;
+      updateStatus("Error: " + err.message);
     } finally {
-      btnRun.disabled = false;
-      progressBarContainer.style.display = "none";
+      setProcessingUI(false);
     }
+  }
+
+  /**
+   * UI Helpers
+   */
+  function renderFrameUI(url, name, container) {
+    const wrap = document.createElement("div");
+    wrap.className = "frame-container";
+    wrap.innerHTML = `
+      <img src="${url}" loading="lazy">
+      <div class="download-overlay">SAVE ${name.split('_')[1].toUpperCase()}</div>
+    `;
+    
+    wrap.querySelector('.download-overlay').onclick = () => {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = name;
+      a.click();
+    };
+    
+    container.appendChild(wrap);
   }
 
   async function zip() {
-    if (frames.length === 0) return alert("No frames to download.");
+    const zipBtn = document.getElementById("btn-zip");
+    const originalText = zipBtn.innerText;
     
-    document.getElementById("info").innerText = "Compressing ZIP file... please wait.";
-    const btnZip = document.getElementById("btn-zip");
-    btnZip.disabled = true;
+    zipBtn.innerText = "ZIPPING...";
+    zipBtn.disabled = true;
 
     try {
-      const zip = new JSZip();
-
-      for (let f of frames) {
-        zip.file(f.name, f.blob);
-      }
-
-      const content = await zip.generateAsync({ type: "blob" });
+      const jszip = new JSZip();
+      state.frames.forEach(f => jszip.file(f.name, f.blob));
+      
+      const content = await jszip.generateAsync({ type: "blob" });
+      const downloadUrl = URL.createObjectURL(content);
+      
       const a = document.createElement("a");
-      a.href = URL.createObjectURL(content);
-      a.download = "video_frames.zip";
+      a.href = downloadUrl;
+      a.download = `extracted_frames_${Date.now()}.zip`;
       a.click();
       
-      document.getElementById("info").innerText = "Download complete!";
-    } catch (err) {
-      document.getElementById("info").innerText = "Error creating ZIP.";
-      console.error(err);
+      setTimeout(() => URL.revokeObjectURL(downloadUrl), 5000);
+    } catch (e) {
+      alert("ZIP creation failed: " + e.message);
     } finally {
-      btnZip.disabled = false;
+      zipBtn.innerText = originalText;
+      zipBtn.disabled = false;
+    }
+  }
+
+  function cleanupOldFrames() {
+    state.objectUrls.forEach(url => URL.revokeObjectURL(url));
+    state.objectUrls = [];
+    state.frames = [];
+    document.getElementById("preview").innerHTML = "";
+    document.getElementById("btn-zip").disabled = true;
+    document.getElementById('progress-bar').style.width = `0%`;
+  }
+
+  function updateStatus(msg) {
+    document.getElementById("info").innerText = msg;
+  }
+
+  function setProcessingUI(active) {
+    state.isProcessing = active;
+    document.getElementById("btn-run").disabled = active;
+    if (!active) {
+        document.getElementById('progress-bar').style.width = `0%`;
     }
   }
 </script>
