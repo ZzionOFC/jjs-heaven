@@ -1,97 +1,213 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JJS HEAVEN</title>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>JJS HEAVEN</title>  
+<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">  
+<style>  
 
-<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+*{  
+  box-sizing:border-box;  
+  scroll-behavior:smooth;  
+}  
 
-<style>
+body{  
+  background:#111;  
+  color:red;  
+  font-family:'Finger Paint', cursive, sans-serif;  
+  padding:20px;  
+  margin:0;  
+  font-size:20px;  
+  transition:0.3s;  
+  overflow-x:hidden;  
+}  
 
-*{
-  box-sizing:border-box;
-  scroll-behavior:smooth;
-}
-
-body{
-  background:#111;
-  color:red;
-  font-family:'Finger Paint', cursive, sans-serif;
-  padding:20px;
-  margin:0;
-  font-size:20px;
-  transition:0.3s;
-  overflow-x:hidden;
-}
-
-/* TOP */
-
+/* TOP BAR FIXADO NO TEMA */
 #topo{
   position:sticky;
   top:0;
   z-index:1000;
-
-  background:rgba(17,17,17,0.45);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-
   padding-bottom:15px;
   border-bottom:1px solid rgba(255,0,0,0.2);
+
+  /* IMPORTANTE: agora ele SEMPRE tem fundo sólido */
+  background:#111;
 }
 
-/* TITLE */
+/* TITULO */
+#titulo{  
+  background:transparent;  
+  text-align:center;  
+  font-size:42px;  
+  margin-bottom:18px;  
+  text-shadow:0 0 12px currentColor;  
+}  
 
-#titulo{
-  text-align:center;
-  font-size:42px;
-  margin-bottom:18px;
-  text-shadow:0 0 12px currentColor;
-}
+/* PESQUISA */
+#pesquisa{  
+  width:100%;  
+  padding:12px;  
+  font-size:18px;  
+  border:2px solid red;  
+  border-radius:14px;  
+  outline:none;  
+  background:rgba(255,255,255,0.08);  
+  color:red;  
+  font-family:'Finger Paint', cursive, sans-serif;  
+  transition:0.2s;  
+}  
 
-/* SEARCH */
+#pesquisa:focus{  
+  box-shadow:0 0 15px currentColor;  
+}  
 
-#pesquisa{
-  width:100%;
-  padding:12px;
-  font-size:18px;
-  border:2px solid red;
-  border-radius:14px;
-  outline:none;
+/* BOTÃO MENU */
+#menuTemas{  
+  position:fixed;  
+  top:15px;  
+  right:15px;  
+  width:58px;  
+  height:58px;  
+  border-radius:50%;  
+  border:2px solid red;  
+  background:rgba(34,34,34,0.45);  
+  color:red;  
+  font-size:28px;  
+  cursor:pointer;  
+  z-index:5000;  
+  transition:0.25s;  
+  font-family:'Finger Paint', cursive, sans-serif;  
+}  
 
-  background:rgba(34,34,34,0.45);
-  backdrop-filter:blur(14px);
+#menuTemas:hover{  
+  transform:rotate(90deg);  
+}  
 
-  color:red;
-  font-family:'Finger Paint', cursive, sans-serif;
-  transition:0.2s;
-}
+/* SIDEBAR */
+#presets{  
+  position:fixed;  
+  top:0;  
+  right:-340px;  
+  width:340px;  
+  max-width:100%;  
+  height:100vh;  
+  background:rgba(10,10,10,0.42);  
+  backdrop-filter:blur(24px);  
+  padding:90px 15px 20px;  
+  overflow-y:auto;  
+  transition:0.35s;  
+  z-index:4000;  
+  border-left:1px solid rgba(255,0,0,0.3);  
+}  
 
-#pesquisa:focus{
-  box-shadow:0 0 15px currentColor;
-}
+#presets.aberto{  
+  right:0;  
+}  
 
-/* SETTINGS BUTTON */
+#configTitulo{  
+  font-size:28px;  
+  margin-bottom:15px;  
+  text-align:center;  
+  text-shadow:0 0 10px currentColor;  
+}  
 
-#menuTemas{
+#listaTemas,  
+#framesArea{  
+  display:none;  
+  flex-direction:column;  
+  gap:10px;  
+  margin-top:10px;  
+}  
+
+.temaBtn{  
+  width:100%;  
+  padding:12px;  
+  border-radius:14px;  
+  cursor:pointer;  
+  font-size:14px;  
+  font-family:'Finger Paint', cursive, sans-serif;  
+  transition:0.2s;  
+  background:rgba(34,34,34,0.4);  
+  color:red;  
+  border:2px solid red;  
+}  
+
+.temaBtn:hover{  
+  box-shadow:0 0 12px currentColor;  
+}  
+
+/* CONTEUDO */
+#conteudo{  
+  display:flex;  
+  flex-direction:column;  
+  gap:0;  
+  margin-top:10px;  
+}  
+
+.linha{  
+  padding:2px 0;  
+  margin:0;  
+  word-break:break-word;  
+  font-size:18px;  
+  line-height:1.2;  
+}  
+
+/* BOTAO SCROLL */
+#scrollBtn{  
+  position:fixed;  
+  bottom:20px;  
+  right:20px;  
+  width:62px;  
+  height:62px;  
+  border-radius:50%;  
+  border:2px solid red;  
+  background:rgba(20,20,20,0.45);  
+  color:red;  
+  font-size:30px;  
+  cursor:pointer;  
+  z-index:5000;  
+  display:flex;  
+  align-items:center;  
+  justify-content:center;  
+}  
+
+#statusFrames{  
+  font-size:13px;  
+  text-align:center;  
+  word-break:break-word;  
+}  
+
+@media (max-width:700px){  
+  body{padding:12px;font-size:16px;}  
+  #titulo{font-size:30px;}  
+  #pesquisa{font-size:16px;padding:10px;}  
+  #presets{width:100%;right:-100%;padding-top:90px;}  
+  .temaBtn{font-size:13px;}  
+  #scrollBtn{width:54px;height:54px;font-size:24px;}  
+}  
+
+#botoesFlutuantes{
   position:fixed;
   top:15px;
   right:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:5000;
+}
 
+/* remover posição individual */
+#menuTemas,
+#abrirConv{
   width:58px;
   height:58px;
-
   border-radius:50%;
   border:2px solid red;
-
   background:rgba(34,34,34,0.45);
-  backdrop-filter:blur(16px);
-
   color:red;
   font-size:28px;
   cursor:pointer;
-  z-index:5000;
-
   transition:0.25s;
   font-family:'Finger Paint', cursive, sans-serif;
 }
@@ -100,570 +216,167 @@ body{
   transform:rotate(90deg);
 }
 
-/* SETTINGS PANEL */
-
-#presets{
-  position:fixed;
-  top:0;
-  right:-340px;
-
-  width:340px;
-  max-width:100%;
-  height:100vh;
-
-  background:rgba(10,10,10,0.42);
-  backdrop-filter:blur(24px);
-
-  padding:90px 15px 20px;
-
-  overflow-y:auto;
-
-  transition:0.35s;
-  z-index:4000;
-
-  border-left:1px solid rgba(255,0,0,0.3);
+#abrirConv:hover{
+  transform:rotate(-90deg);
 }
 
-#presets.aberto{
-  right:0;
-}
-
-/* SETTINGS TITLE */
-
-#configTitulo{
-  font-size:28px;
-  margin-bottom:15px;
-  text-align:center;
-  text-shadow:0 0 10px currentColor;
-}
-
-/* THEMES AREA */
-
-#listaTemas,
-#framesArea{
-  display:none;
-  flex-direction:column;
-  gap:10px;
+#btnConv{
   margin-top:10px;
-}
-
-/* BUTTONS */
-
-.temaBtn{
-  width:100%;
-  padding:12px;
-
-  border-radius:14px;
-  cursor:pointer;
-
-  font-size:14px;
+  padding:10px 14px;
+  border-radius:12px;
+  background:transparent;
+  color:red;
   font-family:'Finger Paint', cursive, sans-serif;
-
-  transition:0.2s;
-
-  background:rgba(34,34,34,0.4);
-  backdrop-filter:blur(12px);
-
-  color:red;
-  border:2px solid red;
-}
-
-.temaBtn:hover{
-  box-shadow:0 0 12px currentColor;
-}
-
-/* CONTENT */
-
-#conteudo{
-  display:flex;
-  flex-direction:column;
-  gap:0;
-  margin-top:10px;
-}
-
-.linha{
-  padding:2px 0;
-  margin:0;
-  word-break:break-word;
-
-  background:none;
-
-  font-size:18px;
-  line-height:1.2;
-}
-
-/* SCROLL BUTTON */
-
-#scrollBtn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-
-  width:62px;
-  height:62px;
-
-  border-radius:50%;
-  border:2px solid red;
-
-  background:rgba(20,20,20,0.45);
-  backdrop-filter:blur(16px);
-
-  color:red;
-  font-size:30px;
+  font-size:16px;
   cursor:pointer;
-
-  z-index:5000;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  transition:0.2s;
+  width:fit-content;
 }
 
-/* STATUS */
-
-#statusFrames{
-  font-size:13px;
-  text-align:center;
-  word-break:break-word;
+#btnConv:hover{
+  box-shadow:0 0 12px black;
 }
+</style>  
+</head>  
 
-/* MOBILE */
+<body>  
 
-@media (max-width:700px){
-
-  body{
-    padding:12px;
-    font-size:16px;
-  }
-
-  #titulo{
-    font-size:30px;
-  }
-
-  #pesquisa{
-    font-size:16px;
-    padding:10px;
-  }
-
-  #presets{
-    width:100%;
-    right:-100%;
-    padding-top:90px;
-  }
-
-  .temaBtn{
-    font-size:13px;
-  }
-
-  #scrollBtn{
-    width:54px;
-    height:54px;
-    font-size:24px;
-  }
-}
-
-</style>
-</head>
-
-<body>
-
-<button id="menuTemas">⚙</button>
-
-<button id="scrollBtn">⌄</button>
-
-<div id="topo">
-
-<div id="titulo">
-JJS HEAVEN
+<div id="botoesFlutuantes">
+  <button id="menuTemas">⚙</button>
+  <button id="abrirConv">⎘</button>
 </div>
 
-<input type="text" id="pesquisa" placeholder="Pesquisar...">
+<button id="scrollBtn">⌄</button>  
+
+<div id="topo">  
+  <div id="titulo">JJS HEAVEN</div>  
+  <input type="text" id="pesquisa" placeholder="Search...">  
+  <button id="btnConv">⎘ Video To Frame Converter</button>
+</div>  
+
+<div id="presets">  
+
+  <div id="configTitulo">Settings</div>  
+
+  <button id="abrirTemasConfig" class="temaBtn">Themes ▼</button>  
+
+  <div id="listaTemas">  
+    <button class="temaBtn" onclick="mudarTema('#111','red','#222','red')">Shrine</button>
+    <button class="temaBtn" onclick="mudarTema('#000','lime','#111','lime')">Matrix</button>
+    <button class="temaBtn" onclick="mudarTema('white','black','#ddd','black')">White & Black</button>
+    <button class="temaBtn" onclick="mudarTema('#111','red','#222','red')">Black & Red</button>
+    <button class="temaBtn" onclick="mudarTema('rgb(111,232,162)','black','#7be8a2','black')">Green & Black</button>
+    <button class="temaBtn" onclick="mudarTema('#001f3f','#00ffff','#003366','#00ffff')">Ocean Blue</button>
+    <button class="temaBtn" onclick="mudarTema('#2b0a3d','#ff66ff','#4a1466','#ffccff')">Purple Curse</button>
+    <button class="temaBtn" onclick="mudarTema('#000000','#00ff00','#111111','#00ff00')">Matrix Cyber</button>
+    <button class="temaBtn" onclick="mudarTema('#fff4cc','#5a3d00','#ffe599','#5a3d00')">Old Paper</button>
+    <button class="temaBtn" onclick="mudarTema('#e8d7aa','#4a3200','#d9c28a','#4a3200')">Older Paper</button>
+    <button class="temaBtn" onclick="mudarTema('#120000','#ff3c3c','#2b0000','#ff7b7b')">Shrine Blood</button>
+    <button class="temaBtn" onclick="mudarTema('#0a0f1f','#7dd3fc','#111827','#dbeafe')">Six Eyes</button>
+    <button class="temaBtn" onclick="mudarTema('#1b1b1b','#89dceb','#2a2a2a','#d9f4ff')">Idle Transfiguration</button>
+    <button class="temaBtn" onclick="mudarTema('#240000','#ff4d4d','#3b0000','#ffb3b3')">Blood Curse</button>
+    <button class="temaBtn" onclick="mudarTema('#1a1a1a','#ffe066','#333333','#fff5b1')">Golden Ratio</button>
+    <button class="temaBtn" onclick="mudarTema('#050505','#8b5cf6','#111111','#ddd6fe')">Ten Shadows</button>
+    <button class="temaBtn" onclick="mudarTema('#000000','#ff0000','#111111','#ffb3b3')">Black Flash</button>
+    <button class="temaBtn" onclick="mudarTema('#000814','#48cae4','#001d3d','#caf0f8')">Limitless</button>
+    <button class="temaBtn" onclick="mudarTema('#14001f','#d980ff','#2a0040','#f0ccff')">Cursed Speech</button>
+  </div>  
+
+</div>  
+
+<div id="conteudo"></div>  
+
+<script>  
+
+let textoOriginal = "";  
+
+function normalizar(t){  
+  return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\w\s]/gi,"");  
+}  
+
+function renderizar(t){  
+  const c = document.getElementById("conteudo");  
+  c.innerHTML="";  
+  t.split("\n").forEach(l=>{  
+    if(!l.trim()) return;  
+    const d=document.createElement("div");  
+    d.className="linha";  
+    d.textContent=l;  
+    c.appendChild(d);  
+  });  
+}  
+
+fetch("dados.json").then(r=>r.text()).then(t=>{  
+  textoOriginal=t;  
+  renderizar(t);  
+});  
+
+document.getElementById("pesquisa").addEventListener("input",function(){  
+  const b=normalizar(this.value);  
+  if(!b) return renderizar(textoOriginal);  
+  renderizar(textoOriginal.split("\n").filter(l=>normalizar(l).includes(b)).join("\n"));  
+});  
+
+function mudarTema(fundo,texto,inputBg,inputText){  
+  document.body.style.background=fundo;  
+  document.body.style.color=texto;  
+
+  document.getElementById("topo").style.background=fundo; /* 🔥 FIX PRINCIPAL */  
+  document.getElementById("titulo").style.color=texto;  
+  const btnConv = document.getElementById("btnConv");
+  btnConv.style.color = texto;
+  btnConv.style.backgroundColor = inputBg;
+  btnConv.style.border = "2px solid " + texto;
+  
+  const p=document.getElementById("pesquisa");  
+  p.style.color=texto;  
+  p.style.borderColor=texto;  
+
+  const m=document.getElementById("menuTemas");  
+  m.style.color=texto;  
+  m.style.backgroundColor=inputBg;  
+  m.style.borderColor=texto;  
+
+  const s=document.getElementById("scrollBtn");  
+  s.style.color=texto;  
+  s.style.backgroundColor=inputBg;  
+  s.style.borderColor=texto;  
+
+  document.querySelectorAll(".temaBtn").forEach(b=>{  
+    b.style.backgroundColor=inputBg;  
+    b.style.color=inputText;  
+    b.style.borderColor=texto;  
+  });  
+}  
 
-</div>
+const menu=document.getElementById("menuTemas");  
+const presets=document.getElementById("presets");  
 
-<div id="presets">
+menu.onclick=()=>presets.classList.toggle("aberto");  
 
-<div id="configTitulo">
-Settings
-</div>
+const abrir=document.getElementById("abrirTemasConfig");  
+const lista=document.getElementById("listaTemas");  
 
-<button id="abrirTemasConfig" class="temaBtn">
-Themes ▼
-</button>
+abrir.onclick=()=>{  
+  const ok=lista.style.display==="flex";  
+  lista.style.display=ok?"none":"flex";  
+  abrir.textContent=ok?"Themes ▼":"Themes ▲";  
+};  
 
-<div id="listaTemas">
+document.getElementById("scrollBtn").onclick=()=>{  
+  window.scrollTo({top:window.scrollY>300?0:document.body.scrollHeight,behavior:"smooth"});  
+};  
 
-<button class="temaBtn" onclick="mudarTema('white','black','#ddd','black')">Light</button>
+mudarTema('#111','red','#222','red');  
 
-<button class="temaBtn" onclick="mudarTema('#0d0d0d','#e5e5e5','#1a1a1a','#ffffff')">Dark</button>
+document.getElementById("abrirConv").onclick = () => {
+  window.location.href = "conv.html";
+};
 
-<button class="temaBtn" onclick="mudarTema('#111','red','#222','red')">Shrine</button>
+document.getElementById("btnConv").onclick = () => {
+  window.location.href = "conv.html";
+};
+</script>  
 
-<button class="temaBtn" onclick="mudarTema('#001f3f','#00ffff','#003366','#00ffff')">Ocean</button>
-
-<button class="temaBtn" onclick="mudarTema('#000000','#00ff00','#111111','#00ff00')">Matrix</button>
-
-<button class="temaBtn" onclick="mudarTema('#0a0f1f','#ff00ff','#111827','#00ffff')">Cyberpunk</button>
-
-</div>
-
-<button id="abrirFramesConfig" class="temaBtn" style="margin-top:10px;">
-Video To Frames ▼
-</button>
-
-<div id="framesArea">
-
-<input type="file" id="videoInput" accept="video/*" class="temaBtn">
-
-<select id="fpsSelect" class="temaBtn">
-<option value="12">12 FPS</option>
-<option value="24">24 FPS</option>
-<option value="30">30 FPS</option>
-<option value="60">60 FPS</option>
-</select>
-
-<select id="resSelect" class="temaBtn">
-<option value="1">Original Resolution</option>
-<option value="0.75">75%</option>
-<option value="0.5">50%</option>
-<option value="0.25">25%</option>
-</select>
-
-<select id="qualitySelect" class="temaBtn">
-<option value="1">JPG Quality 100%</option>
-<option value="0.8">JPG Quality 80%</option>
-<option value="0.6">JPG Quality 60%</option>
-<option value="0.4">JPG Quality 40%</option>
-</select>
-
-<button id="converterBtn" class="temaBtn">
-Convert Video
-</button>
-
-<div id="statusFrames"></div>
-
-</div>
-
-</div>
-
-<div id="conteudo"></div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-
-<script>
-
-let textoOriginal = "";
-
-/* NORMALIZE SEARCH */
-
-function normalizar(texto){
-
-  return texto
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^\w\s]/gi, "");
-
-}
-
-/* RENDER CONTENT */
-
-function renderizar(texto){
-
-  const conteudo = document.getElementById("conteudo");
-
-  conteudo.innerHTML = "";
-
-  const linhas = texto.split("\n");
-
-  linhas.forEach(linha => {
-
-    if(linha.trim() === "") return;
-
-    const div = document.createElement("div");
-
-    div.className = "linha";
-    div.textContent = linha;
-
-    conteudo.appendChild(div);
-
-  });
-
-}
-
-/* LOAD FILE */
-
-fetch("dados.json")
-.then(res => res.text())
-.then(texto => {
-
-  textoOriginal = texto;
-
-  renderizar(texto);
-
-});
-
-/* SEARCH */
-
-document.getElementById("pesquisa")
-.addEventListener("input", function(){
-
-  const busca = normalizar(this.value);
-
-  if(busca === ""){
-
-    renderizar(textoOriginal);
-    return;
-
-  }
-
-  const linhas = textoOriginal.split("\n");
-
-  const resultado = linhas.filter(linha =>
-    normalizar(linha).includes(busca)
-  );
-
-  renderizar(resultado.join("\n"));
-
-});
-
-/* THEMES */
-
-function mudarTema(fundo, texto, inputBg, inputText){
-
-  document.body.style.backgroundColor = fundo;
-
-  document.body.style.color = texto;
-
-  document.getElementById("titulo").style.color = texto;
-
-  document.querySelectorAll(".temaBtn").forEach(btn => {
-
-    btn.style.backgroundColor = inputBg;
-    btn.style.color = inputText;
-    btn.style.borderColor = texto;
-
-  });
-
-}
-
-/* SETTINGS */
-
-const menuTemas = document.getElementById("menuTemas");
-const presets = document.getElementById("presets");
-
-menuTemas.addEventListener("click", () => {
-
-  presets.classList.toggle("aberto");
-
-});
-
-/* THEMES OPEN */
-
-const abrirTemasConfig =
-document.getElementById("abrirTemasConfig");
-
-const listaTemas =
-document.getElementById("listaTemas");
-
-abrirTemasConfig.addEventListener("click", () => {
-
-  if(listaTemas.style.display === "flex"){
-
-    listaTemas.style.display = "none";
-    abrirTemasConfig.textContent = "Themes ▼";
-
-  }else{
-
-    listaTemas.style.display = "flex";
-    abrirTemasConfig.textContent = "Themes ▲";
-
-  }
-
-});
-
-/* VIDEO TO FRAMES */
-
-const abrirFramesConfig =
-document.getElementById("abrirFramesConfig");
-
-const framesArea =
-document.getElementById("framesArea");
-
-abrirFramesConfig.addEventListener("click", () => {
-
-  if(framesArea.style.display === "flex"){
-
-    framesArea.style.display = "none";
-    abrirFramesConfig.textContent = "Video To Frames ▼";
-
-  }else{
-
-    framesArea.style.display = "flex";
-    abrirFramesConfig.textContent = "Video To Frames ▲";
-
-  }
-
-});
-
-document.getElementById("converterBtn")
-.addEventListener("click", async () => {
-
-  const file =
-  document.getElementById("videoInput").files[0];
-
-  if(!file){
-
-    alert("Select a video.");
-    return;
-
-  }
-
-  const fps =
-  parseInt(document.getElementById("fpsSelect").value);
-
-  const scale =
-  parseFloat(document.getElementById("resSelect").value);
-
-  const quality =
-  parseFloat(document.getElementById("qualitySelect").value);
-
-  const status =
-  document.getElementById("statusFrames");
-
-  status.textContent = "Loading video...";
-
-  const video =
-  document.createElement("video");
-
-  video.src = URL.createObjectURL(file);
-
-  await new Promise(resolve => {
-
-    video.onloadedmetadata = resolve;
-
-  });
-
-  const canvas =
-  document.createElement("canvas");
-
-  const ctx =
-  canvas.getContext("2d");
-
-  canvas.width = video.videoWidth * scale;
-  canvas.height = video.videoHeight * scale;
-
-  const zip = new JSZip();
-
-  const duration = video.duration;
-
-  let frame = 0;
-
-  for(let time = 0; time < duration; time += 1 / fps){
-
-    status.textContent =
-    `Converting frame ${frame}...`;
-
-    await new Promise(resolve => {
-
-      video.currentTime = time;
-
-      video.onseeked = resolve;
-
-    });
-
-    ctx.drawImage(
-      video,
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
-    const blob = await new Promise(resolve => {
-
-      canvas.toBlob(
-        resolve,
-        "image/jpeg",
-        quality
-      );
-
-    });
-
-    zip.file(
-      `frame_${frame}.jpg`,
-      blob
-    );
-
-    frame++;
-
-  }
-
-  status.textContent =
-  "Generating ZIP...";
-
-  const zipBlob =
-  await zip.generateAsync({
-    type:"blob"
-  });
-
-  const a =
-  document.createElement("a");
-
-  a.href =
-  URL.createObjectURL(zipBlob);
-
-  a.download = "frames.zip";
-
-  a.click();
-
-  status.textContent =
-  "Done.";
-
-});
-
-/* SCROLL BUTTON */
-
-const scrollBtn =
-document.getElementById("scrollBtn");
-
-window.addEventListener("scroll", () => {
-
-  if(window.scrollY > 300){
-
-    scrollBtn.innerHTML = "⌃";
-
-  }else{
-
-    scrollBtn.innerHTML = "⌄";
-
-  }
-
-});
-
-scrollBtn.addEventListener("click", () => {
-
-  if(window.scrollY > 300){
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-
-  }else{
-
-    window.scrollTo({
-      top:document.body.scrollHeight,
-      behavior:"smooth"
-    });
-
-  }
-
-});
-
-mudarTema('#111','red','#222','red');
-
-</script>
-
-</body>
+</body>  
 </html>
