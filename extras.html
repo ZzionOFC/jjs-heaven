@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JJS HEAVEN - EXTRAS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:
+  radial-gradient(circle at top,#2a0000,#111 55%);
+  color:red;
+  font-family:'Finger Paint',cursive,sans-serif;
+  padding:20px;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+h1{
+  text-align:center;
+  font-size:48px;
+  margin-bottom:35px;
+
+  text-shadow:
+  0 0 10px red,
+  0 0 25px red;
+}
+
+.section{
+  background:rgba(255,255,255,0.05);
+  border:2px solid rgba(255,0,0,0.4);
+  border-radius:28px;
+  padding:24px;
+  margin-bottom:35px;
+
+  box-shadow:
+  0 0 25px rgba(255,0,0,0.15),
+  inset 0 0 25px rgba(255,0,0,0.08);
+}
+
+.sectionTitle{
+  font-size:30px;
+  margin-bottom:22px;
+  text-shadow:0 0 10px currentColor;
+}
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+select,
+input,
+button{
+  background:rgba(20,20,20,0.8);
+  color:red;
+  border:2px solid red;
+  border-radius:16px;
+  padding:14px;
+  font-size:16px;
+  font-family:'Finger Paint',cursive,sans-serif;
+  transition:0.15s;
+}
+
+select,
+input{
+  flex:1;
+  min-width:180px;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:hover{
+  box-shadow:
+  0 0 18px red;
+}
+
+input:focus,
+select:focus{
+  outline:none;
+  box-shadow:0 0 18px red;
+}
+
+#pickerWrap{
+  display:flex;
+  justify-content:center;
+  margin:30px 0;
+}
+
+#preview{
+  width:100%;
+  height:180px;
+  border-radius:24px;
+  margin-top:18px;
+  border:3px solid red;
+}
+
+#resultado{
+  margin-top:18px;
+  font-size:22px;
+  word-break:break-word;
+}
+
+#copied{
+  margin-top:20px;
+  font-size:18px;
+  text-align:center;
+}
+
+#unicodeSearch{
+  margin-bottom:22px;
+}
+
+.unicodeGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(75px,1fr));
+  gap:14px;
+}
+
+.symbol{
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  border-radius:20px;
+  cursor:pointer;
+  user-select:none;
+  background:rgba(30,30,30,0.8);
+  border:2px solid rgba(255,0,0,0.4);
+  transition:0.1s;
+}
+
+.symbol:hover{
+  border-color:red;
+  box-shadow:0 0 10px red;
+}
+
+canvas{
+  width:100%;
+  margin-top:20px;
+  border-radius:24px;
+  border:3px solid red;
+  background:transparent;
+}
+
+.info{
+  margin-top:10px;
+  margin-bottom:12px;
+  color:#ff8a8a;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.sliderInfo{
+  width:100%;
+  margin-top:-6px;
+  margin-bottom:12px;
+  color:#ff9b9b;
+  font-size:13px;
+}
+
+/* BOTÕES FLUTUANTES */
+
+#botoesFlutuantes{
+  position:fixed;
+  top:15px;
+  right:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:5000;
+}
+
+#abrirBlur,
+#abrirImpact,
+#abrirVector{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:2px solid red;
+  background:rgba(34,34,34,0.45);
+  color:red;
+  font-size:24px;
+  cursor:pointer;
+  transition:0.25s;
+  font-family:'Finger Paint', cursive, sans-serif;
+}
+
+#abrirBlur:hover{
+  transform:rotate(90deg) scale(1.08);
+}
+
+#abrirImpact:hover{
+  transform:rotate(-90deg) scale(1.08);
+}
+
+#abrirVector:hover{
+  transform:rotate(90deg) scale(1.08);
+}
+
+@media(max-width:700px){
+
+  body{
+    padding:12px;
+  }
+
+  h1{
+    font-size:34px;
+  }
+
+  .section{
+    padding:18px;
+  }
+
+  .sectionTitle{
+    font-size:24px;
+  }
+
+  select,
+  input,
+  button{
+    width:100%;
+    font-size:14px;
+  }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- BOTÕES FLUTUANTES -->
+
+<div id="botoesFlutuantes">
+
+  <button id="abrirBlur">
+    BL
+  </button>
+
+  <button id="abrirImpact">
+    IM
+  </button>
+
+  <button id="abrirVector">
+    VC
+  </button>
+
+</div>
+
+<h1>⚛ JJS HEAVEN EXTRAS ⚛</h1>
+
+<!-- COLOR CONVERTER -->
+
+<div class="section">
+
+<div class="sectionTitle">
+Advanced Color Converter
+</div>
+
+<div class="info">
+Converte cores entre HEX, RGB, RGBA e HSL.
+</div>
+
+<div class="row">
+
+<select id="fromModel">
+<option>HEX</option>
+<option>RGB</option>
+<option>RGBA</option>
+<option>HSL</option>
+</select>
+
+<select id="toModel">
+<option>RGB</option>
+<option>HEX</option>
+<option>RGBA</option>
+<option>HSL</option>
+</select>
+
+</div>
+
+<input
+type="text"
+id="colorInput"
+placeholder="Example: #ff0000">
+
+<div class="row">
+
+<button onclick="converterCor()">
+Convert
+</button>
+
+<button onclick="copiarResultado()">
+Copy Result
+</button>
+
+<button onclick="randomColor()">
+Random Color
+</button>
+
+</div>
+
+<div id="pickerWrap">
+<div id="picker"></div>
+</div>
+
+<div id="preview"></div>
+
+<div id="resultado">
+Result: ---
+</div>
+
+</div>
+
+<!-- UNICODE -->
+
+<div class="section">
+
+<div class="sectionTitle">
+Unicode Library
+</div>
+
+<div class="info">
+Clique em qualquer símbolo para copiar.
+</div>
+
+<input
+type="text"
+id="unicodeSearch"
+placeholder="Search unicode...">
+
+<div class="unicodeGrid" id="unicodeGrid"></div>
+
+<div id="copied">
+Copied: none
+</div>
+
+</div>
+
+<!-- VIGNETTE -->
+
+<div class="section">
+
+<div class="sectionTitle">
+Transparent Vignette Generator
+</div>
+
+<div class="info">
+Cria uma sombra transparente nas bordas da tela.
+Perfeito pra overlay de ataque, foco ou tensão.
+</div>
+
+<div class="row">
+
+<input type="color" id="vigColor" value="#000000">
+
+<input type="number" id="vigBlur" value="120">
+
+<input type="number" id="vigStrength" value="90">
+
+</div>
+
+<div class="sliderInfo">
+Blur = suavidade da borda • Strength = força da escuridão
+</div>
+
+<div class="row">
+
+<input type="number" id="vigWidth" value="1920">
+
+<input type="number" id="vigHeight" value="1080">
+
+</div>
+
+<div class="row">
+
+<button onclick="gerarVignette()">
+Generate
+</button>
+
+<button onclick="baixarVignette()">
+Download PNG
+</button>
+
+</div>
+
+<canvas id="vignetteCanvas"></canvas>
+
+</div>
+
+<!-- CUSTOM FX -->
+
+<div class="section">
+
+<div class="sectionTitle">
+Custom Impact / Glitch FX
+</div>
+
+<div class="info">
+Impact = linhas explosivas tipo impacto forte.<br>
+Glitch = falhas horizontais estilo energia amaldiçoada.
+</div>
+
+<div class="row">
+
+<select id="fxType">
+
+<option value="impact">
+Impact
+</option>
+
+<option value="glitch">
+Glitch
+</option>
+
+</select>
+
+<input
+type="color"
+id="fxColor"
+value="#ffffff">
+
+</div>
+
+<div class="row">
+
+<input
+type="range"
+id="fxIntensity"
+min="10"
+max="400"
+value="120">
+
+<input
+type="range"
+id="fxOpacity"
+min="1"
+max="100"
+value="80">
+
+<input
+type="range"
+id="fxSize"
+min="1"
+max="50"
+value="8">
+
+</div>
+
+<div class="sliderInfo">
+Intensity = quantidade • Opacity = transparência • Size = espessura
+</div>
+
+<div class="row">
+
+<input
+type="number"
+id="fxWidth"
+value="1920">
+
+<input
+type="number"
+id="fxHeight"
+value="1080">
+
+</div>
+
+<div class="row">
+
+<button onclick="gerarCustomFX()">
+Generate FX
+</button>
+
+<button onclick="baixarCustomFX()">
+Download PNG
+</button>
+
+</div>
+
+<canvas id="fxCanvas"></canvas>
+
+</div>
+
+<script>
+
+/* BOTÕES */
+
+document.getElementById("abrirBlur").onclick = () => {
+  window.location.href = "blur.html";
+};
+
+document.getElementById("abrirImpact").onclick = () => {
+  window.location.href = "impact.html";
+};
+
+document.getElementById("abrirVector").onclick = () => {
+  window.location.href = "vector.html";
+};
+
+/* COLOR PICKER */
+
+const preview =
+document.getElementById("preview");
+
+const resultado =
+document.getElementById("resultado");
+
+const colorPicker =
+new iro.ColorPicker("#picker",{
+
+  width:260,
+  color:"#ff0000"
+
+});
+
+colorPicker.on("color:change",function(color){
+
+  document.getElementById("colorInput").value =
+  color.hexString;
+
+  preview.style.background =
+  color.hexString;
+
+});
+
+/* RESTO DO JS */
+
+function hexToRgb(hex){
+
+  hex=hex.replace("#","");
+
+  if(hex.length===3){
+
+    hex=hex.split("")
+    .map(x=>x+x)
+    .join("");
+  }
+
+  const bigint=parseInt(hex,16);
+
+  return{
+
+    r:(bigint>>16)&255,
+    g:(bigint>>8)&255,
+    b:bigint&255
+  };
+}
+
+function copiarResultado(){
+
+  navigator.clipboard.writeText(
+  resultado.textContent);
+
+}
+
+function randomColor(){
+
+  const hex=
+  "#" + Math.floor(Math.random()*16777215)
+  .toString(16)
+  .padStart(6,"0");
+
+  document.getElementById("colorInput")
+  .value=hex;
+
+  preview.style.background=hex;
+
+  colorPicker.color.hexString=hex;
+}
+
+const simbolos=[
+"⚛","⚡","☢","☣","☠","☯","♛","♚",
+"𖤐","𖣂","𖥔","༒","༺","༻","❖","✦"
+];
+
+const unicodeGrid=
+document.getElementById("unicodeGrid");
+
+function renderSymbols(){
+
+  unicodeGrid.innerHTML="";
+
+  simbolos.forEach(s=>{
+
+    const div=document.createElement("div");
+
+    div.className="symbol";
+
+    div.textContent=s;
+
+    div.onclick=()=>{
+
+      navigator.clipboard.writeText(s);
+
+      document.getElementById("copied")
+      .textContent="Copied: "+s;
+    };
+
+    unicodeGrid.appendChild(div);
+
+  });
+
+}
+
+renderSymbols();
+
+</script>
+
+</body>
+</html>

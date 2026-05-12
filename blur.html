@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JJS HEAVEN — BLUR GENERATOR</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:
+  radial-gradient(circle at top,#320000,#111 60%);
+  color:#ff3b3b;
+  font-family:'Finger Paint',cursive,sans-serif;
+  padding:20px;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* TITLE */
+
+h1{
+  text-align:center;
+  font-size:52px;
+  margin-bottom:35px;
+
+  text-shadow:
+  0 0 12px #ff0000,
+  0 0 30px #ff0000;
+}
+
+.subtitle{
+  text-align:center;
+  margin-top:-20px;
+  margin-bottom:40px;
+
+  color:#ff8f8f;
+  font-size:15px;
+
+  text-shadow:
+  0 0 10px rgba(255,0,0,0.4);
+}
+
+/* MAIN PANEL */
+
+.section{
+  background:rgba(255,255,255,0.05);
+
+  border:2px solid rgba(255,0,0,0.4);
+
+  border-radius:30px;
+
+  padding:28px;
+
+  box-shadow:
+  0 0 35px rgba(255,0,0,0.15),
+  inset 0 0 25px rgba(255,0,0,0.08);
+
+  margin-bottom:35px;
+}
+
+.sectionTitle{
+  font-size:34px;
+  margin-bottom:20px;
+
+  text-shadow:
+  0 0 12px currentColor;
+}
+
+.desc{
+  color:#ff9a9a;
+  font-size:15px;
+  line-height:1.8;
+
+  margin-bottom:26px;
+}
+
+/* ROWS */
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-bottom:22px;
+}
+
+.inputBox{
+  flex:1;
+  min-width:240px;
+}
+
+/* LABELS */
+
+.label{
+  font-size:15px;
+  margin-bottom:8px;
+  color:#ff6666;
+
+  text-shadow:
+  0 0 8px rgba(255,0,0,0.5);
+}
+
+.info{
+  margin-top:8px;
+
+  color:#ff8c8c;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* INPUTS */
+
+input,
+button{
+  width:100%;
+
+  background:rgba(20,20,20,0.85);
+
+  color:#ff3b3b;
+
+  border:2px solid #ff3b3b;
+
+  border-radius:18px;
+
+  padding:14px;
+
+  font-size:16px;
+
+  font-family:'Finger Paint',cursive,sans-serif;
+
+  transition:0.15s;
+}
+
+input:focus{
+  outline:none;
+
+  box-shadow:
+  0 0 16px #ff3b3b;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+  0 0 20px #ff3b3b;
+}
+
+/* PREVIEW */
+
+#previewWrap{
+  margin-top:30px;
+}
+
+#fakeScene{
+  position:relative;
+
+  width:100%;
+  height:360px;
+
+  overflow:hidden;
+
+  border-radius:28px;
+
+  border:3px solid #ff3b3b;
+
+  background:
+  radial-gradient(circle at center,
+  #4d4d4d,
+  #111 75%);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* BACKGROUND FX */
+
+.bgGrid{
+  position:absolute;
+  inset:0;
+
+  background:
+
+  repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 8px,
+    transparent 8px,
+    transparent 20px
+  );
+
+  opacity:0.7;
+}
+
+.glow1,
+.glow2{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(60px);
+}
+
+.glow1{
+  width:220px;
+  height:220px;
+
+  background:#ff0000;
+
+  top:-50px;
+  left:-40px;
+
+  opacity:0.4;
+}
+
+.glow2{
+  width:260px;
+  height:260px;
+
+  background:#ffffff;
+
+  bottom:-120px;
+  right:-60px;
+
+  opacity:0.15;
+}
+
+/* PREVIEW CONTENT */
+
+.fakeText{
+  position:relative;
+  z-index:2;
+
+  font-size:56px;
+  color:white;
+
+  text-shadow:
+  0 0 12px white,
+  0 0 35px white;
+}
+
+.fakeMiniText{
+  position:absolute;
+
+  left:30px;
+  right:30px;
+  bottom:28px;
+
+  z-index:2;
+
+  font-size:16px;
+  line-height:1.7;
+
+  color:white;
+
+  text-shadow:
+  0 0 10px black,
+  0 0 25px black;
+}
+
+.fakeBoxes{
+  position:absolute;
+
+  top:28px;
+  left:28px;
+
+  display:flex;
+  gap:16px;
+
+  z-index:2;
+}
+
+.box{
+  width:88px;
+  height:88px;
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.08)
+  );
+
+  border:2px solid rgba(255,255,255,0.15);
+
+  box-shadow:
+  0 0 16px rgba(255,255,255,0.15);
+}
+
+/* OVERLAY */
+
+#blurOverlay{
+  position:absolute;
+  inset:0;
+
+  backdrop-filter:blur(12px);
+
+  background:rgba(255,255,255,0.4);
+
+  z-index:5;
+}
+
+/* CANVAS */
+
+canvas{
+  width:100%;
+  margin-top:28px;
+
+  border-radius:28px;
+
+  border:3px solid #ff3b3b;
+
+  background:transparent;
+}
+
+/* LIVE VALUES */
+
+.value{
+  color:white;
+  margin-left:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  body{
+    padding:12px;
+  }
+
+  h1{
+    font-size:34px;
+  }
+
+  .section{
+    padding:18px;
+  }
+
+  .sectionTitle{
+    font-size:25px;
+  }
+
+  .fakeText{
+    font-size:34px;
+    text-align:center;
+    padding:0 10px;
+  }
+
+  .fakeMiniText{
+    font-size:12px;
+  }
+
+  .box{
+    width:52px;
+    height:52px;
+  }
+
+}
+
+</style>
+</head>
+<body>
+
+<h1>🌫 BLUR GENERATOR</h1>
+
+<div class="subtitle">
+"Yuki's attack effect generator" ahh 💔🥀
+</div>
+
+<div class="section">
+
+<div class="sectionTitle">
+Screen Blur Overlay
+</div>
+
+<div class="desc">
+Ts creates a cool blur effect for u to use in ur movesets
+</div>
+
+<!-- COLOR -->
+
+<div class="row">
+
+<div class="inputBox">
+
+<div class="label">
+Overlay Color
+</div>
+
+<input
+type="color"
+id="blurOverlayColor"
+value="#ffffff">
+
+<div class="info">
+Changes the tint color of the blur layer.
+</div>
+
+</div>
+
+</div>
+
+<!-- BLUR + OPACITY -->
+
+<div class="row">
+
+<div class="inputBox">
+
+<div class="label">
+Blur Power
+<span class="value" id="blurValue">
+12px
+</span>
+</div>
+
+<input
+type="range"
+id="blurOverlayPower"
+min="0"
+max="40"
+value="12">
+
+<div class="info">
+Higher values create a stronger distortion effect.
+</div>
+
+</div>
+
+<div class="inputBox">
+
+<div class="label">
+Overlay Opacity
+<span class="value" id="opacityValue">
+45%
+</span>
+</div>
+
+<input
+type="range"
+id="blurOverlayOpacity"
+min="0"
+max="100"
+value="45">
+
+<div class="info">
+Controls the visibility intensity of the overlay.
+</div>
+
+</div>
+
+</div>
+
+<!-- SIZE -->
+
+<div class="row">
+
+<div class="inputBox">
+
+<div class="label">
+Canvas Width
+</div>
+
+<input
+type="number"
+id="blurOverlayWidth"
+value="1920">
+
+</div>
+
+<div class="inputBox">
+
+<div class="label">
+Canvas Height
+</div>
+
+<input
+type="number"
+id="blurOverlayHeight"
+value="1080">
+
+</div>
+
+</div>
+
+<!-- BUTTONS -->
+
+<div class="row">
+
+<div class="inputBox">
+
+<button onclick="generateBlurOverlay()">
+Generate Overlay
+</button>
+
+</div>
+
+<div class="inputBox">
+
+<button onclick="downloadBlurOverlay()">
+Download PNG
+</button>
+
+</div>
+
+</div>
+
+<!-- PREVIEW -->
+
+<div id="previewWrap">
+
+<div id="fakeScene">
+
+<div class="bgGrid"></div>
+
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+<div class="fakeBoxes">
+
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+
+</div>
+
+<div class="fakeText">
+JUJUTSU IMPACT
+</div>
+
+<div class="fakeMiniText">
+The battlefield is collapsing from cursed energy pressure.
+Use the sliders above to preview exactly how much blur and opacity are being applied.
+</div>
+
+<div id="blurOverlay"></div>
+
+</div>
+
+</div>
+
+<canvas id="blurOverlayCanvas"></canvas>
+
+</div>
+
+<script>
+
+function hexToRgb(hex){
+
+  hex=hex.replace("#","");
+
+  if(hex.length===3){
+
+    hex=hex.split("")
+    .map(x=>x+x)
+    .join("");
+  }
+
+  const bigint=parseInt(hex,16);
+
+  return{
+
+    r:(bigint>>16)&255,
+    g:(bigint>>8)&255,
+    b:bigint&255
+  };
+}
+
+const blurOverlay =
+document.getElementById("blurOverlay");
+
+const blurOverlayCanvas =
+document.getElementById("blurOverlayCanvas");
+
+const boctx =
+blurOverlayCanvas.getContext("2d");
+
+const blurValue =
+document.getElementById("blurValue");
+
+const opacityValue =
+document.getElementById("opacityValue");
+
+function generateBlurOverlay(){
+
+  const color =
+  document.getElementById("blurOverlayColor").value;
+
+  const blur =
+  document.getElementById("blurOverlayPower").value;
+
+  const opacity =
+  document.getElementById("blurOverlayOpacity").value / 100;
+
+  const width =
+  parseInt(document.getElementById("blurOverlayWidth").value);
+
+  const height =
+  parseInt(document.getElementById("blurOverlayHeight").value);
+
+  blurValue.textContent =
+  blur + "px";
+
+  opacityValue.textContent =
+  Math.round(opacity*100) + "%";
+
+  const rgb =
+  hexToRgb(color);
+
+  blurOverlay.style.backdropFilter =
+  `blur(${blur}px)`;
+
+  blurOverlay.style.background =
+  `rgba(${rgb.r},${rgb.g},${rgb.b},${opacity})`;
+
+  blurOverlayCanvas.width =
+  width;
+
+  blurOverlayCanvas.height =
+  height;
+
+  boctx.clearRect(0,0,width,height);
+
+  boctx.fillStyle =
+  `rgba(${rgb.r},${rgb.g},${rgb.b},${opacity})`;
+
+  boctx.fillRect(0,0,width,height);
+}
+
+function downloadBlurOverlay(){
+
+  const link =
+  document.createElement("a");
+
+  link.download =
+  "blur_overlay.png";
+
+  link.href =
+  blurOverlayCanvas.toDataURL("image/png");
+
+  link.click();
+}
+
+generateBlurOverlay();
+
+document
+.getElementById("blurOverlayColor")
+.addEventListener("input",generateBlurOverlay);
+
+document
+.getElementById("blurOverlayPower")
+.addEventListener("input",generateBlurOverlay);
+
+document
+.getElementById("blurOverlayOpacity")
+.addEventListener("input",generateBlurOverlay);
+
+</script>
+
+</body>
+</html>
