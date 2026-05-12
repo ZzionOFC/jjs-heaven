@@ -150,28 +150,12 @@ select:focus{
   box-shadow:0 0 10px red;
 }
 
-canvas{
-  width:100%;
-  margin-top:20px;
-  border-radius:24px;
-  border:3px solid red;
-  background:transparent;
-}
-
 .info{
   margin-top:10px;
   margin-bottom:12px;
   color:#ff8a8a;
   font-size:14px;
   line-height:1.6;
-}
-
-.sliderInfo{
-  width:100%;
-  margin-top:-6px;
-  margin-bottom:12px;
-  color:#ff9b9b;
-  font-size:13px;
 }
 
 /* BOTÕES FLUTUANTES */
@@ -352,150 +336,6 @@ Copied: none
 
 </div>
 
-<!-- VIGNETTE -->
-
-<div class="section">
-
-<div class="sectionTitle">
-Transparent Vignette Generator
-</div>
-
-<div class="info">
-Cria uma sombra transparente nas bordas da tela.
-Perfeito pra overlay de ataque, foco ou tensão.
-</div>
-
-<div class="row">
-
-<input type="color" id="vigColor" value="#000000">
-
-<input type="number" id="vigBlur" value="120">
-
-<input type="number" id="vigStrength" value="90">
-
-</div>
-
-<div class="sliderInfo">
-Blur = suavidade da borda • Strength = força da escuridão
-</div>
-
-<div class="row">
-
-<input type="number" id="vigWidth" value="1920">
-
-<input type="number" id="vigHeight" value="1080">
-
-</div>
-
-<div class="row">
-
-<button onclick="gerarVignette()">
-Generate
-</button>
-
-<button onclick="baixarVignette()">
-Download PNG
-</button>
-
-</div>
-
-<canvas id="vignetteCanvas"></canvas>
-
-</div>
-
-<!-- CUSTOM FX -->
-
-<div class="section">
-
-<div class="sectionTitle">
-Custom Impact / Glitch FX
-</div>
-
-<div class="info">
-Impact = linhas explosivas tipo impacto forte.<br>
-Glitch = falhas horizontais estilo energia amaldiçoada.
-</div>
-
-<div class="row">
-
-<select id="fxType">
-
-<option value="impact">
-Impact
-</option>
-
-<option value="glitch">
-Glitch
-</option>
-
-</select>
-
-<input
-type="color"
-id="fxColor"
-value="#ffffff">
-
-</div>
-
-<div class="row">
-
-<input
-type="range"
-id="fxIntensity"
-min="10"
-max="400"
-value="120">
-
-<input
-type="range"
-id="fxOpacity"
-min="1"
-max="100"
-value="80">
-
-<input
-type="range"
-id="fxSize"
-min="1"
-max="50"
-value="8">
-
-</div>
-
-<div class="sliderInfo">
-Intensity = quantidade • Opacity = transparência • Size = espessura
-</div>
-
-<div class="row">
-
-<input
-type="number"
-id="fxWidth"
-value="1920">
-
-<input
-type="number"
-id="fxHeight"
-value="1080">
-
-</div>
-
-<div class="row">
-
-<button onclick="gerarCustomFX()">
-Generate FX
-</button>
-
-<button onclick="baixarCustomFX()">
-Download PNG
-</button>
-
-</div>
-
-<canvas id="fxCanvas"></canvas>
-
-</div>
-
 <script>
 
 /* BOTÕES */
@@ -585,7 +425,10 @@ function randomColor(){
 
 const simbolos=[
 "⚛","⚡","☢","☣","☠","☯","♛","♚",
-"𖤐","𖣂","𖥔","༒","༺","༻","❖","✦"
+"𖤐","𖣂","𖥔","༒","༺","༻","❖","✦",
+"✧","💢","💥","💫","💠","🔱","🌀","👹",
+"👺","🩸","🥀","⛓️","⚔️","🛡️","⛩️","🧿",
+"☪️","☦️","☯️","🕉️","☸️","🕎","🔯","♈"
 ];
 
 const unicodeGrid=
