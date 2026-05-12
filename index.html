@@ -23,19 +23,15 @@ body{
   overflow-x:hidden;  
 }  
 
-/* TOP BAR FIXADO NO TEMA */
 #topo{
   position:sticky;
   top:0;
   z-index:1000;
   padding-bottom:15px;
   border-bottom:1px solid rgba(255,0,0,0.2);
-
-  /* IMPORTANTE: agora ele SEMPRE tem fundo sólido */
   background:#111;
 }
 
-/* TITULO */
 #titulo{  
   background:transparent;  
   text-align:center;  
@@ -44,7 +40,6 @@ body{
   text-shadow:0 0 12px currentColor;  
 }  
 
-/* PESQUISA */
 #pesquisa{  
   width:100%;  
   padding:12px;  
@@ -62,29 +57,43 @@ body{
   box-shadow:0 0 15px currentColor;  
 }  
 
-/* BOTÃO MENU */
-#menuTemas{  
-  position:fixed;  
-  top:15px;  
-  right:15px;  
-  width:58px;  
-  height:58px;  
-  border-radius:50%;  
-  border:2px solid red;  
-  background:rgba(34,34,34,0.45);  
-  color:red;  
-  font-size:28px;  
-  cursor:pointer;  
-  z-index:5000;  
-  transition:0.25s;  
-  font-family:'Finger Paint', cursive, sans-serif;  
-}  
+#botoesFlutuantes{
+  position:fixed;
+  top:15px;
+  right:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:5000;
+}
 
-#menuTemas:hover{  
-  transform:rotate(90deg);  
-}  
+#menuTemas,
+#abrirConv,
+#abrirExtras{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:2px solid red;
+  background:rgba(34,34,34,0.45);
+  color:red;
+  font-size:28px;
+  cursor:pointer;
+  transition:0.25s;
+  font-family:'Finger Paint', cursive, sans-serif;
+}
 
-/* SIDEBAR */
+#menuTemas:hover{
+  transform:rotate(90deg);
+}
+
+#abrirConv:hover{
+  transform:rotate(-90deg);
+}
+
+#abrirExtras:hover{
+  transform:rotate(90deg);
+}
+
 #presets{  
   position:fixed;  
   top:0;  
@@ -112,8 +121,7 @@ body{
   text-shadow:0 0 10px currentColor;  
 }  
 
-#listaTemas,  
-#framesArea{  
+#listaTemas{  
   display:none;  
   flex-direction:column;  
   gap:10px;  
@@ -137,7 +145,6 @@ body{
   box-shadow:0 0 12px currentColor;  
 }  
 
-/* CONTEUDO */
 #conteudo{  
   display:flex;  
   flex-direction:column;  
@@ -153,7 +160,6 @@ body{
   line-height:1.2;  
 }  
 
-/* BOTAO SCROLL */
 #scrollBtn{  
   position:fixed;  
   bottom:20px;  
@@ -187,55 +193,6 @@ body{
   #scrollBtn{width:54px;height:54px;font-size:24px;}  
 }  
 
-#botoesFlutuantes{
-  position:fixed;
-  top:15px;
-  right:15px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  z-index:5000;
-}
-
-/* remover posição individual */
-#menuTemas,
-#abrirConv{
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  border:2px solid red;
-  background:rgba(34,34,34,0.45);
-  color:red;
-  font-size:28px;
-  cursor:pointer;
-  transition:0.25s;
-  font-family:'Finger Paint', cursive, sans-serif;
-}
-
-#menuTemas:hover{
-  transform:rotate(90deg);
-}
-
-#abrirConv:hover{
-  transform:rotate(-90deg);
-}
-
-#btnConv{
-  margin-top:10px;
-  padding:10px 14px;
-  border-radius:12px;
-  background:transparent;
-  color:red;
-  font-family:'Finger Paint', cursive, sans-serif;
-  font-size:16px;
-  cursor:pointer;
-  transition:0.2s;
-  width:fit-content;
-}
-
-#btnConv:hover{
-  box-shadow:0 0 12px black;
-}
 </style>  
 </head>  
 
@@ -244,14 +201,14 @@ body{
 <div id="botoesFlutuantes">
   <button id="menuTemas">⚙</button>
   <button id="abrirConv">⎘</button>
+  <button id="abrirExtras">⚛</button>
 </div>
 
 <button id="scrollBtn">⌄</button>  
 
 <div id="topo">  
   <div id="titulo">JJS HEAVEN</div>  
-  <input type="text" id="pesquisa" placeholder="Search...">  
-  <button id="btnConv">⎘ Video To Frame Converter</button>
+  <input type="text" id="pesquisa" placeholder="Search...">
 </div>  
 
 <div id="presets">  
@@ -321,12 +278,8 @@ function mudarTema(fundo,texto,inputBg,inputText){
   document.body.style.background=fundo;  
   document.body.style.color=texto;  
 
-  document.getElementById("topo").style.background=fundo; /* 🔥 FIX PRINCIPAL */  
+  document.getElementById("topo").style.background=fundo;  
   document.getElementById("titulo").style.color=texto;  
-  const btnConv = document.getElementById("btnConv");
-  btnConv.style.color = texto;
-  btnConv.style.backgroundColor = inputBg;
-  btnConv.style.border = "2px solid " + texto;
   
   const p=document.getElementById("pesquisa");  
   p.style.color=texto;  
@@ -341,6 +294,16 @@ function mudarTema(fundo,texto,inputBg,inputText){
   s.style.color=texto;  
   s.style.backgroundColor=inputBg;  
   s.style.borderColor=texto;  
+
+  const conv=document.getElementById("abrirConv");
+  conv.style.color=texto;
+  conv.style.backgroundColor=inputBg;
+  conv.style.borderColor=texto;
+
+  const extras=document.getElementById("abrirExtras");
+  extras.style.color=texto;
+  extras.style.backgroundColor=inputBg;
+  extras.style.borderColor=texto;
 
   document.querySelectorAll(".temaBtn").forEach(b=>{  
     b.style.backgroundColor=inputBg;  
@@ -364,7 +327,10 @@ abrir.onclick=()=>{
 };  
 
 document.getElementById("scrollBtn").onclick=()=>{  
-  window.scrollTo({top:window.scrollY>300?0:document.body.scrollHeight,behavior:"smooth"});  
+  window.scrollTo({
+    top:window.scrollY>300?0:document.body.scrollHeight,
+    behavior:"smooth"
+  });  
 };  
 
 mudarTema('#111','red','#222','red');  
@@ -373,9 +339,10 @@ document.getElementById("abrirConv").onclick = () => {
   window.location.href = "conv.html";
 };
 
-document.getElementById("btnConv").onclick = () => {
-  window.location.href = "conv.html";
+document.getElementById("abrirExtras").onclick = () => {
+  window.location.href = "extras.html";
 };
+
 </script>  
 
 </body>  
