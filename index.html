@@ -344,6 +344,9 @@ body {
   <a href="blur.html" class="menuLink">🌫️ Blurscreen effect generator </a>  
   <a href="others.json" data-fetch="true" class="menuLink">📁 Others</a>
   <a href="json.html" class="menuLink">⚙️ ID Grabber And Text To .JSON</a>
+  <a href="calc.html" class="menuLink">🧮 Calculator</a>
+  <a href="case-converter.html" class="menuLink">🔤 Text Case Converter</a>
+  <a href="palette-generator.html" class="menuLink">🎨 Palette Generator & Contrast</a>
   <button id="btnFecharMenu" class="temaBtn" style="margin-top:auto; background:rgba(255,0,0,0.1)">Close ✕</button>  
 </div>      
   
@@ -377,6 +380,10 @@ body {
   <button class="navItem" onclick="window.location.href='json.html'">  
     <span class="navIcon">🛠️</span>  
     <span>JSON</span>  
+  </button>  
+  <button class="navItem" onclick="window.location.href='calc.html'">  
+    <span class="navIcon">🧮</span>  
+    <span>Calc</span>  
   </button>  
 </nav>  
     
@@ -419,7 +426,7 @@ function renderizar(t){
         d.textContent = item.id + " - " + (item.name || "");
       } else {
         d.textContent = item.name || "";
-      }
+      }      
       
       c.appendChild(d);      
     });
@@ -551,7 +558,7 @@ const listaTemas = document.getElementById("listaTemas");
     
 abrirTemas.onclick = () => {      
   const ok = listaTemas.style.display === "flex";      
-  listaTemas.style.display = ok ? "none" : "flex";      
+  listaTemas.style.display = !ok ? "flex" : "none";      
   abrirTemas.textContent = ok ? "Themes ▼" : "Themes ▲";      
 };      
     
@@ -636,6 +643,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
     
+/* Inicialização do Service Worker PWA */  
 if ("serviceWorker" in navigator) {    
   window.addEventListener("load", () => {    navigator.serviceWorker.register("./service-worker.js").catch(err => console.error("PWA:", err));  });    
 }    
