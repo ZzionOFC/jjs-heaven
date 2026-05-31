@@ -1,227 +1,287 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>JJS HEAVEN</title>  
-<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#ff0000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="JJS Heaven">
-<style>  
-
-*{  
-  box-sizing:border-box;  
-  scroll-behavior:smooth;  
+<!DOCTYPE html>    
+<html lang="pt-BR">    
+<head>    
+<meta charset="UTF-8">    
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+<titleJJS HEAVEN</title>    
+<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">  
+<link rel="manifest" href="manifest.json">  
+<meta name="theme-color" content="#ff0000">  
+<meta name="apple-mobile-web-app-capable" content="yes">  
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">  
+<meta name="apple-mobile-web-app-title" content="JJS Heaven">  
+<style>    
+  
+*{    
+  box-sizing: border-box;    
+  scroll-behavior: smooth;    
+  -webkit-tap-highlight-color: transparent; /* Remove o flash azul ao tocar no mobile */
+}    
+  
+body {    
+  background: #111;    
+  color: red;    
+  font-family: 'Finger Paint', cursive, sans-serif;    
+  margin: 0;    
+  padding: 0;    
+  font-size: 16px;    
+  transition: background 0.3s, color 0.3s;    
+  overflow-x: hidden;    
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Segura a altura total do app */
+}    
+  
+/* Header estilo App */
+#appHeader {  
+  position: sticky;  
+  top: 0;  
+  z-index: 1000;  
+  background: #111;  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255,0,0,0.2);  
+  height: 60px;
 }  
+  
+#titulo {    
+  font-size: 24px;    
+  text-shadow: 0 0 12px currentColor;    
+  margin: 0;
+}    
 
-body{  
-  background:#111;  
-  color:red;  
-  font-family:'Finger Paint', cursive, sans-serif;  
-  padding:20px;  
-  margin:0;  
-  font-size:20px;  
-  transition:0.3s;  
-  overflow-x:hidden;  
-}  
-
-#topo{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  padding-bottom:15px;
-  border-bottom:1px solid rgba(255,0,0,0.2);
-  background:#111;
+.menuIconBtn {
+  background: transparent;
+  border: none;
+  color: red;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+/* Container da busca */
+#searchContainer {
+  padding: 10px 16px;
+  background: #111;
 }
 
-#titulo{  
-  background:transparent;  
-  text-align:center;  
-  font-size:42px;  
-  margin-bottom:18px;  
-  text-shadow:0 0 12px currentColor;  
-}  
-
-#pesquisa{  
-  width:100%;  
-  padding:12px;  
-  font-size:18px;  
-  border:2px solid red;  
-  border-radius:14px;  
-  outline:none;  
-  background:rgba(255,255,255,0.08);  
-  color:red;  
-  font-family:'Finger Paint', cursive, sans-serif;  
-  transition:0.2s;  
-}  
-
-#pesquisa:focus{  
-  box-shadow:0 0 15px currentColor;  
-}  
-
-#botoesFlutuantes{
-  position:fixed;
-  top:15px;
-  right:15px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  z-index:5000;
+#pesquisa {    
+  width: 100%;    
+  padding: 10px 14px;    
+  font-size: 15px;    
+  border: 2px solid red;    
+  border-radius: 25px; /* Mais arredondado estilo app */   
+  outline: none;    
+  background: rgba(255,255,255,0.05);    
+  color: red;    
+  font-family: 'Finger Paint', cursive, sans-serif;    
+  transition: 0.2s;    
+}    
+  
+#pesquisa:focus {    
+  box-shadow: 0 0 12px currentColor;    
+}    
+  
+/* Área de Conteúdo Rolável */
+#appBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 16px 80px; /* Margem inferior para não cobrir o conteúdo com a barra */
 }
 
-#menuTemas,
-#abrirConv,
-#abrirExtras{
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  border:2px solid red;
-  background:rgba(34,34,34,0.45);
-  color:red;
-  font-size:28px;
-  cursor:pointer;
-  transition:0.25s;
-  font-family:'Finger Paint', cursive, sans-serif;
+#conteudo {    
+  display: flex;    
+  flex-direction: column;    
+  gap: 6px;    
+}    
+  
+.linha {    
+  padding: 12px;    
+  margin: 0;    
+  word-break: break-word;    
+  font-size: 15px;    
+  line-height: 1.4;    
+  background: rgba(255, 0, 0, 0.03);
+  border-radius: 8px;
+  border-left: 3px solid currentColor;
+}    
+  
+/* Menu Lateral / Drawer */
+#appDrawer {    
+  position: fixed;    
+  top: 0;    
+  left: -280px; /* Abre da esquerda para a direita */   
+  width: 280px;    
+  height: 100vh;    
+  background: rgba(10,10,10,0.85);    
+  backdrop-filter: blur(20px);    
+  -webkit-backdrop-filter: blur(20px);
+  padding: 20px 15px;    
+  overflow-y: auto;    
+  transition: transform 0.3s ease;    
+  z-index: 4000;    
+  border-right: 1px solid rgba(255,0,0,0.3);    
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}    
+  
+#appDrawer.aberto {    
+  transform: translateX(280px);
+}    
+  
+#configTitulo {    
+  font-size: 22px;    
+  margin-bottom: 10px;    
+  text-align: center;    
+  text-shadow: 0 0 10px currentColor;    
+}    
+  
+#listaTemas {    
+  display: none;    
+  flex-direction: column;    
+  gap: 8px;    
+  margin-top: 10px;    
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 5px;
+}    
+  
+.temaBtn, .menuLink {    
+  width: 100%;    
+  padding: 12px;    
+  border-radius: 10px;    
+  cursor: pointer;    
+  font-size: 14px;    
+  font-family: 'Finger Paint', cursive, sans-serif;    
+  transition: 0.2s;    
+  background: rgba(34,34,34,0.4);    
+  color: red;    
+  border: 2px solid red;    
+  text-align: center;
+  text-decoration: none;
+}    
+  
+.temaBtn:hover, .menuLink:hover {    
+  box-shadow: 0 0 10px currentColor;    
+}    
+
+/* Overlay de fundo quando o menu abrir */
+#overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 3500;
+  display: none;
+}
+  
+/* Botão de Scroll Inteligente */
+#scrollBtn {    
+  position: fixed;    
+  bottom: 80px;    
+  right: 16px;    
+  width: 50px;    
+  height: 50px;    
+  border-radius: 50%;    
+  border: 2px solid red;    
+  background: rgba(20,20,20,0.7);    
+  color: red;    
+  font-size: 22px;    
+  cursor: pointer;    
+  z-index: 3000;    
+  display: flex;    
+  align-items: center;    
+  justify-content: center;    
+}    
+  
+/* Bottom Navigation Bar (Estilo App Nativo) */
+#bottomNav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 65px;
+  background: #111;
+  border-top: 1px solid rgba(255,0,0,0.2);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 3000;
+  padding-bottom: env(safe-area-inset-bottom); /* Suporte para notch do iPhone */
 }
 
-#menuTemas:hover{
-  transform:rotate(90deg);
+.navItem {
+  background: transparent;
+  border: none;
+  color: red;
+  font-family: 'Finger Paint', cursive, sans-serif;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  flex: 1;
+  opacity: 0.6;
+  transition: 0.2s;
+  text-decoration: none;
 }
 
-#abrirConv:hover{
-  transform:rotate(-90deg);
+.navItem.active, .navItem:hover {
+  opacity: 1;
+  text-shadow: 0 0 8px currentColor;
 }
 
-#abrirExtras:hover{
-  transform:rotate(90deg);
+.navIcon {
+  font-size: 20px;
 }
 
-#presets{  
-  position:fixed;  
-  top:0;  
-  right:-340px;  
-  width:340px;  
-  max-width:100%;  
-  height:100vh;  
-  background:rgba(10,10,10,0.42);  
-  backdrop-filter:blur(24px);  
-  padding:90px 15px 20px;  
-  overflow-y:auto;  
-  transition:0.35s;  
-  z-index:4000;  
-  border-left:1px solid rgba(255,0,0,0.3);  
-}  
+/* Responsividade Geral */
+@media (max-width:700px){    
+  body { font-size: 15px; }    
+  #titulo { font-size: 20px; }    
+}    
+  
+</style>    
+</head>    
+  
+<body>    
+  
+<div id="overlay"></div>
 
-#presets.aberto{  
-  right:0;  
-}  
+<header id="appHeader">  
+  <button class="menuIconBtn" id="btnAbrirMenu">☰</button>  
+  <div id="titulo">JJS HEAVEN</div>    
+  <button class="menuIconBtn" id="btnAbrirConfig">⚙</button>
+</header>    
 
-#configTitulo{  
-  font-size:28px;  
-  margin-bottom:15px;  
-  text-align:center;  
-  text-shadow:0 0 10px currentColor;  
-}  
-
-#listaTemas{  
-  display:none;  
-  flex-direction:column;  
-  gap:10px;  
-  margin-top:10px;  
-}  
-
-.temaBtn{  
-  width:100%;  
-  padding:12px;  
-  border-radius:14px;  
-  cursor:pointer;  
-  font-size:14px;  
-  font-family:'Finger Paint', cursive, sans-serif;  
-  transition:0.2s;  
-  background:rgba(34,34,34,0.4);  
-  color:red;  
-  border:2px solid red;  
-}  
-
-.temaBtn:hover{  
-  box-shadow:0 0 12px currentColor;  
-}  
-
-#conteudo{  
-  display:flex;  
-  flex-direction:column;  
-  gap:0;  
-  margin-top:10px;  
-}  
-
-.linha{  
-  padding:2px 0;  
-  margin:0;  
-  word-break:break-word;  
-  font-size:18px;  
-  line-height:1.2;  
-}  
-
-#scrollBtn{  
-  position:fixed;  
-  bottom:20px;  
-  right:20px;  
-  width:62px;  
-  height:62px;  
-  border-radius:50%;  
-  border:2px solid red;  
-  background:rgba(20,20,20,0.45);  
-  color:red;  
-  font-size:30px;  
-  cursor:pointer;  
-  z-index:5000;  
-  display:flex;  
-  align-items:center;  
-  justify-content:center;  
-}  
-
-#statusFrames{  
-  font-size:13px;  
-  text-align:center;  
-  word-break:break-word;  
-}  
-
-@media (max-width:700px){  
-  body{padding:12px;font-size:16px;}  
-  #titulo{font-size:30px;}  
-  #pesquisa{font-size:16px;padding:10px;}  
-  #presets{width:100%;right:-100%;padding-top:90px;}  
-  .temaBtn{font-size:13px;}  
-  #scrollBtn{width:54px;height:54px;font-size:24px;}  
-}  
-
-</style>  
-</head>  
-
-<body>  
-
-<div id="botoesFlutuantes">
-  <button id="menuTemas">⚙</button>
-  <button id="abrirConv">⎘</button>
-  <button id="abrirExtras">⚛</button>
+<div id="searchContainer">
+  <input type="text" id="pesquisa" placeholder="Buscar no acervo...">  
 </div>
 
-<button id="scrollBtn">⌄</button>  
+<main id="appBody">
+  <div id="conteudo"></div>    
+</main>
 
-<div id="topo">  
-  <div id="titulo">JJS HEAVEN</div>  
-  <input type="text" id="pesquisa" placeholder="Search...">
-</div>  
+<button id="scrollBtn">⌃</button>    
+  
+<div id="appDrawer">    
+  <div id="configTitulo">Menu</div>    
+  <a href="index.html" class="menuLink">🏠 Home (Dados)</a>
+  <a href="jjs.html" class="menuLink">🔮 JJS Oficial Sounds</a>
+  <a href="impact.html" class="menuLink">💥 Impact Frame Generator</a>
+  <a href="blur.html" class="menuLink">🌫️ Blur Screen Effect Generator</a>
+  <a href="others.html" class="menuLink">📁 More Stuff</a>
+  <button id="btnFecharMenu" class="temaBtn" style="margin-top:auto; background:rgba(255,0,0,0.1)">Fechar ✕</button>
+</div>    
 
-<div id="presets">  
-
-  <div id="configTitulo">Settings</div>  
-
-  <button id="abrirTemasConfig" class="temaBtn">Themes ▼</button>  
-
+<div id="presets" style="position:fixed; top:0; right:-280px; width:280px; height:100vh; background:rgba(10,10,10,0.85); backdrop-filter:blur(20px); padding:20px 15px; transition:transform 0.3s ease; z-index:4000; border-left:1px solid rgba(255,0,0,0.3); display:flex; flex-direction:column; gap:15px;">
+  <div id="configTitulo">Configurações</div>
+  <button id="abrirTemasConfig" class="temaBtn">Temas ▼</button>    
+  
   <div id="listaTemas">  
     <button class="temaBtn" onclick="mudarTema('#111','red','#222','red')">Shrine</button>
     <button class="temaBtn" onclick="mudarTema('#000','lime','#111','lime')">Matrix</button>
@@ -245,165 +305,166 @@ body{
   </div>  
 
 </div>  
-
-<div id="conteudo"></div>  
-
-<script>  
-
-let textoOriginal = "";  
-
-function normalizar(t){  
-  return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\w\s]/gi,"");  
-}  
-
-function renderizar(t){  
-  const c = document.getElementById("conteudo");  
-  c.innerHTML="";  
-  t.split("\n").forEach(l=>{  
-    if(!l.trim()) return;  
-    const d=document.createElement("div");  
-    d.className="linha";  
-    d.textContent=l;  
-    c.appendChild(d);  
-  });  
-}  
-
-fetch("dados.json")
-.then(r=>{
-  if(!r.ok) throw new Error("dados.json não encontrado");
-  return r.text();
-})
-.then(t=>{
-  textoOriginal=t;
-  renderizar(t);
-
-  const ult=localStorage.getItem("ultimaPesquisa")||"";
-
-  if(ult){
-    document.getElementById("pesquisa").value=ult;
-    document.getElementById("pesquisa")
-      .dispatchEvent(new Event("input"));
-  }
-})
-.catch(err=>{
-  document.getElementById("conteudo").innerHTML=
-  "<div class='linha'>Erro ao carregar dados.json</div>";
-
-  console.error(err);
-}); 
-
-document.getElementById("pesquisa").addEventListener("input",function(){
-  localStorage.setItem("ultimaPesquisa",this.value);
-  const b=normalizar(this.value);
-  if(!b) return renderizar(textoOriginal);
-  renderizar(textoOriginal.split("\n").filter(l=>normalizar(l).includes(b)).join("\n"));
-});
-
-window.addEventListener("load",()=>{
-  const ult=localStorage.getItem("ultimaPesquisa")||"";
-  document.getElementById("pesquisa").value=ult;
-  if(ult){
-    document.getElementById("pesquisa").dispatchEvent(new Event("input"));
-  }
-});  
-
-function mudarTema(fundo,texto,inputBg,inputText){
-
-  localStorage.setItem("tema",JSON.stringify({
-    fundo,texto,inputBg,inputText
-  }));  
-  document.body.style.background=fundo;  
-  document.body.style.color=texto;  
-
-  document.getElementById("topo").style.background=fundo;  
-  document.getElementById("titulo").style.color=texto;  
+<nav id="bottomNav">
+  <button class="navItem active" onclick="window.location.href='index.html'">
+    <span class="navIcon">🏠</span>
+    <span>Início</span>
+  </button>
+  <button class="navItem" onclick="window.location.href='conv.html'">
+    <span class="navIcon">⎘</span>
+    <span>Conv</span>
+  </button>
+  <button class="navItem" onclick="window.location.href='extras.html'">
+    <span class="navIcon">⚛</span>
+    <span>Extras</span>
+  </button>
+</nav>
   
-  const p=document.getElementById("pesquisa");  
-  p.style.color=texto;  
-  p.style.borderColor=texto;  
+<script>    
+  
+let textoOriginal = "";    
+  
+function normalizar(t){    
+  return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\w\s]/gi,"");    
+}    
+  
+function renderizar(t){    
+  const c = document.getElementById("conteudo");    
+  c.innerHTML="";    
+  t.split("\n").forEach(l=>{    
+    if(!l.trim()) return;    
+    const d=document.createElement("div");    
+    d.className="linha";    
+    d.textContent=l;    
+    c.appendChild(d);    
+  });    
+}    
+  
+fetch("dados.json")  
+.then(r=>{  
+  if(!r.ok) throw new Error("dados.json não encontrado");  
+  return r.text();  
+})  
+.then(t=>{  
+  textoOriginal=t;  
+  renderizar(t);  
+  
+  const ult=localStorage.getItem("ultimaPesquisa")||"";  
+  if(ult){  
+    document.getElementById("pesquisa").value=ult;  
+    document.getElementById("pesquisa").dispatchEvent(new Event("input"));  
+  }  
+})  
+.catch(err=>{  
+  document.getElementById("conteudo").innerHTML=  
+  "<div class='linha'>Erro ao carregar dados.json</div>";  
+  console.error(err);  
+});   
+  
+document.getElementById("pesquisa").addEventListener("input",function(){  
+  localStorage.setItem("ultimaPesquisa",this.value);  
+  const b=normalizar(this.value);  
+  if(!b) return renderizar(textoOriginal);  
+  renderizar(textoOriginal.split("\n").filter(l=>normalizar(l).includes(b)).join("\n"));  
+});  
+  
+/* Controle dos Menus Laterais (App UX) */
+const drawer = document.getElementById("appDrawer");
+const presets = document.getElementById("presets");
+const overlay = document.getElementById("overlay");
 
-  const m=document.getElementById("menuTemas");  
-  m.style.color=texto;  
-  m.style.backgroundColor=inputBg;  
-  m.style.borderColor=texto;  
-
-  const s=document.getElementById("scrollBtn");  
-  s.style.color=texto;  
-  s.style.backgroundColor=inputBg;  
-  s.style.borderColor=texto;  
-
-  const conv=document.getElementById("abrirConv");
-  conv.style.color=texto;
-  conv.style.backgroundColor=inputBg;
-  conv.style.borderColor=texto;
-
-  const extras=document.getElementById("abrirExtras");
-  extras.style.color=texto;
-  extras.style.backgroundColor=inputBg;
-  extras.style.borderColor=texto;
-
-  document.querySelectorAll(".temaBtn").forEach(b=>{  
-    b.style.backgroundColor=inputBg;  
-    b.style.color=inputText;  
-    b.style.borderColor=texto;  
-  });  
-}  
-
-const menu=document.getElementById("menuTemas");  
-const presets=document.getElementById("presets");  
-
-menu.onclick=()=>presets.classList.toggle("aberto");  
-
-const abrir=document.getElementById("abrirTemasConfig");  
-const lista=document.getElementById("listaTemas");  
-
-abrir.onclick=()=>{  
-  const ok=lista.style.display==="flex";  
-  lista.style.display=ok?"none":"flex";  
-  abrir.textContent=ok?"Themes ▼":"Themes ▲";  
-};  
-
-document.getElementById("scrollBtn").onclick=()=>{  
-  window.scrollTo({
-    top:window.scrollY>300?0:document.body.scrollHeight,
-    behavior:"smooth"
-  });  
-};  
-
-const temaSalvo=localStorage.getItem("tema");
-
-if(temaSalvo){
-  try{
-    const t=JSON.parse(temaSalvo);
-    mudarTema(t.fundo,t.texto,t.inputBg,t.inputText);
-  }catch{
-    mudarTema('#111','red','#222','red');
-  }
-}else{
-  mudarTema('#111','red','#222','red');
-}  
-
-document.getElementById("abrirConv").onclick = () => {
-  window.location.href = "conv.html";
-};
-
-document.getElementById("abrirExtras").onclick = () => {
-  window.location.href = "extras.html";
-};
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("./service-worker.js")
-      .then(() => {
-        console.log("PWA pronta");
-      })
-      .catch(err => {
-        console.error("Erro PWA:", err);
-      });
-  });
+function fecharTodosMenus() {
+  drawer.classList.remove("aberto");
+  presets.style.transform = "translateX(0px)";
+  overlay.style.display = "none";
 }
-</script>  
 
-</body>  
+document.getElementById("btnAbrirMenu").onclick = () => {
+  drawer.classList.add("aberto");
+  overlay.style.display = "block";
+};
+
+document.getElementById("btnAbrirConfig").onclick = () => {
+  presets.style.transform = "translateX(-280px)";
+  overlay.style.display = "block";
+};
+
+document.getElementById("btnFecharMenu").onclick = fecharTodosMenus;
+overlay.onclick = fecharTodosMenus;
+  
+const abrirTemas = document.getElementById("abrirTemasConfig");    
+const listaTemas = document.getElementById("listaTemas");    
+  
+abrirTemas.onclick = () => {    
+  const ok = listaTemas.style.display === "flex";    
+  listaTemas.style.display = ok ? "none" : "flex";    
+  abrirTemas.textContent = ok ? "Temas ▼" : "Temas ▲";    
+};    
+  
+/* Comportamento inteligente do Scroll */
+const appBody = document.getElementById("appBody");
+const scrollBtn = document.getElementById("scrollBtn");
+
+appBody.onscroll = () => {
+  if (appBody.scrollTop > 300) {
+    scrollBtn.textContent = "⌃"; // Seta pra cima
+  } else {
+    scrollBtn.textContent = "⌄"; // Seta pra baixo
+  }
+};
+
+scrollBtn.onclick = () => {    
+  if (appBody.scrollTop > 300) {
+    appBody.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    appBody.scrollTo({ top: appBody.scrollHeight, behavior: "smooth" });
+  }
+};    
+  
+/* Lógica de Mudança de Tema Dinâmica */
+function mudarTema(fundo,texto,inputBg,inputText){  
+  localStorage.setItem("tema",JSON.stringify({ fundo,texto,inputBg,inputText }));    
+  
+  document.body.style.background=fundo;    
+  document.body.style.color=texto;    
+  document.getElementById("appHeader").style.background=fundo;    
+  document.getElementById("searchContainer").style.background=fundo;    
+  document.getElementById("bottomNav").style.background=fundo;    
+  document.getElementById("titulo").style.color=texto;    
+    
+  document.getElementById("pesquisa").style.color=texto;    
+  document.getElementById("pesquisa").style.borderColor=texto;    
+  
+  document.querySelectorAll(".menuIconBtn, .navItem, #scrollBtn").forEach(el => {
+    el.style.color = texto;
+  });
+
+  document.getElementById("scrollBtn").style.backgroundColor = inputBg;
+  document.getElementById("scrollBtn").style.borderColor = texto;
+  
+  document.querySelectorAll(".temaBtn, .menuLink").forEach(b=>{    
+    b.style.backgroundColor=inputBg;    
+    b.style.color=inputText;    
+    b.style.borderColor=texto;    
+  });    
+}    
+  
+const temaSalvo=localStorage.getItem("tema");  
+if(temaSalvo){  
+  try{  
+    const t=JSON.parse(temaSalvo);  
+    mudarTema(t.fundo,t.texto,t.inputBg,t.inputText);  
+  }catch{  
+    mudarTema('#111','red','#222','red');  
+  }  
+}else{  
+  mudarTema('#111','red','#222','red');  
+}    
+  
+/* Inicialização do Service Worker PWA */
+if ("serviceWorker" in navigator) {  
+  window.addEventListener("load", () => {    navigator.serviceWorker.register("./service-worker.js").catch(err => console.error("PWA:", err));  });  
+}  
+</script>    
+</body>    
 </html>
