@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ID Grabber AND Text To .JSON</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0d0e12;
+    --text: #e2e8f0;
+    --box: #1e2028;
+    --panel: #15171e;
+    --border: #2d313f;
+    --accent: #4f46e5;
+    --accent-hover: #6366f1;
+    --highlight-color: #00ff99;
+  }
+
+  *{
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'Finger Paint', cursive, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* Cabeçalho estilo App */
+  #appHeader {  
+    position: sticky;  
+    top: 0;  
+    z-index: 1000;  
+    background: var(--panel);  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);  
+    height: 60px;
+    transition: background 0.3s, border-color 0.3s;
+  }  
+
+  h2 {
+    font-family: 'Finger Paint', cursive, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin: 0;
+    color: #fff;
+    text-align: center;
+    flex: 1;
+    transition: color 0.3s;
+  }
+
+  .menuIconBtn {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease, color 0.3s;
+  }
+
+  .menuIconBtn:active {
+    transform: scale(0.9);
+  }
+
+  /* Área rolável do app */
+  .container {
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 16px 90px;
+    overflow-y: auto;
+  }
+
+  textarea {
+    width: 100%;
+    height: 180px;
+    background: var(--box);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'Finger Paint', cursive, sans-serif;
+    font-size: 14px;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
+  }
+
+  textarea:focus, input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+  }
+
+  input.search {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    background: var(--box);
+    color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Finger Paint', cursive, sans-serif;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+
+  .actions-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 10px 18px;
+    cursor: pointer;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Finger Paint', cursive, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease, background-color 0.3s, color 0.3s, border-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 0 12px var(--accent);
+  }
+
+  button:active {
+    transform: translateY(1px);
+  }
+
+  button:nth-of-type(2) {
+    background: #22c55e;
+  }
+  button:nth-of-type(2):hover {
+    background: #16a34a;
+    box-shadow: 0 0 12px #22c55e;
+  }
+
+  button:nth-of-type(3) {
+    background: #3b82f6;
+  }
+  button:nth-of-type(3):hover {
+    background: #2563eb;
+    box-shadow: 0 0 12px #3b82f6;
+  }
+
+  .box {
+    margin-top: 20px;
+    background: var(--panel);
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .category {
+    margin: 14px 0 6px;
+    padding: 10px 14px;
+    background: var(--box);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s, border-color 0.2s, color 0.3s;
+  }
+
+  .category:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: #4b5563;
+  }
+
+  .items { 
+    margin-left: 15px; 
+    margin-bottom: 16px; 
+    padding-left: 10px;
+    border-left: 2px solid var(--border);
+    transition: border-color 0.3s;
+  }
+
+  .item {
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    padding: 12px;
+    background: rgba(255,255,255,0.01);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+
+  .item input {
+    background: #111318;
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Finger Paint', cursive, sans-serif;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+
+  .tag {
+    font-size: 13px;
+    color: #ffcc66;
+    font-weight: 600;
+    font-family: 'Finger Paint', cursive, sans-serif;
+    background: rgba(255, 204, 102, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .highlight {
+    border: 1px solid var(--highlight-color) !important;
+    box-shadow: 0 0 12px rgba(0, 255, 153, 0.2);
+    background: rgba(0, 255, 153, 0.03) !important;
+  }
+
+  #jsonOutput {
+    width: 100%;
+    height: 220px;
+    background: #111318;
+    color: #7cc7ff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 20px;
+    font-family: 'Finger Paint', cursive, sans-serif;
+    font-size: 13px;
+    white-space: pre;
+    box-sizing: border-box;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  /* Painel de Configurações Lateral Direito (Drawer de Temas) */  
+  #presets {  
+    position: fixed; 
+    top: 0; 
+    right: -280px; 
+    width: 280px; 
+    height: 100vh; 
+    background: rgba(15,17,30,0.95); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    padding: 20px 15px; 
+    transition: transform 0.3s ease, right 0.3s ease, box-shadow 0.3s ease; 
+    z-index: 4000; 
+    border-left: 1px solid var(--border); 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px;  
+    opacity: 0;
+  }  
+
+  #presets.aberto {
+    transform: translateX(-280px);
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  }
+
+  #configTitulo {    
+    font-size: 20px;    
+    margin-bottom: 10px;    
+    text-align: center;    
+    text-shadow: 0 0 10px currentColor;    
+  }
+
+  .temaBtn {    
+    width: 100%;    
+    padding: 12px;    
+    border-radius: 10px;    
+    cursor: pointer;    
+    font-size: 14px;    
+    font-family:'Finger Paint',cursive,sans-serif;    
+    transition: 0.2s ease, background-color 0.3s, border-color 0.3s, color 0.3s;    
+    background: rgba(34,34,34,0.4);    
+    color: var(--text);    
+    border: 2px solid var(--border);    
+    text-align: center;
+    margin-top: 0;
+  }    
+    
+  .temaBtn:hover {    
+    box-shadow: 0 0 10px currentColor;    
+    transform: scale(1.02);
+  }    
+
+  #listaTemas {      
+    display: none;      
+    flex-direction: column;      
+    gap: 8px;      
+    margin-top: 5px;      
+    max-height: 75vh;  
+    overflow-y: auto;  
+    padding-right: 5px;  
+  }
+
+  #overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 3500;
+    display: none;
+    backdrop-filter: blur(3px);
+  }
+
+  /* Bottom Navigation Bar (Barra de Rodapé estilo App) */
+  #bottomNav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 65px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 3000;
+    padding-bottom: env(safe-area-inset-bottom);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .navItem {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: 'Finger Paint', cursive, sans-serif;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    flex: 1;
+    opacity: 0.6;
+    transition: 0.2s, color 0.3s;
+    text-decoration: none;
+  }
+
+  .navItem.active, .navItem:hover {
+    opacity: 1;
+    text-shadow: 0 0 8px currentColor;
+  }
+
+  .navIcon {
+    font-size: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="overlay"></div>
+
+<header id="appHeader">  
+  <div style="width: 32px;"></div> <h2>ID Grabber AND Text To .JSON</h2>
+  <button class="menuIconBtn" id="btnAbrirConfig">⚙️</button>  
+</header>    
+
+<div class="container">
+  <textarea id="input" placeholder="Paste your text to be sorted here..."></textarea>
+
+  <input class="search" id="search" placeholder="Search by terms or IDs...">
+
+  <div class="actions-bar">
+    <button onclick="parseText()">Load Input</button>
+    <button id="btnCopy" onclick="copyJSON()">Copy JSON</button>
+    <button onclick="toggleView()">Switch View</button>
+  </div>
+
+  <div id="listMode" class="box"></div>
+
+  <textarea id="jsonOutput" readonly placeholder="The JSON result will appear here..."></textarea>
+</div>
+
+<div id="presets">  
+  <div id="configTitulo">Settings</div>  
+  <button id="abrirTemasConfig" class="temaBtn">Themes ▼</button>      
+    
+  <div id="listaTemas">      
+    <button class="temaBtn" onclick="mudarTema('#fff4cc','#5a3d00','#ffe599','#5a3d00')">Old Paper</button>
+    <button class="temaBtn" onclick="mudarTema('#e8d7aa','#4a3200','#d9c28a','#4a3200')">Older Paper</button>
+    <button class="temaBtn" onclick="mudarTema('rgb(111,232,162)','black','#7be8a2','black')">Green & Black</button>
+    <button class="temaBtn" onclick="mudarTema('#f5f5f5','#222222','#e6e6e6','#222222')">Modern Wiki</button>
+    <button class="temaBtn" onclick="mudarTema('#f8f4e8','#3d3425','#e8dcc0','#3d3425')">Manuscript</button>
+    <button class="temaBtn" onclick="mudarTema('#ffffff','#2c2c2c','#f2f2f2','#2c2c2c')">Clean</button>
+  </div>      
+</div>
+
+<nav id="bottomNav">
+  <button class="navItem" onclick="window.location.href='index.html'">
+    <span class="navIcon">🏠</span>
+    <span>Início</span>
+  </button>
+  <button class="navItem" onclick="window.location.href='conv.html'">
+    <span class="navIcon">⎘</span>
+    <span>Conv</span>
+  </button>
+  <button class="navItem" onclick="window.location.href='extras.html'">
+    <span class="navIcon">⚛</span>
+    <span>Extras</span>
+  </button>
+</nav>
+
+<script>
+let parsedData = [];
+let viewMode = "categories"; // 🔥 SWITCHER
+
+/* CONTROLE DO MENU LATERAL DIREITO */
+const presets = document.getElementById("presets");
+const overlay = document.getElementById("overlay");
+
+function fecharMenu() {
+  presets.classList.remove("aberto");
+  overlay.style.display = "none";
+}
+
+document.getElementById("btnAbrirConfig").onclick = () => {
+  presets.classList.add("aberto");
+  overlay.style.display = "block";
+};
+
+overlay.onclick = fecharMenu;
+
+const abrirTemas = document.getElementById("abrirTemasConfig");      
+const listaTemas = document.getElementById("listaTemas");      
+    
+abrirTemas.onclick = () => {      
+  const ok = listaTemas.style.display === "flex";      
+  listaTemas.style.display = ok ? "none" : "flex";      
+  abrirTemas.textContent = ok ? "Themes ▼" : "Themes ▲";      
+};
+
+function parseText() {
+  const lines = document.getElementById("input").value.split("\n");
+
+  parsedData = [];
+  let currentCategory = null;
+  const usedIDs = new Set();
+
+  lines.forEach(line => {
+    line = line.trim();
+    if (!line) return;
+
+    // TAG
+    if (line.startsWith("#")) {
+      if (!currentCategory) {
+        currentCategory = { name: "Uncategorized", collapsed: true, items: [] };
+        parsedData.push(currentCategory);
+      }
+      currentCategory.items.push({ type: "tag", name: line });
+      return;
+    }
+
+    const idMatch = line.match(/\d{5,}/);
+
+    // CATEGORY
+    if (!idMatch) {
+      currentCategory = {
+        name: line,
+        collapsed: true,
+        items: []
+      };
+      parsedData.push(currentCategory);
+      return;
+    }
+
+    // ITEM
+    const id = idMatch[0];
+
+    if (usedIDs.has(id)) return;
+    usedIDs.add(id);
+
+    const name = line.replace(id, "").replace(":", "").trim();
+
+    if (!currentCategory) {
+      currentCategory = {
+        name: "Uncategorized",
+        collapsed: true,
+        items: []
+      };
+      parsedData.push(currentCategory);
+    }
+
+    currentCategory.items.push({ type: "item", name, id });
+  });
+
+  render();
+}
+
+function render() {
+  const list = document.getElementById("listMode");
+  list.innerHTML = "";
+
+  const search = document.getElementById("search").value.toLowerCase();
+
+  // Re-aplica estilos customizados de cor nos elementos criados dinamicamente baseado no tema ativo
+  const temaSalvo = localStorage.getItem("tema");
+  let t = temaSalvo ? JSON.parse(temaSalvo) : null;
+
+  // =========================
+  // 📄 FLAT VIEW
+  // =========================
+  if (viewMode === "flat") {
+    parsedData.forEach(cat => {
+      cat.items.forEach(item => {
+
+        const div = document.createElement("div");
+        div.className = "item";
+
+        const text = JSON.stringify(item).toLowerCase();
+        if (search && text.includes(search)) {
+          div.classList.add("highlight");
+        }
+
+        if (item.type === "tag") {
+          div.innerHTML = `<div class="tag">${item.name}</div>`;
+        } else {
+          div.innerHTML = `
+            <div><b>${item.name}</b></div>
+            <div style="font-size:13px; color:#9ca3af;" class="flat-id">${item.id}</div>
+          `;
+        }
+
+        if(t) {
+          div.style.borderColor = t.texto;
+        }
+        list.appendChild(div);
+      });
+    });
+
+    updateJSON();
+    aplicarCoresTemaDinamico();
+    return;
+  }
+
+  // =========================
+  // 📦 CATEGORY VIEW
+  // =========================
+  parsedData.forEach((cat, ci) => {
+
+    const catDiv = document.createElement("div");
+    catDiv.className = "category";
+    catDiv.textContent = (cat.collapsed ? "▶ " : "▼ ") + cat.name;
+
+    if(t) {
+      catDiv.style.backgroundColor = t.inputBg;
+      catDiv.style.color = t.texto;
+      catDiv.style.borderColor = t.texto;
+    }
+
+    catDiv.onclick = () => {
+      cat.collapsed = !cat.collapsed;
+      render();
+    };
+
+    list.appendChild(catDiv);
+
+    if (cat.collapsed) return;
+
+    const itemsDiv = document.createElement("div");
+    itemsDiv.className = "items";
+    if(t) itemsDiv.style.borderColor = t.texto;
+
+    cat.items.forEach((item, ii) => {
+
+      const div = document.createElement("div");
+      div.className = "item";
+
+      const text = JSON.stringify(item).toLowerCase();
+      if (search && text.includes(search)) {
+        div.classList.add("highlight");
+      }
+
+      if (item.type === "tag") {
+        div.innerHTML = `<div class="tag">${item.name}</div>`;
+      } else {
+        div.innerHTML = `
+          <input onchange="update(${ci}, ${ii}, 'name', this.value)" value="${item.name}">
+          <input onchange="update(${ci}, ${ii}, 'id', this.value)" value="${item.id}">
+        `;
+      }
+
+      if(t) {
+        div.style.borderColor = t.texto;
+      }
+      itemsDiv.appendChild(div);
+    });
+
+    list.appendChild(itemsDiv);
+  });
+
+  updateJSON();
+  aplicarCoresTemaDinamico();
+}
+
+function update(ci, ii, field, value) {
+  parsedData[ci].items[ii][field] = value;
+  render();
+}
+
+function updateJSON() {
+  document.getElementById("jsonOutput").value =
+    JSON.stringify(parsedData.map(c => ({
+      category: c.name,
+      items: c.items
+    })), null, 2);
+}
+
+function toggleView() {
+  viewMode = viewMode === "categories" ? "flat" : "categories";
+  render();
+}
+
+function copyJSON() {
+  navigator.clipboard.writeText(
+    document.getElementById("jsonOutput").value
+  );
+  
+  const btn = document.getElementById("btnCopy");
+  const originalText = btn.textContent;
+  btn.textContent = "✓ Copiado!";
+  setTimeout(() => {
+    btn.textContent = originalText;
+  }, 1500);
+}
+
+/* SISTEMA ATUALIZADO DE SAÍDA DE CORES DO LOCALSTORAGE */
+function aplicarCoresTemaDinamico() {
+  const temaSalvo = localStorage.getItem("tema");
+  if(!temaSalvo) return;
+  
+  try {
+    const t = JSON.parse(temaSalvo);
+    document.querySelectorAll(".item input").forEach(el => {
+      el.style.backgroundColor = t.fundo;
+      el.style.color = t.inputText;
+      el.style.borderColor = t.texto;
+    });
+    document.querySelectorAll(".flat-id").forEach(el => {
+      el.style.color = t.texto;
+      el.style.opacity = "0.7";
+    });
+  } catch(e) { console.log(e); }
+}
+
+function mudarTema(fundo, texto, inputBg, inputText) {
+  localStorage.setItem("tema", JSON.stringify({ fundo, texto, inputBg, inputText }));
+
+  document.body.style.background = fundo;
+  document.body.style.color = texto;
+  
+  const h2El = document.querySelector("h2");
+  if(h2El) h2El.style.color = texto;
+  
+  document.getElementById("appHeader").style.background = inputBg;
+  document.getElementById("appHeader").style.borderColor = texto;
+  document.getElementById("bottomNav").style.background = inputBg;
+  document.getElementById("bottomNav").style.borderColor = texto;
+  document.getElementById("presets").style.background = inputBg;
+  document.getElementById("presets").style.borderColor = texto;
+  document.getElementById("configTitulo").style.color = texto;
+
+  document.querySelectorAll(".menuIconBtn, .navItem").forEach(el => {
+    el.style.color = texto;
+  });
+
+  document.querySelectorAll("textarea, input.search").forEach(el => {
+    el.style.backgroundColor = inputBg;
+    el.style.color = texto;
+    el.style.borderColor = texto;
+  });
+
+  document.querySelectorAll(".box").forEach(el => {
+    el.style.backgroundColor = inputBg;
+    el.style.borderColor = texto;
+  });
+
+  document.querySelectorAll(".category").forEach(el => {
+    el.style.backgroundColor = fundo;
+    el.style.color = texto;
+    el.style.borderColor = texto;
+  });
+
+  document.querySelectorAll(".items").forEach(el => {
+    el.style.borderColor = texto;
+  });
+
+  document.querySelectorAll(".item").forEach(el => {
+    el.style.borderColor = texto;
+  });
+
+  document.querySelectorAll(".temaBtn").forEach(el => {
+    el.style.backgroundColor = fundo;
+    el.style.color = texto;
+    el.style.borderColor = texto;
+  });
+
+  aplicarCoresTemaDinamico();
+}
+
+// Escuta em tempo real o campo de busca
+document.getElementById("search").addEventListener("input", function() {
+  render();
+});
+
+// Inicialização e verificação de tema compartilhado
+const temaAtivo = localStorage.getItem("tema");
+if(temaAtivo) {
+  try {
+    const t = JSON.parse(temaAtivo);
+    mudarTema(t.fundo, t.texto, t.inputBg, t.inputText);
+  } catch(e) {}
+}
+
+// Ativa dinamicamente o item ativo no menu inferior baseado na URL atual
+document.addEventListener("DOMContentLoaded", function() {
+  const path = window.location.pathname.split("/").pop();
+  document.querySelectorAll("#bottomNav .navItem").forEach(item => {
+    item.classList.remove("active");
+    const clickAttr = item.getAttribute("onclick") || "";
+    if(path && clickAttr.includes(path)) {
+      item.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
