@@ -1,5 +1,5 @@
 <!DOCTYPE html>      
-<html lang="pt-BR">      
+<html lang="en">      
 <head>      
 <meta charset="UTF-8">      
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">      
@@ -61,16 +61,22 @@ body {
   display: flex;  
   align-items: center;  
   justify-content: center;  
+  transition: transform 0.2s ease;
 }  
+
+.menuIconBtn:active {
+  transform: scale(0.9);
+}
     
 #searchContainer {  
   padding: 10px 16px;  
   background: #111;  
+  position: relative;
 }  
   
 #pesquisa {      
   width: 100%;      
-  padding: 10px 14px;      
+  padding: 10px 40px 10px 14px;      
   font-size: 15px;      
   border: 2px solid red;      
   border-radius: 25px;     
@@ -84,6 +90,22 @@ body {
 #pesquisa:focus {      
   box-shadow: 0 0 12px currentColor;      
 }      
+
+/* Botão de limpar busca adicionado */
+#clearSearchBtn {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: 'Finger Paint', cursive, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  display: none;
+  padding: 5px;
+}
     
 #appBody {  
   flex: 1;  
@@ -107,7 +129,21 @@ body {
   border-radius: 8px;  
   border-left: 3px solid currentColor;  
   color: inherit; 
+  transition: background 0.2s ease, transform 0.2s ease;
 }      
+
+.linha:hover {
+  background: rgba(255, 0, 0, 0.08);
+  transform: translateX(2px);
+}
+
+.categoria-titulo {
+  font-size: 18px;
+  margin: 15px 0 5px 0;
+  text-shadow: 0 0 8px currentColor;
+  border-bottom: 1px dashed rgba(255, 0, 0, 0.2);
+  padding-bottom: 3px;
+}
     
 /* Menu Lateral / Drawer */  
 #appDrawer {      
@@ -121,16 +157,19 @@ body {
   -webkit-backdrop-filter: blur(20px);  
   padding: 20px 15px;      
   overflow-y: auto;      
-  transition: transform 0.3s ease, left 0.3s ease;     
+  transition: transform 0.3s ease, left 0.3s ease, box-shadow 0.3s ease;     
   z-index: 4000;      
   border-right: 1px solid rgba(255,0,0,0.3);      
   display: flex;  
   flex-direction: column;  
   gap: 15px;  
+  opacity: 0;
 }      
     
 #appDrawer.aberto {      
   transform: translateX(280px);  
+  opacity: 1;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
 }      
     
 .menuPainelTitulo {      
@@ -167,6 +206,7 @@ body {
     
 .temaBtn:hover, .menuLink:hover {      
   box-shadow: 0 0 10px currentColor;      
+  transform: scale(1.02);
 }      
   
 #overlay {  
@@ -175,6 +215,9 @@ body {
   background: rgba(0,0,0,0.6);  
   z-index: 3500;  
   display: none;  
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
 }  
     
 #scrollBtn {      
@@ -193,7 +236,12 @@ body {
   display: flex;      
   align-items: center;      
   justify-content: center;      
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s, transform 0.2s;
 }      
+
+#scrollBtn:active {
+  transform: scale(0.9);
+}
     
 /* Painel de Configurações Lateral Direito */  
 #presets {  
@@ -205,16 +253,19 @@ body {
   background: rgba(10,10,10,0.85); 
   backdrop-filter: blur(20px); 
   padding: 20px 15px; 
-  transition: transform 0.3s ease, right 0.3s ease; 
+  transition: transform 0.3s ease, right 0.3s ease, box-shadow 0.3s ease; 
   z-index: 4000; 
   border-left: 1px solid rgba(255,0,0,0.3); 
   display: flex; 
   flex-direction: column; 
   gap: 15px;  
+  opacity: 0;
 }  
 
 #presets.aberto {
   transform: translateX(-280px);
+  opacity: 1;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
 }
   
 #bottomNav {  
@@ -275,7 +326,8 @@ body {
 </header>      
   
 <div id="searchContainer">  
-  <input type="text" id="pesquisa" placeholder="Buscar no acervo...">    
+  <input type="text" id="pesquisa" placeholder="Search the collection...">    
+  <button id="clearSearchBtn">✕</button>
 </div>  
   
 <main id="appBody">  
@@ -289,14 +341,15 @@ body {
   <a href="dados.json" data-fetch="true" class="menuLink">🏠 Home</a>  
   <a href="jjs.json" data-fetch="true" class="menuLink">🔮 JJS Stats</a>
   <a href="impact.html" class="menuLink">💥 Impact</a>  
-  <a href="blur.html" class="menuLink">🌫️ Blur Mode</a>  
-  <a href="others.json" data-fetch="true" class="menuLink">📁 Others JSON</a>
-  <button id="btnFecharMenu" class="temaBtn" style="margin-top:auto; background:rgba(255,0,0,0.1)">Fechar ✕</button>  
+  <a href="blur.html" class="menuLink">🌫️ Blurscreen effect generator </a>  
+  <a href="others.json" data-fetch="true" class="menuLink">📁 Others</a>
+  <a href="json.html" class="menuLink">⚙️ ID Grabber And Text To .JSON</a>
+  <button id="btnFecharMenu" class="temaBtn" style="margin-top:auto; background:rgba(255,0,0,0.1)">Close ✕</button>  
 </div>      
   
 <div id="presets">  
-  <div class="menuPainelTitulo">Configurações</div>  
-  <button id="abrirTemasConfig" class="temaBtn">Temas ▼</button>      
+  <div class="menuPainelTitulo">Settings</div>  
+  <button id="abrirTemasConfig" class="temaBtn">Themes ▼</button>      
     
   <div id="listaTemas">      
 <button class="temaBtn" onclick="mudarTema('#fff4cc','#5a3d00','#ffe599','#5a3d00')">Old Paper</button>
@@ -311,7 +364,7 @@ body {
 <nav id="bottomNav">  
   <button class="navItem active" onclick="window.location.href='index.html'">  
     <span class="navIcon">🏠</span>  
-    <span>Início</span>  
+    <span>Home</span>  
   </button>  
   <button class="navItem" onclick="window.location.href='conv.html'">  
     <span class="navIcon">⎘</span>  
@@ -320,6 +373,10 @@ body {
   <button class="navItem" onclick="window.location.href='extras.html'">  
     <span class="navIcon">⚛</span>  
     <span>Extras</span>  
+  </button>  
+  <button class="navItem" onclick="window.location.href='json.html'">  
+    <span class="navIcon">🛠️</span>  
+    <span>JSON</span>  
   </button>  
 </nav>  
     
@@ -331,46 +388,50 @@ function normalizar(t){
   return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\w\s]/gi,"");      
 }      
     
-// CORRIGIDO: Agora exibe ID junto com o Name de forma limpa caso o item possua a propriedade id
+// MODIFICADO: Adaptado para ler a estrutura de Categorias e Itens encadeados
 function renderizar(t){      
   const c = document.getElementById("conteudo");      
   c.innerHTML="";      
   
-  let itens = [];
+  let categorias = [];
   try {
-    let textoLimpo = t.trim();
-    if (!textoLimpo.startsWith("[")) {
-      textoLimpo = "[" + textoLimpo.replace(/\n/g, ",").replace(/,+/g, ",") + "]";
-      textoLimpo = textoLimpo.replace(",]", "]");
-    }
-    const jsonParsed = JSON.parse(textoLimpo);
-    itens = Array.isArray(jsonParsed) ? jsonParsed : [jsonParsed];
+    const jsonParsed = JSON.parse(t);
+    categorias = Array.isArray(jsonParsed) ? jsonParsed : [jsonParsed];
   } catch(e) {
-    itens = t.split("\n").filter(l => l.trim()).map(l => ({ name: l }));
+    // Fallback caso receba string pura por quebra de linha antiga
+    categorias = [{ category: "Items", items: t.split("\n").filter(l => l.trim()).map(l => ({ name: l })) }];
   }
 
-  itens.forEach(item =>{      
-    if(!item) return;
+  categorias.forEach(cat => {      
+    if(!cat || !cat.items || cat.items.length === 0) return;
     
-    const d=document.createElement("div");      
-    d.className="linha";      
-    
-    // CORRIGIDO: Se houver id no objeto JSON, exibe "ID - Nome". Se não tiver, mostra só o Nome.
-    if(item.id) {
-      d.textContent = item.id + " - " + (item.name || "");
-    } else {
-      d.textContent = item.name || "";
-    }
-    
-    c.appendChild(d);      
+    // Cria o divisor visual da Categoria
+    const tituloCat = document.createElement("div");
+    tituloCat.className = "categoria-titulo";
+    tituloCat.textContent = cat.category;
+    c.appendChild(tituloCat);
+
+    cat.items.forEach(item => {
+      const d = document.createElement("div");      
+      d.className = "linha";      
+      
+      if(item.id) {
+        d.textContent = item.id + " - " + (item.name || "");
+      } else {
+        d.textContent = item.name || "";
+      }
+      
+      c.appendChild(d);      
+    });
   });      
   
   const temaSalvo = localStorage.getItem("tema");
   if(temaSalvo) {
     try {
       const t = JSON.parse(temaSalvo);
-      document.querySelectorAll(".linha").forEach(linha => {
-        linha.style.borderLeftColor = t.texto;
+      document.querySelectorAll(".linha, .categoria-titulo, #clearSearchBtn").forEach(el => {
+        if(el.classList.contains("linha")) el.style.borderLeftColor = t.texto;
+        el.style.color = t.texto;
       });
     } catch(e){}
   }
@@ -379,7 +440,7 @@ function renderizar(t){
 function carregarDados(arquivo) {
   fetch(arquivo)    
   .then(r=>{    
-    if(!r.ok) throw new Error(`${arquivo} não encontrado`);    
+    if(!r.ok) throw new Error(`${arquivo} not found`);    
     return r.text();    
   })    
   .then(t=>{    
@@ -394,40 +455,61 @@ function carregarDados(arquivo) {
   })    
   .catch(err=>{    
     document.getElementById("conteudo").innerHTML=    
-    `<div class='linha'>Erro ao carregar "${arquivo}". Verifique se o arquivo existe no diretório correto.</div>`;    
+    `<div class='linha'>Error loading "${arquivo}". Make sure the file exists in the correct directory.</div>`;    
     console.error(err);    
   });     
 }
 
 carregarDados("dados.json");
     
-// CORRIGIDO: Agora a busca bate tanto com caracteres do ID quanto com os caracteres do Nome do item
+// MODIFICADO: Varre a árvore filtrando os itens internos de cada categoria sem sumir com a estrutura
 document.getElementById("pesquisa").addEventListener("input",function(){    
   localStorage.setItem("ultimaPesquisa",this.value);    
   const b=normalizar(this.value);    
+  
+  // Exibir ou ocultar o botão limpar baseado no valor inserido
+  const clearBtn = document.getElementById("clearSearchBtn");
+  if(this.value) {
+    clearBtn.style.display = "block";
+  } else {
+    clearBtn.style.display = "none";
+  }
+
   if(!b) return renderizar(textoOriginal);    
   
   try {
-    let textoLimpo = textoOriginal.trim();
-    if (!textoLimpo.startsWith("[")) {
-      textoLimpo = "[" + textoLimpo.replace(/\n/g, ",").replace(/,+/g, ",") + "]";
-      textoLimpo = textoLimpo.replace(",]", "]");
-    }
-    const lista = JSON.parse(textoLimpo);
+    const listaCategorias = JSON.parse(textoOriginal);
     
-    // CORRIGIDO: Verifica se o termo de busca está presente no "id" OU no "name"
-    const filtrados = lista.filter(item => {
-      if(!item) return false;
-      const idMatch = item.id ? normalizar(String(item.id)).includes(b) : false;
-      const nameMatch = item.name ? normalizar(item.name).includes(b) : false;
-      return idMatch || nameMatch;
-    });
+    // Mapeia e filtra mantendo a estrutura estrutural do seu novo JSON
+    const filtrados = listaCategorias.map(cat => {
+      if(!cat.items) return null;
+      
+      const itensFiltrados = cat.items.filter(item => {
+        if(!item) return false;
+        const idMatch = item.id ? normalizar(String(item.id)).includes(b) : false;
+        const nameMatch = item.name ? normalizar(item.name).includes(b) : false;
+        return idMatch || nameMatch;
+      });
+      
+      return {
+        category: cat.category,
+        items: itensFiltrados
+      };
+    }).filter(cat => cat && cat.items.length > 0); // Remove categorias que ficaram vazias na busca
     
     renderizar(JSON.stringify(filtrados));
   } catch(e) {
-    renderizar(textoOriginal.split("\n").filter(l=>normalizar(l).includes(b)).join("\n"));    
+    // Fallback simples
+    renderizar(textoOriginal);    
   }
 });    
+
+// Ação do botão limpar adicionada
+document.getElementById("clearSearchBtn").onclick = function() {
+  const inputPesquisa = document.getElementById("pesquisa");
+  inputPesquisa.value = "";
+  inputPesquisa.dispatchEvent(new Event("input"));
+};
     
 /* Controle dos Menus Laterais */  
 const drawer = document.getElementById("appDrawer");  
@@ -470,7 +552,7 @@ const listaTemas = document.getElementById("listaTemas");
 abrirTemas.onclick = () => {      
   const ok = listaTemas.style.display === "flex";      
   listaTemas.style.display = ok ? "none" : "flex";      
-  abrirTemas.textContent = ok ? "Temas ▼" : "Temas ▲";      
+  abrirTemas.textContent = ok ? "Themes ▼" : "Themes ▲";      
 };      
     
 /* Comportamento inteligente do Scroll */  
@@ -506,6 +588,7 @@ function mudarTema(fundo,texto,inputBg,inputText){
       
   document.getElementById("pesquisa").style.color=texto;      
   document.getElementById("pesquisa").style.borderColor=texto;      
+  document.getElementById("clearSearchBtn").style.color=texto;
     
   document.querySelectorAll(".menuIconBtn, .navItem, #scrollBtn").forEach(el => {  
     el.style.color = texto;  
@@ -523,6 +606,10 @@ function mudarTema(fundo,texto,inputBg,inputText){
   document.querySelectorAll(".linha").forEach(linha => {
     linha.style.borderLeftColor = texto;
   });
+
+  document.querySelectorAll(".categoria-titulo").forEach(tit => {
+    tit.style.color = texto;
+  });
 }      
     
 const temaSalvo=localStorage.getItem("tema");    
@@ -536,8 +623,19 @@ if(temaSalvo){
 }else{    
   mudarTema('#111','red','#222','red');    
 }      
+
+// Script adicionado para gerenciar estado ativo do menu inferior de forma inteligente
+document.addEventListener("DOMContentLoaded", function() {
+  const path = window.location.pathname.split("/").pop();
+  document.querySelectorAll("#bottomNav .navItem").forEach(item => {
+    item.classList.remove("active");
+    const clickAttr = item.getAttribute("onclick") || "";
+    if(path && clickAttr.includes(path)) {
+      item.classList.add("active");
+    }
+  });
+});
     
-/* Inicialização do Service Worker PWA */  
 if ("serviceWorker" in navigator) {    
   window.addEventListener("load", () => {    navigator.serviceWorker.register("./service-worker.js").catch(err => console.error("PWA:", err));  });    
 }    
