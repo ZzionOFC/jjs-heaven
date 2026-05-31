@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Video to Frames Pro - Neon Edition</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
 
 <script src="coi-serviceworker.js"></script>
 
@@ -13,37 +17,104 @@
     --neon-glow: rgba(255, 59, 59, 0.6);
     --bg-dark: #0a0a0a;
     --card-bg: rgba(26, 5, 5, 0.9);
+    
+    --bg: var(--bg-dark);
+    --text: var(--neon-red);
+    --box: #000;
+    --panel: var(--card-bg);
+    --border: rgba(255, 59, 59, 0.2);
+    --accent: var(--neon-red);
+    --accent-hover: #ff6b6b;
+  }
+
+  *{
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     margin: 0;
-    background: var(--bg-dark);
-    color: var(--neon-red);
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Finger Paint', 'Segoe UI', system-ui, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
     min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
   }
 
+  
+  #appHeader {  
+    position: sticky;  
+    top: 0;  
+    z-index: 1000;  
+    background: var(--panel);  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);  
+    height: 60px;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.3s, border-color 0.3s;
+  }  
+
   h1 { 
-    margin: 10px 0 20px 0;
+    font-family: 'Finger Paint', cursive, sans-serif;
+    margin: 0;
     text-shadow: 0 0 15px var(--neon-red);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    font-size: 1.8rem;
+    font-size: 1.1rem;
+    color: #fff;
+    text-align: center;
+    flex: 1;
+    transition: color 0.3s;
+  }
+
+  .menuIconBtn {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease, color 0.3s;
+  }
+
+  .menuIconBtn:active {
+    transform: scale(0.9);
+  }
+
+  
+  .container {
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 16px 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .box {
-    border: 1px solid var(--neon-red);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 25px;
-    width: 95%;
-    max-width: 650px;
-    background: var(--card-bg);
+    width: 100%;
+    background: var(--panel);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
+    transition: background 0.3s, border-color 0.3s;
   }
 
   .file-input-wrapper {
@@ -56,7 +127,7 @@
   }
 
   .file-input-wrapper:hover {
-    border-color: var(--neon-red);
+    border-color: var(--accent);
     background: rgba(255, 59, 59, 0.05);
   }
 
@@ -80,16 +151,17 @@
     margin-top: 5px;
     padding: 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 59, 59, 0.2);
-    background: #000;
+    border: 1px solid var(--border);
+    background: var(--box);
     color: #fff;
     outline: none;
     box-sizing: border-box;
+    font-family: 'Finger Paint', cursive, sans-serif;
     transition: 0.3s;
   }
 
   input:focus, select:focus {
-    border-color: var(--neon-red);
+    border-color: var(--accent);
     box-shadow: 0 0 10px var(--neon-glow);
   }
 
@@ -105,36 +177,44 @@
     min-width: 120px;
     padding: 14px;
     border-radius: 8px;
-    border: 1px solid var(--neon-red);
+    border: 1px solid var(--accent);
     background: transparent;
-    color: var(--neon-red);
+    color: var(--accent);
+    font-family: 'Finger Paint', cursive, sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease, background-color 0.3s, color 0.3s, border-color 0.3s;
   }
 
   button:hover:not(:disabled) {
-    background: var(--neon-red);
+    background: var(--accent);
     color: #000;
-    box-shadow: 0 0 15px var(--neon-red);
+    box-shadow: 0 0 15px var(--accent);
   }
 
   button.secondary {
     border-color: #666;
     color: #999;
   }
+  
+  button.secondary:hover:not(:disabled) {
+    background: #666;
+    color: #fff;
+    box-shadow: 0 0 15px #666;
+  }
 
   button:disabled {
     opacity: 0.2;
     cursor: not-allowed;
+    box-shadow: none !important;
   }
 
   #progress-bar-container {
     width: 100%;
-    height: 4px;
+    height: 6px;
     background: #1a1a1a;
-    border-radius: 2px;
+    border-radius: 3px;
     margin-top: 25px;
     overflow: hidden;
   }
@@ -142,8 +222,8 @@
   #progress-bar {
     height: 100%;
     width: 0%;
-    background: var(--neon-red);
-    box-shadow: 0 0 10px var(--neon-red);
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
     transition: width 0.2s;
   }
 
@@ -167,11 +247,12 @@
 
   .frame-container {
     position: relative;
-    border: 1px solid rgba(255, 59, 59, 0.2);
+    border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
     background: #111;
     aspect-ratio: 16/9;
+    transition: border-color 0.3s;
   }
 
   .frame-container img {
@@ -187,6 +268,7 @@
     width: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     color: white;
     font-size: 10px;
     text-align: center;
@@ -194,76 +276,244 @@
     cursor: pointer;
     opacity: 0;
     transition: 0.2s;
+    font-family: 'Finger Paint', cursive, sans-serif;
   }
 
   .frame-container:hover .download-overlay {
     opacity: 1;
+  }
+
+  
+  #presets {  
+    position: fixed; 
+    top: 0; 
+    right: -280px; 
+    width: 280px; 
+    height: 100vh; 
+    background: rgba(15,17,30,0.95); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    padding: 20px 15px; 
+    transition: transform 0.3s ease, right 0.3s ease, box-shadow 0.3s ease; 
+    z-index: 4000; 
+    border-left: 1px solid var(--border); 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px;  
+    opacity: 0;
+  }  
+
+  #presets.aberto {
+    transform: translateX(-280px);
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  }
+
+  #configTitulo {    
+    font-family: 'Finger Paint', cursive, sans-serif;
+    font-size: 20px;    
+    margin-bottom: 10px;    
+    text-align: center;    
+    text-shadow: 0 0 10px currentColor;    
+  }
+
+  .temaBtn {    
+    width: 100%;    
+    padding: 12px;    
+    border-radius: 10px;    
+    cursor: pointer;    
+    font-size: 14px;    
+    font-family:'Finger Paint',cursive,sans-serif;    
+    transition: 0.2s ease, background-color 0.3s, border-color 0.3s, color 0.3s;    
+    background: rgba(34,34,34,0.4);    
+    color: var(--text);    
+    border: 2px solid var(--border);    
+    text-align: center;
+    margin-top: 0;
+    flex: none;
+    text-transform: none;
+    box-shadow: none;
+  }    
+    
+  .temaBtn:hover {    
+    box-shadow: 0 0 10px currentColor;    
+    transform: scale(1.02);
+    background: rgba(34,34,34,0.8);
+    color: var(--text);
+  }    
+
+  #listaTemas {      
+    display: none;      
+    flex-direction: column;      
+    gap: 8px;      
+    margin-top: 5px;      
+    max-height: 75vh;  
+    overflow-y: auto;  
+    padding-right: 5px;  
+  }
+
+  #overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 3500;
+    display: none;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+
+  
+  #bottomNav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 65px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 3000;
+    padding-bottom: env(safe-area-inset-bottom);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .navItem {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: 'Finger Paint', cursive, sans-serif;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    flex: 1;
+    opacity: 0.6;
+    transition: 0.2s, color 0.3s;
+    text-decoration: none;
+    min-width: auto;
+    padding: 0;
+    text-transform: none;
+    font-weight: normal;
+  }
+
+  .navItem.active, .navItem:hover {
+    opacity: 1;
+    text-shadow: 0 0 8px currentColor;
+    background: transparent;
+    box-shadow: none;
+    color: var(--text);
+  }
+
+  .navIcon {
+    font-size: 20px;
   }
 </style>
 </head>
 
 <body>
 
-<h1>Video → Frames Pro</h1>
+<div id="overlay"></div>
 
-<div class="box">
-  <div class="file-input-wrapper">
-    <input type="file" id="video" accept="video/*" onchange="initVideo()" style="border:none; padding:0;">
-    <div style="font-size: 11px; margin-top: 8px; opacity: 0.6;">MAX FILE SIZE DEPENDS ON YOUR RAM</div>
-  </div>
+<!-- Cabeçalho superior Estilo App -->
+<header id="appHeader">  
+  <div style="width: 32px;"></div> <!-- Espaçador para centralizar título -->
+  <h1>Video → Frames Pro</h1>
+  <button class="menuIconBtn" id="btnAbrirConfig">⚙️</button>  
+</header>    
 
-  <div class="grid-settings">
-    <div>
-      <label>Start (s)</label>
-      <input type="number" id="startTime" value="0" min="0" step="0.1" oninput="updateEstimate()">
+<div class="container">
+  <div class="box">
+    <div class="file-input-wrapper">
+      <input type="file" id="video" accept="video/*" onchange="initVideo()" style="border:none; padding:0; background:transparent;">
+      <div style="font-size: 11px; margin-top: 8px; opacity: 0.6;">MAX FILE SIZE DEPENDS ON YOUR RAM</div>
     </div>
-    <div>
-      <label>End (s)</label>
-      <input type="number" id="endTime" value="0" min="0" step="0.1" oninput="updateEstimate()">
-    </div>
-    <div>
-      <label>FPS</label>
-      <input type="number" id="fps" value="2" min="0.1" max="60" oninput="updateEstimate()">
-    </div>
-    <div>
-      <label>Format</label>
-      <select id="format">
-        <option value="png">PNG</option>
-        <option value="jpg">JPG</option>
-      </select>
-    </div>
-    <div style="grid-column: span 2;">
-        <label>Resolution</label>
-        <select id="res">
-          <option value="640:-1">360p</option>
-          <option value="1280:-1">720p (HD)</option>
-          <option value="1920:-1">1080p (FHD)</option>
-          <option value="-1:-1">Original Size</option>
+
+    <div class="grid-settings">
+      <div>
+        <label>Start (s)</label>
+        <input type="number" id="startTime" value="0" min="0" step="0.1" oninput="updateEstimate()">
+      </div>
+      <div>
+        <label>End (s)</label>
+        <input type="number" id="endTime" value="0" min="0" step="0.1" oninput="updateEstimate()">
+      </div>
+      <div>
+        <label>FPS</label>
+        <input type="number" id="fps" value="2" min="0.1" max="60" oninput="updateEstimate()">
+      </div>
+      <div>
+        <label>Format</label>
+        <select id="format">
+          <option value="png">PNG</option>
+          <option value="jpg">JPG</option>
         </select>
+      </div>
+      <div style="grid-column: span 2;">
+          <label>Resolution</label>
+          <select id="res">
+            <option value="640:-1">360p</option>
+            <option value="1280:-1">720p (HD)</option>
+            <option value="1920:-1">1080p (FHD)</option>
+            <option value="-1:-1">Original Size</option>
+          </select>
+      </div>
     </div>
+
+    <div class="btn-group">
+      <button id="btn-run" onclick="run()">Extract Frames</button>
+      <button id="btn-zip" class="secondary" onclick="zip()" disabled>Download ZIP</button>
+    </div>
+
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+
+    <div id="info">Please select a video file to begin.</div>
   </div>
 
-  <div class="btn-group">
-    <button id="btn-run" onclick="run()">Extract Frames</button>
-    <button id="btn-zip" class="secondary" onclick="zip()" disabled>Download ZIP</button>
-  </div>
-
-  <div id="progress-bar-container">
-    <div id="progress-bar"></div>
-  </div>
-
-  <div id="info">Please select a video file to begin.</div>
+  <div id="preview"></div>
 </div>
 
-<div id="preview"></div>
+<!-- Painel Lateral de Configurações/Temas Direito -->  
+<div id="presets">  
+  <div id="configTitulo">Settings</div>  
+  <button id="abrirTemasConfig" class="temaBtn">Themes ▼</button>      
+    
+  <div id="listaTemas">      
+    <button class="temaBtn" onclick="mudarTema('#fff4cc','#5a3d00','#ffe599','#5a3d00')">Old Paper</button>
+    <button class="temaBtn" onclick="mudarTema('#e8d7aa','#4a3200','#d9c28a','#4a3200')">Older Paper</button>
+    <button class="temaBtn" onclick="mudarTema('rgb(111,232,162)','black','#7be8a2','black')">Green & Black</button>
+    <button class="temaBtn" onclick="mudarTema('#f5f5f5','#222222','#e6e6e6','#222222')">Modern Wiki</button>
+    <button class="temaBtn" onclick="mudarTema('#f8f4e8','#3d3425','#e8dcc0','#3d3425')">Manuscript</button>
+    <button class="temaBtn" onclick="mudarTema('#ffffff','#2c2c2c','#f2f2f2','#2c2c2c')">Clean</button>
+  </div>      
+</div>
+
+<!-- Barra de Navegação Inferior de Retorno -->
+<nav id="bottomNav">
+  <button class="navItem" onclick="window.location.href='index.html'">
+    <span class="navIcon">🏠</span>
+    <span>Início</span>
+  </button>
+  <button class="navItem" onclick="window.location.href='conv.html'">
+    <span class="navIcon">⎘</span>
+    <span>Conv</span>
+  </button>
+  <button class="navItem" onclick="window.location.href='extras.html'">
+    <span class="navIcon">⚛</span>
+    <span>Extras</span>
+  </button>
+</nav>
 
 <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 
 <script>
-  /**
-   * Application State & Configuration
-   */
+
   const CONFIG = {
     MAX_FRAMES_WARNING: 500,
     CORE_PATH: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'
@@ -275,6 +525,30 @@
     videoDuration: 0,
     objectUrls: [],
     isProcessing: false
+  };
+
+  const presets = document.getElementById("presets");
+  const overlay = document.getElementById("overlay");
+
+  function fecharMenu() {
+    presets.classList.remove("aberto");
+    overlay.style.display = "none";
+  }
+
+  document.getElementById("btnAbrirConfig").onclick = () => {
+    presets.classList.add("aberto");
+    overlay.style.display = "block";
+  };
+
+  overlay.onclick = fecharMenu;
+
+  const abrirTemas = document.getElementById("abrirTemasConfig");      
+  const listaTemas = document.getElementById("listaTemas");      
+      
+  abrirTemas.onclick = () => {      
+    const ok = listaTemas.style.display === "flex";      
+    listaTemas.style.display = ok ? "none" : "flex";      
+    abrirTemas.textContent = ok ? "Themes ▼" : "Themes ▲";      
   };
 
   /**
@@ -424,6 +698,16 @@
   function renderFrameUI(url, name, container) {
     const wrap = document.createElement("div");
     wrap.className = "frame-container";
+    
+    // Reaplica bordas customizadas caso um tema dinâmico esteja ativo
+    const temaSalvo = localStorage.getItem("tema");
+    if(temaSalvo) {
+      try {
+        const t = JSON.parse(temaSalvo);
+        wrap.style.borderColor = t.texto;
+      } catch(e){}
+    }
+    
     wrap.innerHTML = `
       <img src="${url}" loading="lazy">
       <div class="download-overlay">SAVE ${name.split('_')[1].toUpperCase()}</div>
@@ -487,6 +771,81 @@
         document.getElementById('progress-bar').style.width = `0%`;
     }
   }
+
+  /* SISTEMA DE ASSINATURA DE CORES INTEGRADO AO ECOSSISTEMA */
+  function mudarTema(fundo, texto, inputBg, inputText) {
+    localStorage.setItem("tema", JSON.stringify({ fundo, texto, inputBg, inputText }));
+
+    document.body.style.background = fundo;
+    document.body.style.color = texto;
+    
+    const h1El = document.querySelector("h1");
+    if(h1El) h1El.style.color = texto;
+    
+    document.getElementById("appHeader").style.background = inputBg;
+    document.getElementById("appHeader").style.borderColor = texto;
+    document.getElementById("bottomNav").style.background = inputBg;
+    document.getElementById("bottomNav").style.borderColor = texto;
+    document.getElementById("presets").style.background = inputBg;
+    document.getElementById("presets").style.borderColor = texto;
+    document.getElementById("configTitulo").style.color = texto;
+
+    document.querySelectorAll(".menuIconBtn, .navItem, label").forEach(el => {
+      el.style.color = texto;
+    });
+
+    document.querySelectorAll("input, select").forEach(el => {
+      el.style.backgroundColor = inputBg;
+      el.style.color = inputText;
+      el.style.borderColor = texto;
+    });
+
+    document.querySelectorAll(".box").forEach(el => {
+      el.style.backgroundColor = inputBg;
+      el.style.borderColor = texto;
+    });
+
+    document.querySelectorAll("button:not(.temaBtn):not(.navItem)").forEach(el => {
+      el.style.borderColor = texto;
+      el.style.color = texto;
+    });
+
+    document.querySelectorAll(".frame-container").forEach(el => {
+      el.style.borderColor = texto;
+    });
+
+    document.querySelectorAll(".temaBtn").forEach(el => {
+      el.style.backgroundColor = fundo;
+      el.style.color = texto;
+      el.style.borderColor = texto;
+    });
+    
+    // Atualiza dinamicamente as variáveis nativas
+    document.documentElement.style.setProperty('--neon-red', texto);
+    document.documentElement.style.setProperty('--border', texto);
+    document.documentElement.style.setProperty('--box', inputBg);
+  }
+
+  // Carrega e sincroniza o tema ativo do LocalStorage ao iniciar o App
+  const temaAtivo = localStorage.getItem("tema");
+  if(temaAtivo) {
+    try {
+      const t = JSON.parse(temaAtivo);
+      mudarTema(t.fundo, t.texto, t.inputBg, t.inputText);
+    } catch(e) {}
+  }
+
+  // Identifica e destaca dinamicamente o item ativo no menu inferior do App
+  document.addEventListener("DOMContentLoaded", function() {
+    const path = window.location.pathname.split("/").pop();
+    document.querySelectorAll("#bottomNav .navItem").forEach(item => {
+      item.classList.remove("active");
+      const clickAttr = item.getAttribute("onclick") || "";
+      if(path && clickAttr.includes(path)) {
+        item.classList.add("active");
+      }
+    });
+  });
 </script>
 
 </body>
