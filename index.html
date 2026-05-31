@@ -6,7 +6,7 @@
 <title>JJS HEAVEN</title>      
 <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">    
 <link rel="manifest" href="manifest.json">    
-<meta name="theme-color" content="#ff0000">    
+<meta id="themeColorMeta" name="theme-color" content="#111111">    
 <meta name="apple-mobile-web-app-capable" content="yes">    
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
 <meta name="apple-mobile-web-app-title" content="JJS Heaven">    
@@ -596,6 +596,9 @@ function mudarTema(fundo,texto,inputBg,inputText){
   document.getElementById("pesquisa").style.color=texto;      
   document.getElementById("pesquisa").style.borderColor=texto;      
   document.getElementById("clearSearchBtn").style.color=texto;
+    
+  // Atualiza a cor da barra de status do sistema dinamicamente
+  document.getElementById("themeColorMeta").setAttribute("content", fundo);
     
   document.querySelectorAll(".menuIconBtn, .navItem, #scrollBtn").forEach(el => {  
     el.style.color = texto;  
