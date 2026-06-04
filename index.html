@@ -72,6 +72,9 @@ body {
   padding: 10px 16px;  
   background: #111;  
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }  
   
 #pesquisa {      
@@ -91,11 +94,10 @@ body {
   box-shadow: 0 0 12px currentColor;      
 }      
 
-/* Botão de limpar busca adicionado */
 #clearSearchBtn {
   position: absolute;
   right: 30px;
-  top: 50%;
+  top: 28px;
   transform: translateY(-50%);
   background: transparent;
   border: none;
@@ -105,6 +107,7 @@ body {
   cursor: pointer;
   display: none;
   padding: 5px;
+  z-index: 10;
 }
     
 #appBody {  
@@ -145,19 +148,18 @@ body {
   padding-bottom: 3px;
 }
     
-/* Menu Lateral / Drawer */  
 #appDrawer {      
   position: fixed;      
   top: 0;      
   left: -280px;     
   width: 280px;      
   height: 100vh;      
-  background: rgba(10,10,10,0.85);      
+  background: #111;      
   backdrop-filter: blur(20px);      
   -webkit-backdrop-filter: blur(20px);  
   padding: 20px 15px;      
   overflow-y: auto;      
-  transition: transform 0.3s ease, left 0.3s ease, box-shadow 0.3s ease;     
+  transition: transform 0.3s ease, left 0.3s ease, box-shadow 0.3s ease, background 0.3s;     
   z-index: 4000;      
   border-right: 1px solid rgba(255,0,0,0.3);      
   display: flex;  
@@ -191,7 +193,7 @@ body {
     
 .temaBtn, .menuLink {      
   width: 100%;      
-  padding: 12px;      
+  padding: 6px;      
   border-radius: 10px;      
   cursor: pointer;      
   font-size: 14px;      
@@ -243,7 +245,6 @@ body {
   transform: scale(0.9);
 }
     
-/* Painel de Configurações Lateral Direito */  
 #presets {  
   position: fixed; 
   top: 0; 
@@ -328,6 +329,15 @@ body {
 <div id="searchContainer">  
   <input type="text" id="pesquisa" placeholder="Search the collection...">    
   <button id="clearSearchBtn">✕</button>
+  <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
+    <select id="jsonLoaderDropdown" class="menuLink" style="background: rgba(10,10,10,0.9); outline: none;">
+      <option value="" disabled selected style="background: #111; color: red;">Select Ids Group...</option>
+      <option value="jjs.json" style="background: #111; color: red;">JJS Oficial SFX</option>
+      <option value="mesh.json" style="background: #111; color: red;">Meshes</option>
+      <option value="sounds.json" style="background: #111; color: red;">Bonus Sounds</option>
+      <option value="extras.json" style="background: #111; color: red;">Extras</option>
+    </select>
+  </div>
 </div>  
   
 <main id="appBody">  
@@ -336,32 +346,69 @@ body {
   
 <button id="scrollBtn">⌃</button>      
     
-<div id="appDrawer">      
-  <div class="menuPainelTitulo">Menu</div>      
-  <a href="dados.json" data-fetch="true" class="menuLink">🏠 Home</a>  
-  <a href="jjs.json" data-fetch="true" class="menuLink">🔮 JJS Stats</a>
-  <a href="impact.html" class="menuLink">💥 Impact</a>  
-  <a href="blur.html" class="menuLink">🌫️ Blurscreen effect generator </a>  
-  <a href="others.json" data-fetch="true" class="menuLink">📁 Others</a>
-  <a href="json.html" class="menuLink">⚙️ ID Grabber And Text To .JSON</a>
-  <a href="calc.html" class="menuLink">🧮 Calculator</a>
-  <a href="case-converter.html" class="menuLink">🔤 Text Case Converter</a>
-  <a href="palette-generator.html" class="menuLink">🎨 Palette Generator & Contrast</a>
-  <button id="btnFecharMenu" class="temaBtn" style="margin-top:auto; background:rgba(255,0,0,0.1)">Close ✕</button>  
+<div id="appDrawer">
+
+  <div class="menuPainelTitulo">
+    JJS HEAVEN
+  </div>
+
+  <a href="index.html" class="menuLink">🏠 Home</a>
+  <a href="impact.html" class="menuLink">💥 Impact Generator</a>
+  <a href="blur.html" class="menuLink">🌫️ Blur Generatorr</a>
+  <a href="palette-generator.html" class="menuLink">🎨 Palette</a>
+  <a href="json.html" class="menuLink">📄 ID Lister</a>
+  <a href="calc.html" class="menuLink">🧮 Calc</a>
+  <a href="case-converter.html" class="menuLink">🔤 Text Case Conv</a>
+
+  <button id="btnFecharMenu"
+          class="temaBtn"
+          style="margin-top:auto;">
+    ✕ Close
+  </button>
+
 </div>      
   
 <div id="presets">  
   <div class="menuPainelTitulo">Settings</div>  
   <button id="abrirTemasConfig" class="temaBtn">Themes ▼</button>      
     
-  <div id="listaTemas">      
-<button class="temaBtn" onclick="mudarTema('#fff4cc','#5a3d00','#ffe599','#5a3d00')">Old Paper</button>
-<button class="temaBtn" onclick="mudarTema('#e8d7aa','#4a3200','#d9c28a','#4a3200')">Older Paper</button>
-<button class="temaBtn" onclick="mudarTema('rgb(111,232,162)','black','#7be8a2','black')">Green & Black</button>
-<button class="temaBtn" onclick="mudarTema('#f5f5f5','#222222','#e6e6e6','#222222')">Modern Wiki</button>
-<button class="temaBtn" onclick="mudarTema('#f8f4e8','#3d3425','#e8dcc0','#3d3425')">Manuscript</button>
-<button class="temaBtn" onclick="mudarTema('#ffffff','#2c2c2c','#f2f2f2','#2c2c2c')">Clean</button>
-  </div>      
+<div id="listaTemas">
+
+<button class="temaBtn" onclick="mudarTema('#fff4cc','#5a3d00','#ffe599','#5a3d00')">Light Gold</button>
+
+<button class="temaBtn" onclick="mudarTema('#e8d7aa','#4a3200','#d9c28a','#4a3200')">Dark Gold</button>
+
+<button class="temaBtn" onclick="mudarTema('rgb(111,232,162)','black','#7be8a2','black')">Green</button>
+
+<button class="temaBtn" onclick="mudarTema('#f5f5f5','#222222','#e6e6e6','#222222')">Light Gray</button>
+
+<button class="temaBtn" onclick="mudarTema('#f8f4e8','#3d3425','#e8dcc0','#3d3425')">Cream</button>
+
+<button class="temaBtn" onclick="mudarTema('#ffffff','#2c2c2c','#f2f2f2','#2c2c2c')">White</button>
+
+<button class="temaBtn" onclick="mudarTema('#dcecff','#123456','#b8d8ff','#123456')">Sky Blue</button>
+
+<button class="temaBtn" onclick="mudarTema('#dfffe0','#1f4d2e','#b8f5bc','#1f4d2e')">Mint Green</button>
+
+<button class="temaBtn" onclick="mudarTema('#ffe8f5','#5a2340','#ffcce8','#5a2340')">Pink</button>
+
+<button class="temaBtn" onclick="mudarTema('#f3e8ff','#43205f','#dcc2ff','#43205f')">Lavender</button>
+
+<button class="temaBtn" onclick="mudarTema('#fff0d9','#6b3e00','#ffd199','#6b3e00')">Peach</button>
+
+<button class="temaBtn" onclick="mudarTema('#e6fff7','#004d3d','#b8ffe8','#004d3d')">Aqua</button>
+
+<button class="temaBtn" onclick="mudarTema('#fff7d6','#5c4a00','#ffe98a','#5c4a00')">Golden Yellow</button>
+
+<button class="temaBtn" onclick="mudarTema('#f5f5f5','#222222','#e6e6e6','#222222')">Silver</button>
+
+<button class="temaBtn" onclick="mudarTema('#faf0e6','#5e4630','#ead7c2','#5e4630')">Beige</button>
+
+<button class="temaBtn" onclick="mudarTema('#f1fff1','#224422','#d4ffd4','#224422')">Light Green</button>
+
+<button class="temaBtn" onclick="mudarTema('#eef8ff','#1b3550','#d3e9ff','#1b3550')">Ice Blue</button>
+
+</div>
 </div>  
   
 <nav id="bottomNav">  
@@ -395,7 +442,6 @@ function normalizar(t){
   return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\w\s]/gi,"");      
 }      
     
-// MODIFICADO: Adaptado para ler a estrutura de Categorias e Itens encadeados
 function renderizar(t){      
   const c = document.getElementById("conteudo");      
   c.innerHTML="";      
@@ -405,14 +451,12 @@ function renderizar(t){
     const jsonParsed = JSON.parse(t);
     categorias = Array.isArray(jsonParsed) ? jsonParsed : [jsonParsed];
   } catch(e) {
-    // Fallback caso receba string pura por quebra de linha antiga
     categorias = [{ category: "Items", items: t.split("\n").filter(l => l.trim()).map(l => ({ name: l })) }];
   }
 
   categorias.forEach(cat => {      
     if(!cat || !cat.items || cat.items.length === 0) return;
     
-    // Cria o divisor visual da Categoria
     const tituloCat = document.createElement("div");
     tituloCat.className = "categoria-titulo";
     tituloCat.textContent = cat.category;
@@ -469,12 +513,10 @@ function carregarDados(arquivo) {
 
 carregarDados("dados.json");
     
-// MODIFICADO: Varre a árvore filtrando os itens internos de cada categoria sem sumir com a estrutura
 document.getElementById("pesquisa").addEventListener("input",function(){    
   localStorage.setItem("ultimaPesquisa",this.value);    
   const b=normalizar(this.value);    
   
-  // Exibir ou ocultar o botão limpar baseado no valor inserido
   const clearBtn = document.getElementById("clearSearchBtn");
   if(this.value) {
     clearBtn.style.display = "block";
@@ -482,12 +524,14 @@ document.getElementById("pesquisa").addEventListener("input",function(){
     clearBtn.style.display = "none";
   }
 
-  if(!b) return renderizar(textoOriginal);    
+  if(!b) {
+    renderizar(textoOriginal);
+    return;
+  }    
   
   try {
     const listaCategorias = JSON.parse(textoOriginal);
     
-    // Mapeia e filtra mantendo a estrutura estrutural do seu novo JSON
     const filtrados = listaCategorias.map(cat => {
       if(!cat.items) return null;
       
@@ -502,23 +546,20 @@ document.getElementById("pesquisa").addEventListener("input",function(){
         category: cat.category,
         items: itensFiltrados
       };
-    }).filter(cat => cat && cat.items.length > 0); // Remove categorias que ficaram vazias na busca
+    }).filter(cat => cat && cat.items.length > 0);
     
     renderizar(JSON.stringify(filtrados));
   } catch(e) {
-    // Fallback simples
     renderizar(textoOriginal);    
   }
 });    
 
-// Ação do botão limpar adicionada
 document.getElementById("clearSearchBtn").onclick = function() {
   const inputPesquisa = document.getElementById("pesquisa");
   inputPesquisa.value = "";
   inputPesquisa.dispatchEvent(new Event("input"));
 };
     
-/* Controle dos Menus Laterais */  
 const drawer = document.getElementById("appDrawer");  
 const presets = document.getElementById("presets");  
 const overlay = document.getElementById("overlay");  
@@ -552,6 +593,13 @@ document.querySelectorAll('a[data-fetch="true"]').forEach(link => {
     fecharTodosMenus();
   });
 });
+
+document.getElementById("jsonLoaderDropdown").addEventListener("change", function() {
+  if(this.value) {
+    carregarDados(this.value);
+    fecharTodosMenus();
+  }
+});
     
 const abrirTemas = document.getElementById("abrirTemasConfig");      
 const listaTemas = document.getElementById("listaTemas");      
@@ -562,7 +610,6 @@ abrirTemas.onclick = () => {
   abrirTemas.textContent = ok ? "Themes ▼" : "Themes ▲";      
 };      
     
-/* Comportamento inteligente do Scroll */  
 const appBody = document.getElementById("appBody");  
 const scrollBtn = document.getElementById("scrollBtn");  
   
@@ -582,7 +629,6 @@ scrollBtn.onclick = () => {
   }  
 };      
     
-/* Lógica de Mudança de Tema Dinâmica */  
 function mudarTema(fundo,texto,inputBg,inputText){    
   localStorage.setItem("tema",JSON.stringify({ fundo,texto,inputBg,inputText }));      
     
@@ -592,12 +638,12 @@ function mudarTema(fundo,texto,inputBg,inputText){
   document.getElementById("searchContainer").style.background=fundo;      
   document.getElementById("bottomNav").style.background=fundo;      
   document.getElementById("titulo").style.color=texto;      
+  document.getElementById("appDrawer").style.background=fundo;
       
   document.getElementById("pesquisa").style.color=texto;      
   document.getElementById("pesquisa").style.borderColor=texto;      
   document.getElementById("clearSearchBtn").style.color=texto;
     
-  // Atualiza a cor da barra de status do sistema dinamicamente
   document.getElementById("themeColorMeta").setAttribute("content", fundo);
     
   document.querySelectorAll(".menuIconBtn, .navItem, #scrollBtn").forEach(el => {  
@@ -634,7 +680,6 @@ if(temaSalvo){
   mudarTema('#111','red','#222','red');    
 }      
 
-// Script adicionado para gerenciar estado ativo do menu inferior de forma inteligente
 document.addEventListener("DOMContentLoaded", function() {
   const path = window.location.pathname.split("/").pop();
   document.querySelectorAll("#bottomNav .navItem").forEach(item => {
@@ -646,7 +691,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
     
-/* Inicialização do Service Worker PWA */  
 if ("serviceWorker" in navigator) {    
   window.addEventListener("load", () => {    navigator.serviceWorker.register("./service-worker.js").catch(err => console.error("PWA:", err));  });    
 }    
