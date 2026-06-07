@@ -133,11 +133,29 @@ body {
   border-left: 3px solid currentColor;  
   color: inherit; 
   transition: background 0.2s ease, transform 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }      
 
 .linha:hover {
   background: rgba(255, 0, 0, 0.08);
   transform: translateX(2px);
+}
+
+.favBtn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0 5px;
+  font-family: sans-serif;
+  transition: transform 0.2s;
+}
+
+.favBtn:hover {
+  transform: scale(1.2);
 }
 
 .categoria-titulo {
@@ -331,11 +349,13 @@ body {
   <button id="clearSearchBtn">✕</button>
   <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
     <select id="jsonLoaderDropdown" class="menuLink" style="background: rgba(10,10,10,0.9); outline: none;">
-      <option value="" disabled selected style="background: #111; color: red;">Select Ids Group...</option>
-      <option value="jjs.json" style="background: #111; color: red;">JJS Oficial SFX</option>
-      <option value="mesh.json" style="background: #111; color: red;">Meshes</option>
-      <option value="sounds.json" style="background: #111; color: red;">Bonus Sounds</option>
-      <option value="extras.json" style="background: #111; color: red;">Extras</option>
+   <option value="" disabled selected style="background: #111; color: red;">Select Ids Group...</option>
+   <option value="dados.json" style="background: #111; color: red;">All Ids</option>
+    <option value="jjs.json" style="background: #111; color: red;">JJS Oficial SFX</option>
+    <option value="mesh.json" style="background: #111; color: red;">Meshes</option>
+    <option value="sounds.json" style="background: #111; color: red;">Bonus Sounds</option>
+    <option value="extras.json" style="background: #111; color: red;">Extra Stuff</option>
+    <option value="favoritos_local" style="background: #111; color: red;">⭐ Favorites</option>
     </select>
   </div>
 </div>  
@@ -441,6 +461,31 @@ let textoOriginal = "";
 function normalizar(t){      
   return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\w\s]/gi,"");      
 }      
+
+function obterFavoritos() {
+  try {
+    return JSON.parse(localStorage.getItem("jjs_favoritos")) || [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function alternarFavorito(item) {
+  let favs = obterFavoritos();
+  const index = favs.findIndex(f => f.name === item.name && f.id == item.id);
+  if(index > -1) {
+    favs.splice(index, 1);
+  } else {
+    favs.push(item);
+  }
+  localStorage.setItem("jjs_favoritos", JSON.stringify(favs));
+  
+  if(document.getElementById("jsonLoaderDropdown").value === "favoritos_local") {
+    carregarFavoritosLocais();
+  } else {
+    renderizar(textoOriginal);
+  }
+}
     
 function renderizar(t){      
   const c = document.getElementById("conteudo");      
@@ -454,6 +499,8 @@ function renderizar(t){
     categorias = [{ category: "Items", items: t.split("\n").filter(l => l.trim()).map(l => ({ name: l })) }];
   }
 
+  const favs = obterFavoritos();
+
   categorias.forEach(cat => {      
     if(!cat || !cat.items || cat.items.length === 0) return;
     
@@ -466,11 +513,23 @@ function renderizar(t){
       const d = document.createElement("div");      
       d.className = "linha";      
       
+      const infoSpan = document.createElement("span");
       if(item.id) {
-        d.textContent = item.id + " - " + (item.name || "");
+        infoSpan.textContent = item.id + " - " + (item.name || "");
       } else {
-        d.textContent = item.name || "";
+        infoSpan.textContent = item.name || "";
       }      
+      d.appendChild(infoSpan);
+
+      const isFav = favs.some(f => f.name === item.name && f.id == item.id);
+      const fBtn = document.createElement("button");
+      fBtn.className = "favBtn";
+      fBtn.textContent = isFav ? "★" : "☆";
+      fBtn.onclick = (e) => {
+        e.stopPropagation();
+        alternarFavorito(item);
+      };
+      d.appendChild(fBtn);
       
       c.appendChild(d);      
     });
@@ -480,7 +539,7 @@ function renderizar(t){
   if(temaSalvo) {
     try {
       const t = JSON.parse(temaSalvo);
-      document.querySelectorAll(".linha, .categoria-titulo, #clearSearchBtn").forEach(el => {
+      document.querySelectorAll(".linha, .categoria-titulo, #clearSearchBtn, .favBtn").forEach(el => {
         if(el.classList.contains("linha")) el.style.borderLeftColor = t.texto;
         el.style.color = t.texto;
       });
@@ -489,6 +548,10 @@ function renderizar(t){
 }      
     
 function carregarDados(arquivo) {
+  if (arquivo === "favoritos_local") {
+    carregarFavoritosLocais();
+    return;
+  }
   fetch(arquivo)    
   .then(r=>{    
     if(!r.ok) throw new Error(`${arquivo} not found`);    
@@ -496,12 +559,13 @@ function carregarDados(arquivo) {
   })    
   .then(t=>{    
     textoOriginal=t;    
-    renderizar(t);    
       
     const ult=localStorage.getItem("ultimaPesquisa")||"";    
     if(ult){    
-      document.getElementById("pesquisa").value=ult;    
-      document.getElementById("pesquisa").dispatchEvent(new Event("input"));    
+      document.getElementById("pesquisa").value=ult;
+      executarFiltro(ult);
+    } else {
+      renderizar(t);
     }    
   })    
   .catch(err=>{    
@@ -511,14 +575,28 @@ function carregarDados(arquivo) {
   });     
 }
 
-carregarDados("dados.json");
-    
-document.getElementById("pesquisa").addEventListener("input",function(){    
-  localStorage.setItem("ultimaPesquisa",this.value);    
-  const b=normalizar(this.value);    
+function carregarFavoritosLocais() {
+  const f = obterFavoritos();
+  const estruturaFavs = [{
+    category: "⭐ Your Favorites",
+    items: f
+  }];
+  textoOriginal = JSON.stringify(estruturaFavs);
+  
+  const ult = localStorage.getItem("ultimaPesquisa") || "";
+  if(ult){    
+    document.getElementById("pesquisa").value = ult;
+    executarFiltro(ult);
+  } else {
+    renderizar(textoOriginal);
+  }
+}
+
+function executarFiltro(valorPesquisa) {
+  const b = normalizar(valorPesquisa);    
   
   const clearBtn = document.getElementById("clearSearchBtn");
-  if(this.value) {
+  if(valorPesquisa) {
     clearBtn.style.display = "block";
   } else {
     clearBtn.style.display = "none";
@@ -530,10 +608,13 @@ document.getElementById("pesquisa").addEventListener("input",function(){
   }    
   
   try {
-    const listaCategorias = JSON.parse(textoOriginal);
+    let listaCategorias = JSON.parse(textoOriginal);
+    if (!Array.isArray(listaCategorias)) {
+      listaCategorias = [listaCategorias];
+    }
     
     const filtrados = listaCategorias.map(cat => {
-      if(!cat.items) return null;
+      if(!cat || !cat.items) return null;
       
       const itensFiltrados = cat.items.filter(item => {
         if(!item) return false;
@@ -550,14 +631,29 @@ document.getElementById("pesquisa").addEventListener("input",function(){
     
     renderizar(JSON.stringify(filtrados));
   } catch(e) {
-    renderizar(textoOriginal);    
+    let linhasOriginais = textoOriginal.split("\n").filter(l => l.trim());
+    let lignesFiltradas = linhasOriginais.filter(l => normalizar(l).includes(b));
+    
+    const simulado = [{
+      category: "Items Found",
+      items: lignesFiltradas.map(l => ({ name: l }))
+    }];
+    renderizar(JSON.stringify(simulado));
   }
+}
+
+carregarDados("dados.json");
+    
+document.getElementById("pesquisa").addEventListener("input",function(){    
+  localStorage.setItem("ultimaPesquisa",this.value);    
+  executarFiltro(this.value);
 });    
 
 document.getElementById("clearSearchBtn").onclick = function() {
   const inputPesquisa = document.getElementById("pesquisa");
   inputPesquisa.value = "";
-  inputPesquisa.dispatchEvent(new Event("input"));
+  localStorage.setItem("ultimaPesquisa", "");
+  executarFiltro("");
 };
     
 const drawer = document.getElementById("appDrawer");  
@@ -653,10 +749,10 @@ function mudarTema(fundo,texto,inputBg,inputText){
   document.getElementById("scrollBtn").style.backgroundColor = inputBg;  
   document.getElementById("scrollBtn").style.borderColor = texto;  
     
-  document.querySelectorAll(".temaBtn, .menuLink").forEach(b=>{      
-    b.style.backgroundColor=inputBg;      
+  document.querySelectorAll(".temaBtn, .menuLink, .favBtn").forEach(b=>{      
+    b.style.backgroundColor=b.classList.contains("favBtn") ? "transparent" : inputBg;      
     b.style.color=inputText;      
-    b.style.borderColor=texto;      
+    if(!b.classList.contains("favBtn")) b.style.borderColor=texto;      
   });      
 
   document.querySelectorAll(".linha").forEach(linha => {
